@@ -112,8 +112,18 @@ ul.posts span {
   margin-right: 3em;
 }
 
-.site .footer .contact a {
-  color: #8085C1;
+.site .footer .social-icons {
+  margin-top: 1.5em;
+}
+
+.site .footer .social-icons a {
+  color: #666;
+  padding: 0 4px;
+  text-decoration: none;
+}
+
+.site .footer .social-icons a:hover {
+  color: #000;
 }
 
 .site .footer .rss {
