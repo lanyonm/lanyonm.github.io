@@ -1,2 +1,3 @@
 name: LanyonM Blog
+exclude: [Gemfile, Gemfile.lock]
 pygments: true
