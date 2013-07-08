@@ -3,3 +3,4 @@ exclude: [Gemfile, Gemfile.lock]
 pygments: true
 
 disqus_shortname: lanyonm
+google_analytics: UA-42209870-1
