@@ -1,5 +1,5 @@
 name: Michael Lanyon's Blog
-exclude: [Gemfile, Gemfile.lock]
+exclude: [Gemfile, Gemfile.lock, README.md]
 pygments: true
 
 author: 'Michael Lanyon'
