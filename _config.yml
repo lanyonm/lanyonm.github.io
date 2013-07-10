@@ -2,5 +2,6 @@ name: Michael Lanyon's Blog
 exclude: [Gemfile, Gemfile.lock]
 pygments: true
 
+author: 'Michael Lanyon'
 disqus_shortname: lanyonm
 google_analytics: UA-42209870-1
