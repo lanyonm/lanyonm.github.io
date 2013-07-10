@@ -1,4 +1,4 @@
-name: LanyonM Blog
+name: Michael Lanyon's Blog
 exclude: [Gemfile, Gemfile.lock]
 pygments: true
 
