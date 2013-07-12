@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Raspberry Pi Kiosk"
-description: "How to create a Raspberry Pi based kiosk"
+title: "Raspberry Pi Dashboard Kiosk"
+description: "How to create a Raspberry Pi based dashboard kiosk"
 category: articles
 tags: [raspberry pi, kiosk, software]
 comments: true
@@ -55,11 +55,11 @@ $ sudo chmod 755 /etc/init.d/x11vnc
 $ sudo update-rc.d x11vnc defaults
 {% endhighlight %}
 
-That should be all you need to do to get the Pi configured.  If I've left something out, please leave a comment and let me know.
+That should be all you need to do to get the Pi configured.  I use [RealVNC](http://www.realvnc.com/download/viewer/) to connect to the Pi.
 
 <figure>
   <a href="{{ site.url }}/images/pi-kiosk.jpg"><img src="{{ site.url }}/images/pi-kiosk.jpg"></a>
   <figcaption>The full setup - with the Pi exposed.</figcaption>
 </figure>
 
-I have found that the browser will run out of memory after about 18 hours of graphs refreshing every minute.  I haven't done anything to fix that, but refreshing the page is all that is needed restart the page.
+If I've left something out, please leave a comment and let me know.
