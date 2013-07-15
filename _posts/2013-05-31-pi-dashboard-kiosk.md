@@ -7,7 +7,7 @@ tags: [data visualization, kiosk, raspberry pi, software]
 comments: true
 ---
 
-A while back I saw [this post](http://pivotallabs.com/using-a-raspberry-pi-as-an-information-radiator/) from Pivotal Labs about using a Raspberry Pi as a kiosk.  I immediately thought of using a Pi to display Graphite graphs at work.  It took an ashamedly long time to order the Pi, but under an hour to get it configured.
+I've had a Raspberry Pi sitting on my desk at home for months telling me whether I had new Gmail.  At $35, the Pi is cheap, but I sure wasn't getting my money's worth using it as a glorified dock notification.  Then I saw [this post](http://pivotallabs.com/using-a-raspberry-pi-as-an-information-radiator/) from Pivotal Labs about using a Pi as a kiosk.  I immediately thought of using a Pi to display Graphite graphs at work, and while it took an ashamedly long time to get moving on the project, the configuration only took an hour.
 
 <figure>
   <a href="{{ site.url }}/images/pi-kiosk.jpg"><img src="{{ site.url }}/images/pi-kiosk.jpg"></a>
