@@ -3,11 +3,16 @@ layout: post
 title: "Raspberry Pi Dashboard Kiosk"
 description: "How to create a Raspberry Pi based dashboard kiosk"
 category: articles
-tags: [raspberry pi, kiosk, software]
+tags: [data visualization, kiosk, raspberry pi, software]
 comments: true
 ---
 
 A while back I saw [this post](http://pivotallabs.com/using-a-raspberry-pi-as-an-information-radiator/) from Pivotal Labs about using a Raspberry Pi as a kiosk.  I immediately thought of using a Pi to display Graphite graphs at work.  It took an ashamedly long time to order the Pi, but under an hour to get it configured.
+
+<figure>
+  <a href="{{ site.url }}/images/pi-kiosk.jpg"><img src="{{ site.url }}/images/pi-kiosk.jpg"></a>
+  <figcaption>The full setup - with the Pi exposed.</figcaption>
+</figure>
 
 Configuring the Pi to be a kiosk was pretty easy.  The idea is to have the Pi boot to a full-screen browser that loads a predetermined page.  Additionally, I installed VNC so that I could view the desktop remotely if necessary.
 
@@ -56,10 +61,5 @@ $ sudo update-rc.d x11vnc defaults
 {% endhighlight %}
 
 That should be all you need to do to get the Pi configured.  I use [RealVNC](http://www.realvnc.com/download/viewer/) to connect to the Pi.
-
-<figure>
-  <a href="{{ site.url }}/images/pi-kiosk.jpg"><img src="{{ site.url }}/images/pi-kiosk.jpg"></a>
-  <figcaption>The full setup - with the Pi exposed.</figcaption>
-</figure>
 
 If I've left something out, please leave a comment and let me know.
