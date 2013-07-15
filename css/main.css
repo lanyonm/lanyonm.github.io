@@ -138,6 +138,7 @@ ul.posts span {
 
 .site .footer .rss img {
   border: 0;
+  color: #666;
 }
 
 /*****************************************************************************/
@@ -146,11 +147,23 @@ ul.posts span {
 /*
 /*****************************************************************************/
 
+/* tags */
+.entry-tags a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.entry-tags a:hover {
+  color: #000;
+}
+
 /* standard */
 .post pre {
   border: 1px solid #ddd;
   background-color: #eef;
+  overflow: auto;
   padding: 0 .4em;
+  white-space: pre;
 }
 
 .post ul, .post ol {
