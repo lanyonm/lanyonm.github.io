@@ -193,6 +193,13 @@ ul.posts span {
   background-color: #333;
 }
 
+.note {
+  margin: 0 1em;
+  padding: 1px 20px;
+  background-color: #eef;
+  border-radius: 5px;
+}
+
 /*****************************************************************************/
 /*
 /* Tags
