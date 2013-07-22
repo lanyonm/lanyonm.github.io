@@ -113,28 +113,29 @@ ul.posts span {
   overflow: hidden;
 }
 
+.site .footer a {
+  color: #666;
+  padding: 0 4px;
+  text-decoration: none;
+}
+
+.site .footer a:hover {
+  color: #000;
+}
+
 .site .footer .contact {
   float: left;
   margin-right: 3em;
 }
 
 .site .footer .social-icons {
+  float: left;
   margin-top: 1.5em;
 }
 
-.site .footer .social-icons a {
-  color: #666;
-  padding: 0 4px;
-  text-decoration: none;
-}
-
-.site .footer .social-icons a:hover {
-  color: #000;
-}
-
 .site .footer .rss {
-  margin-top: 1.1em;
-  margin-right: -.2em;
+  margin-top: 1.5em;
+  margin-right: .2em;
   float: right;
 }
 
