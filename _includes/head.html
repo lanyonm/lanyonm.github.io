@@ -1,18 +1,33 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ page.title }}</title>
+    <title>{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.name }}</title>
     <meta name="author" content="{{ site.author }}">
-    <meta name="description" content="{{ page.description }}">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
     <meta name="viewport" content="width=device-width">
 
-    <!-- syntax highlighting CSS -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.name }}">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    {% if page.og.image %}<meta property="og:image" content="{{ site.url }}/images/{{ page.og.image }}">
+    <meta property="og:image:type" content="{{ page.og.type }}">
+    <meta property="og:image:width" content="{{ page.og.width }}">
+    <meta property="og:image:height" content="{{ page.og.height }}">{% endif %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@lanyonm">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.name }}">
+    <meat name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    {% if page.og.image %}<meta name="twitter:image" content="{{ site.url }}/images/{{ page.og.image }}">
+    <meta name="twitter:image:width" content="{{ page.og.width }}">
+    <meta name="twitter:image:height" content="{{ page.og.height }}">{% endif %}
+
+    <link href="{{ site.url }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.name }} Feed">
+
     <link rel="stylesheet" href="/css/syntax.css">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
-
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
 
     <!-- Favicons and Touch Device Icons -->
