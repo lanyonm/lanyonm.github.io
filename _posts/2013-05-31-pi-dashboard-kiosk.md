@@ -9,10 +9,12 @@ comments: true
 
 I've had a Raspberry Pi sitting on my desk at home for months telling me whether I had new Gmail.  At $35, the Pi is cheap, but I sure wasn't getting my money's worth using it as a glorified dock notification.  Then I saw [this post](http://pivotallabs.com/using-a-raspberry-pi-as-an-information-radiator/) from Pivotal Labs about using a Pi as a kiosk.  I immediately thought of using a Pi to display Graphite graphs at work, and while it took an ashamedly long time to get moving on the project, the configuration only took an hour.
 
-<figure>
-  <a href="{{ site.url }}/images/pi-kiosk.jpg"><img src="{{ site.url }}/images/pi-kiosk.jpg"></a>
-  <figcaption>The full setup - with the Pi exposed.</figcaption>
-</figure>
+<div class="center">
+  <figure>
+    <a href="{{ site.url }}/images/pi-kiosk.jpg"><img src="{{ site.url }}/images/pi-kiosk.jpg"></a>
+    <figcaption>The full setup - with the Pi exposed.</figcaption>
+  </figure>
+</div>
 
 Configuring the Pi to be a kiosk was pretty easy.  The idea is to have the Pi boot to a full-screen browser that loads a predetermined page.  Additionally, I installed VNC so that I could view the desktop remotely if necessary.
 
