@@ -194,6 +194,10 @@ ul.posts span {
   background-color: #333;
 }
 
+.center {
+  text-align: center;
+}
+
 .note {
   margin: 0 1em;
   padding: 1px 20px;
