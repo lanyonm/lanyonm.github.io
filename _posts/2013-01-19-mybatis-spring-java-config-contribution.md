@@ -9,7 +9,7 @@ comments: true
 
 <!-- {% post_url 2013-01-06-spring-grabbag %} -->
 
-![MyBatis Spring](http://mybatis.github.com/images/mybatis-logo.png)
+![MyBatis Spring](http://mybatis.github.io/images/mybatis-logo.png)
 
 As you may have guessed from a [previous post](/articles/2013/01/06/spring-grabbag.html), I prefer Java Config.  At times in the past I've been forced to go with what's currently supported instead of spending the time necessary to add the feature I'd like to have.  With the Spring Grabbag project, I have that time.
 
