@@ -47,6 +47,7 @@ img {
 ul.posts {
   list-style-type: none;
   margin-bottom: 2em;
+  text-align: left;
 }
 
 ul.posts li {
@@ -57,6 +58,20 @@ ul.posts span {
   color: #aaa;
   font-family: Monaco, "Courier New", monospace;
   font-size: 80%;
+}
+
+@media screen and (max-width: 767px) {
+  .nav {
+    float: none;
+    display: block;
+  }
+  ul.posts li {
+    margin-left: 1em;
+  }
+  ul.posts span {
+    display: block;
+    margin-left: -1em;
+  }
 }
 
 /*****************************************************************************/
