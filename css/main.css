@@ -275,7 +275,10 @@ ul.posts span {
   .site .footer .links {
     display: table-row;
     float: right;
-    width: 80%;
+    width: 48em;
+  }
+  .site .footer .contact {
+    margin: 0;
   }
 }
 
