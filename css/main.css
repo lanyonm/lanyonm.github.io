@@ -39,6 +39,18 @@ img {
   max-width: 100%;
 }
 
+.header{
+  display:table;
+}
+
+.header h1{
+  margin-right: 1em;
+}
+
+.nav, .title{
+  display:table-cell;
+}
+
 /*****************************************************************************/
 /*
 /* Home
@@ -58,20 +70,6 @@ ul.posts span {
   color: #aaa;
   font-family: Monaco, "Courier New", monospace;
   font-size: 80%;
-}
-
-@media screen and (max-width: 767px) {
-  .nav {
-    float: none;
-    display: block;
-  }
-  ul.posts li {
-    margin-left: 1em;
-  }
-  ul.posts span {
-    display: block;
-    margin-left: -1em;
-  }
 }
 
 /*****************************************************************************/
@@ -109,7 +107,7 @@ ul.posts span {
 
 .site .header a.extra {
   color: #aaa;
-  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .site .header a.extra:hover {
@@ -121,11 +119,13 @@ ul.posts span {
 }
 
 .site .footer {
+  display: table;
   font-size: 80%;
   color: #666;
   border-top: 4px solid #eee;
   margin-top: 2em;
   overflow: hidden;
+  width: 100%;
 }
 
 .site .footer a {
@@ -136,6 +136,10 @@ ul.posts span {
 
 .site .footer a:hover {
   color: #000;
+}
+
+.site .footer .links {
+  display: table-row;
 }
 
 .site .footer .contact {
@@ -265,4 +269,32 @@ ul.posts span {
   vertical-align: super;
   font-size: 10px;
   font-size: 0.625rem;
+}
+
+@media screen and (min-width: 768px) {
+  .site .footer .links {
+    display: table-row;
+    float: right;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .site {
+    margin: 1em auto 2em;
+  }
+  .site .header h1.title {
+    margin: 0;
+  }
+  .nav {
+    display: block;
+    margin: 0 0 2em;
+  }
+  ul.posts li {
+    margin-left: 1em;
+  }
+  ul.posts span {
+    display: block;
+    margin-left: -1em;
+  }
 }
