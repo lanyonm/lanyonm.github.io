@@ -81,7 +81,7 @@ ul.posts span {
 .site {
   font-size: 115%;
   text-align: justify;
-  max-width: 48em;
+  max-width: 42em;
   min-width: 19em;
   margin: 3em auto 2em;
   line-height: 1.5em;
@@ -275,7 +275,7 @@ ul.posts span {
   .site .footer .links {
     display: table-row;
     float: right;
-    width: 48em;
+    width: 80%;
   }
   .site .footer .contact {
     margin: 0;
