@@ -217,6 +217,10 @@ ul.posts span {
   text-align: center;
 }
 
+.center figcaption {
+  background-color: #eee;
+}
+
 .note {
   margin: 0 1em;
   padding: 1px 20px;
