@@ -30,7 +30,7 @@ All the parts aren't pictured above, but here's the full parts list (save a few 
 * [10000UF, 6.3V Capacitor](http://www.digikey.com/product-detail/en/ECA-0JM103/P5120-ND)
 * [Green LED](http://www.digikey.com/product-detail/en/MV64530/1080-1128-ND)
 
-It's easier to just purchase the add-on kit from Adafruit, but I had enough parts lying around, that didn't really make sense.  I also wanted to get the XBee module with the U.FL connector so I could use it as my receiver.  The XBees don't have great multi-room range without better antennas.
+It would have been easier to purchase the add-on kit from Adafruit, but I had enough parts lying around _and_ wanted to get the XBee module with the U.FL connector to as receiver XBee.  After the initial build I found that the XBee Series 1 that ship with the Adafruit kits could barely communicate between adjacent rooms.
 
 # The Easy Part
 
