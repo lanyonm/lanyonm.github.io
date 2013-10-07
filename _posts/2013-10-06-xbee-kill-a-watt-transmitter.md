@@ -4,6 +4,11 @@ title: "XBee Kill-a-Watt Transmitter"
 description: "Building a second XBee Will-a-Watt transmitter to wirelessly record power consumption"
 category: articles
 tags: [hardware hacking, xbee]
+og:
+  image: 'xbee-kill-a-watt-transmitter.jpg'
+  type: 'image/jpeg'
+  width: '628'
+  height: '402'
 comments: true
 ---
 
