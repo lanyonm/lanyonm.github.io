@@ -7,11 +7,9 @@ tags: [development, MyBatis, Spring, software]
 comments: true
 ---
 
-<!-- {% post_url 2013-01-06-spring-grabbag %} -->
-
 ![MyBatis Spring](http://mybatis.github.io/images/mybatis-logo.png)
 
-As you may have guessed from a [previous post](/articles/2013/01/06/spring-grabbag.html), I prefer Java Config.  At times in the past I've been forced to go with what's currently supported instead of spending the time necessary to add the feature I'd like to have.  With the Spring Grabbag project, I have that time.
+As you may have guessed from a [previous post]({% post_url 2013-01-06-spring-grabbag %}), I prefer Java Config.  At times in the past I've been forced to go with what's currently supported instead of spending the time necessary to add the feature I'd like to have.  With the Spring Grabbag project, I have that time.
 
 The current mybatis-spring project (v1.1.1) only has support for XML-defined config.  Some searching lead me to java/xml config hybrids, like the one described [here](https://groups.google.com/forum/#!msg/mybatis-user/J4D6FeUBGZA/dPdFcbWQ4VUJ), but that seemed too much like the compromise I'd been forced to make in the past.  Some more targeted searching lead me to [this issue](https://code.google.com/p/mybatis/issues/detail?id=694) on the MyBatis issue tracker, which in turn lead me to a [more technically robust ticket](https://jira.springsource.org/browse/SPR-9464?focusedCommentId=79600&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-79600) on SpringSource's Jira instance.
 
