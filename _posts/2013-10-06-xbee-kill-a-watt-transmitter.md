@@ -12,7 +12,7 @@ og:
 comments: true
 ---
 
-For a few months I have had the parts to build another transmitter for my [XBee / Kill-a-Watt power measuring system](http://www.ladyada.net/make/tweetawatt/).  Since I've already chronicled the overall system but didn't have any photos of the process, this post will provide the pretty pictures I lacked before.
+For a few months I have had the parts to build another transmitter for my [XBee / Kill-a-Watt power measuring system]({% post_url 2013-06-02-xbee-kill-a-watt %}).  Since I've already chronicled the overall system but didn't have any photos of the process, this post will provide the pretty pictures I lacked before.
 
 # The Parts
 I started with parts from Digi-Key and Adafruit.  At the outset, you don't start with much.
