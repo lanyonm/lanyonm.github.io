@@ -67,7 +67,7 @@ An important part of the process is to calibrate the script to adjust for the po
 From this data we can determine what the sensor `vrefcalibration` values should be on lines 16 to 21.  My transmitter registered an average close to 492, and the calibration made a noticeable difference in the measured output.
 
 # Graphing
-I had originally wanted to use [Google Powermeter](http://www.google.com/powermeter/about/) to log and graph my data, but the service was taken retired in 2011. I immediately turned to Graphite.  We use Graphite at work and although I've never had to set it up by hand, using Chef to stand up an instance is super easy (**Update:** I posted about [my Vagrant, Graphite and StatsD setup](http://blog.lanyonm.org/)). Once I had the Graphite server running, the additional python was pretty easy:
+I had originally wanted to use [Google Powermeter](http://www.google.com/powermeter/about/) to log and graph my data, but the service was taken retired in 2011. I immediately turned to Graphite.  We use Graphite at work and although I've never had to set it up by hand, using Chef to stand up an instance is super easy (**Update:** I posted about [my Vagrant, Graphite and StatsD setup]({% post_url 2013-09-15-vagrant-graphite-statsd-chef %})). Once I had the Graphite server running, the additional python was pretty easy:
 
 {% highlight python %}
 sock = socket()
