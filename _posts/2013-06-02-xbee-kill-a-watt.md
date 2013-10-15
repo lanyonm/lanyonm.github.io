@@ -21,8 +21,8 @@ I first found the project on [Element14's community site](http://www.element14.c
 <div class="center">
   <figure>
     <a href="http://www.ladyada.net/make/tweetawatt/"><img src="http://www.ladyada.net/images/wattcher/bigpicture.png"></a>
+    <figcaption>Credit: www.ladyada.net</figcaption>
   </figure>
-  <figcaption>Credit: www.ladyada.net</figcaption>
 </div>
 
 The overall system view (above) is comprised of a single receiver and several transmitters, all relying on XBee wireless communication.  XBee modules have built-in A-D converters, so in this system the transmitters are programmed to sample analog values from a specific pin and broadcast those along with an identifier.  If you wanted to have discrete networks of XBees, [setting discrete PAN IDs](http://www.digi.com/wiki/developer/index.php/Hardcoding_a_fixed_XBee_PAN_ID) would do the trick.
@@ -33,8 +33,8 @@ I ordered the [Tweet-a-Watt Starter Pack](http://www.adafruit.com/products/143) 
 <div class="center">
   <figure>
     <a href="{{ site.url }}/images/xbee-kill-a-watt-completed-adapter.jpg"><img src="{{ site.url }}/images/xbee-kill-a-watt-completed-adapter.jpg"></a>
+    <figcaption>A fully assembled Adafruit XBee Adapter</figcaption>
   </figure>
-  <figcaption>A fully assembled Adafruit XBee Adapter</figcaption>
 </div>
 
 Each XBee module, whether it's a receiver or transmitter, needs to be programmed via the adapter and FTDI cable.  I had trouble getting the XBees to consistently write firmware successfully.  I did not find a true solution to this, but was successful after successive tries.
@@ -42,8 +42,8 @@ Each XBee module, whether it's a receiver or transmitter, needs to be programmed
 <div class="center">
   <figure>
     <a href="{{ site.url }}/images/xbee-kill-a-watt-completed-receiver.jpg"><img src="{{ site.url }}/images/xbee-kill-a-watt-completed-receiver.jpg"></a>
+    <figcaption>The Receiver - an adapter with the XBee module and FTDI cable attached</figcaption>
   </figure>
-  <figcaption>The Receiver - an adapter with the XBee module and FTDI cable attached</figcaption>
 </div>
 
 The second piece is the transmitter.  LadyAda's guide has a very detailed step-by-step [guide for the transmitter](http://www.ladyada.net/make/tweetawatt/solder.html), though you may find that some steps vary due to revised Kill-a-Watt parts.  The P3 Kill-a-Watt unit I purchased was a P4400*.1*.  This revision has an updated PCB and smaller quad op-amp that you have to solder into.  There is no known way to tell which version of the P4400 you're ordering when you order online, though I would assume any models purchased at this time would be P4400.1's.
@@ -87,8 +87,8 @@ The script currently pushes only the 5 minute average wattage (once every five m
 <div class="center">
   <figure>
     <a href="{{ site.url }}/images/graphite-office-wattage.png"><img src="{{ site.url }}/images/graphite-office-wattage.png"></a>
+    <figcaption>24 hours of power consumption for my home office</figcaption>
   </figure>
-  <figcaption>24 hours of power consumption for my home office</figcaption>
 </div>
 
 My home office consumes a baseline of about 215 watts.  This includes two desktops, two 24" monitors, a laptop (sometimes), two printers, speakers, a modem, a router, a switch and various other peripherals, so I'm actually surprised at how low the power consumption is at idle and now little that changes when they're in use.  It'll be interesting to gather more data comparing these devices' power draw and how it compares to other areas in the house.  I think my first target for comparison will be the media console.
@@ -99,8 +99,8 @@ All-in-all this was a really fun project.  It's a easily attainable mix of hardw
 <div class="center">
   <figure>
     <a href="{{ site.url }}/images/xbee-kill-a-watt-completed-transmitter.jpg"><img src="{{ site.url }}/images/xbee-kill-a-watt-completed-transmitter.jpg"></a>
+    <figcaption>A completed transmitter</figcaption>
   </figure>
-  <figcaption>A completed transmitter</figcaption>
 </div>
 
 If you got this far, thanks for reading!
