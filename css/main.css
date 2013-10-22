@@ -221,6 +221,23 @@ ul.posts span {
   background-color: #eee;
 }
 
+.grails-travis {
+  /*display: table;*/
+  vertical-align: center;
+}
+
+.grails-travis img {
+  max-height: 200px;
+  width: 32%;
+}
+
+.grails-travis span {
+  font-size: 475%;
+  position: relative;
+  /*padding-bottom: 40%;*/
+  top:-78px;
+}
+
 .note {
   margin: 0 1em;
   padding: 1px 20px;
