@@ -3,7 +3,7 @@ layout: post
 title: "MyBatis Spring Java Config Contribution"
 description: "Contributing to the creation of first-class support for Java Config in MyBatis-Spring"
 category: articles
-tags: [development, MyBatis, Spring, software]
+tags: [development, java, MyBatis, Spring, software]
 comments: true
 ---
 

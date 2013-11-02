@@ -3,7 +3,7 @@ layout: post
 title: "Spring Grabbag"
 description: "Spring Grabbag - A demo/reference application serves as a repository of Spring notes"
 category: articles
-tags: [development, Spring, software, MyBatis]
+tags: [development, java, Spring, software, MyBatis]
 comments: false
 ---
 
