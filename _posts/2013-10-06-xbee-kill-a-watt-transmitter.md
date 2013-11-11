@@ -20,8 +20,8 @@ I started with parts from Digi-Key and Adafruit.  At the outset, you don't start
 <div class="center">
   <figure>
     <a href="{{ site.url }}/images/xbee-kill-a-watt-parts.jpg"><img src="{{ site.url }}/images/xbee-kill-a-watt-parts.jpg"></a>
+    <figcaption>The Adafruit XBee Adapter Kit and Kill-a-Watt.</figcaption>
   </figure>
-  <figcaption>The Adafruit XBee Adapter Kit and Kill-a-Watt.</figcaption>
 </div>
 
 All the parts aren't pictured above, but here's the full parts list (save a few resistors, heat shrink and ribbon cable):
