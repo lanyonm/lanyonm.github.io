@@ -3,7 +3,7 @@ layout: post
 title: "Pushing Web Server Response Codes into Graphite with Logstash"
 description: "How to push web server response codes into Graphite using Logstash with Kibana as an added bonus"
 category: articles
-tags: [elasticsearch, graphite, kibana, logstash, nginx, ubuntu]
+tags: [data visualization, devops, elasticsearch, graphite, kibana, logstash, monitoring, nginx, operations, statsd]
 og:
   image: 'http://logstash.net/images/logstash.png'
   type: 'image/png'
