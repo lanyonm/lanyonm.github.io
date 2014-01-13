@@ -20,7 +20,8 @@ Let's say you want to monitor the counts and distribution of response codes logg
 The Logstash configuration DSL has three main sections: input, filter & output.  Think of these as three operations along an event processing pipeline.  What each section does is defined by plugins, which can be summarized as data streams or transforms.  I use `file`, `grok`, `statsd` and `elasticsearch` for this example.  You can find much more documentation [here](http://logstash.net/docs/1.2.2/).
 
 Here's the `logstash.conf` file:
-{% gist 7697747 %}
+
+{% gist 7697747 logstash.conf %}
 
 The input section is pretty self explanatory.  The one thing that is important to understand is that `type` is used in the filter section to determine which filters will take action on that data.
 
@@ -37,6 +38,7 @@ java -jar logstash-1.2.2-flatjar.jar agent -f logstash.conf -- web
 The `agent` parameter tells Logstash to run the inputs, filters and outputs while `web` runs Kibana.  More about Kibana later.  You'll notice that it takes a few seconds to start up and that there's some status information on the plugins that we're using.  Interestingly, the logging doesn't look anything like logs configured with log4j.  That's because Logstash is actually written in Ruby and packaged as a jar with JRuby for portability and ease of install.  If you get a really funky stacktrace from the jar that contains Ruby references, that's why.
 
 If everything is setup correctly, you'll get info like this in Graphite:
+
 <div class="center">
   <figure>
     <a href="/images/nginx-response-codes-graphite.png"><img src="/images/nginx-response-codes-graphite.png"></a>

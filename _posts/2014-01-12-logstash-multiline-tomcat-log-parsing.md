@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Logstash Multiline Tomcat and Apache Log Parsing"
-description: "How to push web server response codes into Graphite using Logstash with Kibana as an added bonus"
+description: "How to Parse Apache and Tomcat Logs using Logstash's Multiline Filter and Kibana for Analysis"
 category: articles
 tags: [apache, data visualization, devops, elasticsearch, grok, java, kibana, logstash, monitoring, operations, tomcat]
 og:
