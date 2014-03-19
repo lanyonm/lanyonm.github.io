@@ -12,17 +12,14 @@ When you [host a Jekyll site on GitHub](https://help.github.com/articles/using-j
 It's easy to alphabetize the tag list on a given page (just list the tags alphabetically), but getting your [`tags.html`](/tags.html) to list tags alphabetically is a bit more convoluted if you aren't able to use plugins.
 
 # Waist-Deep in Liquid
-Liquid provides some pretty good [documentation](http://docs.shopify.com/themes/liquid-basics/logic) for figuring out what logical operators and functions are built into the templating language.  Particularly useful are `capture` and `assign`, which each capture values as variables.  These logical operators can contain additional logic like for-loops, splits, sorts and joins.  Here's the code I use to generate a sorted list of tags as well as the number of tags:
+Liquid provides some pretty good [documentation](http://docs.shopify.com/themes/liquid-basics/logic) for figuring out what logical operators and functions are built into the templating language.  Particularly useful are `capture` and `assign`, which each capture values as variables.  These logical operators can contain additional logic like for-loops, splits, sorts and joins.  Here's the code I use to generate a sorted list of tags:
 
 {% highlight html linenos %}{% raw %}
 {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-{% capture num_words %}
-  {{ site_tags | split:',' | size }}
-{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
 {% endraw %}{% endhighlight %}
 
-Line 1 above will get the tag name for every tag on the site and set them to the `site_tags` variable.  Each tag object contains both the tag name and a list of the associated posts.  This capture statement is all on one line so that the commas can reliably be used as delimiters.  Lines 2-4 have the sole purpose of setting the number of tags to `num_words`.  Line 5 creates the `tag_words` variable that is a sorted array of the tag names.
+Line 1 above will get the tag name for every tag on the site and set them to the `site_tags` variable.  Each tag object contains both the tag name and a list of the associated posts.  This capture statement is all on one line so that the commas can reliably be used as delimiters.  Line 2 creates the `tag_words` variable that is a sorted array of the tag names.  If you want to see what these two statements would produce within Jekyll, you'll find them printed in html comments on my [tags page](/tags.html).
 
 # Building The HTML
 As you can see on [`tags.html`](/tags.html), the tags are listed alphabetically with post counts and then each tag's post is listed below.  Here's the Liquid code:
@@ -31,13 +28,13 @@ As you can see on [`tags.html`](/tags.html), the tags are listed alphabetically 
 <div id="tags">
   <h1>Tags</h1>
   <ul class="tag-box inline">
-  {% for item in (0..num_words) %}{% unless forloop.last %}
+  {% for item in (0..site.tags.size) %}{% unless forloop.last %}
     {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
     <li><a href="#{{ this_word | cgi_escape }}">{{ this_word }} <span>{{ site.tags[this_word].size }}</span></a></li>
   {% endunless %}{% endfor %}
   </ul>
 
-  {% for item in (0..num_words) %}{% unless forloop.last %}
+  {% for item in (0..site.tags.size) %}{% unless forloop.last %}
     {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
   <h2 id="{{ this_word | cgi_escape }}">{{ this_word }}</h2>
   <ul class="posts">
