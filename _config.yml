@@ -3,6 +3,7 @@ url: 'http://blog.lanyonm.org'
 description: 'Notes and thoughts from LanyonM'
 
 exclude: [Gemfile, Gemfile.lock, README.md]
+markdown: kramdown
 highlighter: pygments
 
 author: 'Michael Lanyon'
