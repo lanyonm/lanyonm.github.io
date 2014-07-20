@@ -35,7 +35,7 @@ $ sudo apt-get install ttf-mscorefonts-installer unclutter x11vnc x11-xserver-ut
 
 Disable sleep so the screen stays on:
 {% highlight bash %}
-$ sudo nano /etc/lightdm/lightdm.conf
+$ sudo vi /etc/lightdm/lightdm.conf
 
 # add the following lines to the [SeatDefaults] section
 
@@ -57,9 +57,21 @@ $ sudo vi /etc/xdg/lxsession/LXDE/autostart
 
 Configure VNC to start on boot
 {% highlight bash %}
-$ sudo curl -o /etc/init.d/x11vnc https://raw.github.com/starlightmedia/bin/master/x11vnc
+$ sudo curl -L -o /etc/init.d/x11vnc https://raw.githubusercontent.com/starlightmedia/bin/master/x11vnc
 $ sudo chmod 755 /etc/init.d/x11vnc
 $ sudo update-rc.d x11vnc defaults
+{% endhighlight %}
+
+If you prefer to use Chrome as the kiosk's browser, you can do this:
+{% highlight bash %}
+$ sudo apt-get install chromium
+{% endhighlight %}
+and:
+{% highlight bash %}
+$ sudo vi /etc/xdg/lxsession/LXDE/autostart
+
+# replace the midori line with the following
+@chromium --kiosk --disable-session-crashed-bubble --disable-restore-background-contents --disable-new-tab-first-run --disable-restore-session-state http://example.com
 {% endhighlight %}
 
 That should be all you need to do to get the Pi configured.  I use [RealVNC](http://www.realvnc.com/download/viewer/) to connect to the Pi.
