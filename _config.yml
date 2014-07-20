@@ -3,7 +3,7 @@ url: 'http://blog.lanyonm.org'
 description: 'Notes and thoughts from LanyonM'
 
 exclude: [Gemfile, Gemfile.lock, README.md]
-pygments: true
+highlighter: pygments
 
 author: 'Michael Lanyon'
 disqus_shortname: lanyonm
