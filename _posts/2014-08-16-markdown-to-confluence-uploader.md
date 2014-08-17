@@ -3,7 +3,7 @@ layout: post
 title: "Markdown to Confluence Converter & Uploader"
 description: "A small Ruby script to convert markdown to Confluence storage format and upload it to Confluence - md2confl"
 category: articles
-tags: [documentation, Confluence, markdown, ruby, software]
+tags: [Confluence, documentation, markdown, ruby, software]
 comments: true
 ---
 
