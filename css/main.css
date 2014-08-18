@@ -228,6 +228,7 @@ ul.posts span {
 
 .grails-travis img {
   max-height: 200px;
+  vertical-align: middle;
   width: 32%;
 }
 
@@ -235,7 +236,24 @@ ul.posts span {
   font-size: 475%;
   position: relative;
   /*padding-bottom: 40%;*/
-  top:-78px;
+  top:10px;
+}
+
+.spring-mybatis {
+  vertical-align: center;
+}
+
+.spring-mybatis img {
+  max-height: 200px;
+  vertical-align: middle;
+  width: 32%;
+}
+
+.spring-mybatis span {
+  font-size: 300%;
+  position: relative;
+  /*padding-bottom: 40%;*/
+  top:5px;
 }
 
 .note {
