@@ -7,6 +7,9 @@ tags: [chef, graphite, statsd, vagrant]
 comments: true
 ---
 
+# Update
+This no longer works with recent versions of the Heavy Water Graphite cookbook. With the release of [version 1.0](https://github.com/hw-cookbooks/graphite/tree/legacy) HW has rewritten the graphite frontend out of their cookbook.  If you would still like to follow this example, please be aware that I've now pinned an old version of the Graphite cookbook.
+
 # TL;DR
 I created a Vagrantfile and Cheffile to allow quick and easy creation of a Graphite and StatsD server.  You can find the [Gist here](https://gist.github.com/LanyonM/6968660).  Assuming you have the following installed: Vagrant 1.3+, Ruby 1.9+ and the `librarian-chef` gem, you should be able to run the following commands from the folder containing the `Vagrantfile` and `Cheffile` from the gist:
 
