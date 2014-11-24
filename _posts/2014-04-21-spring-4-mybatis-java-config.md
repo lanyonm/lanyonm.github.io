@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Spring 4 and MyBatis Java Config"
-description: "A small Ruby script to convert markdown to Confluence storage format and upload it to Confluence - md2confl"
+description: "An example of MyBatis-Spring configuration with Java Config with Spring 4 and MyBatis 3.2.7"
 category: articles
-tags: [development, java, MyBatis, software, Spring]
+tags: [development, H2, java, MyBatis, software, Spring]
 comments: true
 ---
 
