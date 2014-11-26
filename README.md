@@ -1,4 +1,4 @@
-# Jekyll Site for my blog
+# Jekyll source for my blog
 Read more here: [GitHub User Pages](https://help.github.com/articles/user-organization-and-project-pages).
 
 # License
