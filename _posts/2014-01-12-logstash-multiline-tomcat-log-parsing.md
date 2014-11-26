@@ -14,6 +14,8 @@ comments: true
 
 ***Update***: The version of Logstash used in the example is out of date, but the mechanics of grok parsing multiple timestamps from Tomcat logs is still applicable.  I'm working on an updated post to show other ways of getting logs from Spring hosted on Tomcat into Elasticsearch via Logstash.
 
+<hr />
+
 Once you've gotten a taste for the power of shipping logs with Logstash and analyzing them with Kibana, you've got to keep going.  My second goal with Logstash was to ship both Apache and Tomcat logs to Elasticsearch and inspect what's happening across the entire system at a given point in time using Kibana.  Most of the apps I write compile to Java bytecode and use something like log4j for logging.  The logging isn't always the cleanest and there can be several conversion patterns in one log.
 
 <div class="center">
