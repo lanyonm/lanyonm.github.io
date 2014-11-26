@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article itemscope itemtype="http://schema.org/Article">
+<!-- <article itemscope itemtype="http://schema.org/Article">
         <h2 itemprop="name">{{ page.title }}</h2>
         <span class="entry-tags">{% for tag in page.tags %}<a href="{{ site.url }}/tags.html#{{ tag | cgi_escape }}" title="Pages tagged {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %} &bull; {% endunless %}{% endfor %}</span>
         <p class="meta" itemprop="datePublished" content="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date_to_string }}</p>
@@ -9,6 +9,33 @@ layout: default
 
         <div class="post">
           {{ content }}
-          {% if page.comments %}<div id="disqus_thread"></div><!-- /#disqus_thread -->{% endif %}
+          {% if page.comments %}<div id="disqus_thread"></div>{% endif %}
         </div>
-      </article>
+      </article> -->
+
+<article itemscope itemtype="http://schema.org/Article">
+  <div class="post">
+    <h1 itemprop="name" class="post-title">{{ page.title }}</h1>
+    <p class="entry-tags">{% for tag in page.tags %}<a href="{{ site.url }}/tags.html#{{ tag | cgi_escape }}" title="Pages tagged {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %} &bull; {% endunless %}{% endfor %}</p>
+    <p class="post-date" itemprop="datePublished" content="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date_to_string }}</p>
+    {% if page.comments %}<p><a href="{{ site.url }}{{ page.url }}#disqus_thread">Comments</a></p>{% endif %}
+    {{ content }}
+    {% if page.comments %}<div id="disqus_thread"></div>{% endif %}
+  </div>
+</article>
+
+<!-- <div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    {% for post in site.related_posts limit:3 %}
+      <li>
+        <h3>
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            {{ post.title }}
+            <small>{{ post.date | date_to_string }}</small>
+          </a>
+        </h3>
+      </li>
+    {% endfor %}
+  </ul>
+</div> -->
