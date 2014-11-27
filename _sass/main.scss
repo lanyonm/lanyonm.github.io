@@ -17,6 +17,13 @@ html {
   text-align: center;
 }
 
+pre {
+  overflow: auto;
+  white-space: pre;
+  word-break: normal;
+  word-wrap: normal;
+}
+
 /*****************************************************************************/
 /*
 /* sidebar
