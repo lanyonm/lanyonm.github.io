@@ -3,13 +3,15 @@ layout: post
 title: "Raspberry Pi Dashboard Kiosk"
 description: "How to create a Raspberry Pi based dashboard kiosk"
 category: articles
-tags: [data visualization, kiosk, raspberry pi, software]
+tags: [data visualization, kiosk, raspberry pi, raspbian, software]
 comments: true
 ---
 
 <style type="text/css">h2 { margin: 1em 0; }</style>
 
 I've had a Raspberry Pi sitting on my desk at home for months telling me whether I had new Gmail.  At $35, the Pi is cheap, but I sure wasn't getting my money's worth using it as a glorified dock notification.  Then I saw [this post](http://pivotallabs.com/using-a-raspberry-pi-as-an-information-radiator/) from Pivotal Labs about using a Pi as a kiosk.  I immediately thought of using a Pi to display Graphite graphs at work, and while it took an ashamedly long time to get moving on the project, the configuration only took an hour.
+
+_Update 2015-02-25_: As of the [2015-01-31 release](http://downloads.raspberrypi.org/raspbian/release_notes.txt) of Raspbian (for Pi2 support), the LXDE `autostart` file is located at `/etc/xdg/lxsession/LXDE-pi/autostart`.  I've updated the instructions to reflect this change.
 
 <div class="center">
   <figure>
@@ -47,7 +49,7 @@ xserver-command=X -s 0 dpms
 
 Configure LXDE to start the Midori browser on login:
 {% highlight bash %}
-$ sudo vi /etc/xdg/lxsession/LXDE/autostart
+$ sudo vi /etc/xdg/lxsession/LXDE-pi/autostart
 
 # comment everything and add the following lines
 
@@ -56,6 +58,8 @@ $ sudo vi /etc/xdg/lxsession/LXDE/autostart
 @xset s noblank
 @midori -e Fullscreen -a http://example.com
 {% endhighlight %}
+
+_Please Note_: If the `LXDE-pi` folder doesn't exist on your, you may be using an earlier version of Raspbian.  The correct location for the pre-2015 Raspbian is `/etc/xdg/lxsession/LXDE/autostart`.
 
 Configure VNC to start on boot
 {% highlight bash %}
@@ -71,7 +75,7 @@ $ sudo apt-get install chromium
 {% endhighlight %}
 and:
 {% highlight bash %}
-$ sudo vi /etc/xdg/lxsession/LXDE/autostart
+$ sudo vi /etc/xdg/lxsession/LXDE-pi/autostart
 
 # replace the midori line with the following
 @chromium --kiosk --disable-session-crashed-bubble --disable-restore-background-contents --disable-new-tab-first-run --disable-restore-session-state http://example.com
