@@ -22,11 +22,13 @@ The internet has accumulated plenty of my fingerprints, some of which you can fi
   <a href="https://www.linkedin.com/in/lanyonm"><i class="fa fa-linkedin fa-2x"></i></a>
   <a href="https://plus.google.com/107712815082559800507?rel=author"><i class="fa fa-plus fa-2x"></i></a>
   <a href="http://stackoverflow.com/users/757893/lanyonm"><i class="fa fa-stack-overflow fa-2x"></i></a>
-  <a href="http://www.slideshare.net/MichaelLanyon"><i class="fa fa-slideshare fa-2x"></i></a>
+  <!-- <a href="http://www.slideshare.net/MichaelLanyon"><i class="fa fa-slideshare fa-2x"></i></a> -->
+  <a href="https://speakerdeck.com/lanyonm"><i class="fa fa-slideshare fa-2x"></i></a>
   <a href="https://medium.com/@lanyonm"><i class="fa fa-medium fa-2x"></i></a>
   <a href="https://www.flickr.com/photos/lanyonm"><i class="fa fa-flickr fa-2x"></i></a>
   <a href="https://instagram.com/lanyonm/"><i class="fa fa-instagram fa-2x"></i></a>
-  <a href="https://www.youtube.com/user/lanyonm"><i class="fa fa-youtube fa-2x"></i></a>
+  <a href="http://www.strava.com/athletes/lanyonm" class="strava-icon"></a>
+  <!-- <a href="https://www.youtube.com/user/lanyonm"><i class="fa fa-youtube fa-2x"></i></a> -->
 </p>
 
 Thanks for reading!
