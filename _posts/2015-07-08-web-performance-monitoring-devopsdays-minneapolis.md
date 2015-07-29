@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Web Performance Monitoring - DevOpsDays MSP 2015"
-description: "Innovation requires communication, empathy, and inclusion."
+description: "Give your teams the tools to form a relationship with prod"
 category: speaking
 tags: [culture, data visualization, devops, devopsdays, elasticsearch, front-end, golang, kibana, logstash, monitoring, operations, webperf]
 og:
