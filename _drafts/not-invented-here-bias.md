@@ -7,6 +7,8 @@ tags: [culture, software, theory]
 comments: true
 ---
 
+# 2013-06-05
+
 # Biases In Software
 Earlier this week I read a [post](http://www.jonathanklein.net/2013/06/cognitive-biases-in-software-engineering.html) by Jonathen Klein about cognitive biases in software engineering.  I posted it on work's internal wiki and my peers quickly added other biases that they see in their day-to-day.  As a recap, here are the biases from Jonathan's post:
 
