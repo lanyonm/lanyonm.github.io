@@ -19,6 +19,17 @@ html {
   text-align: -webkit-center;
 }
 
+.right {
+  float: right;
+  width: 100%;
+}
+
+.quote {
+  font-size: 1.25rem;
+  font-style: italic;
+  padding: 2rem;
+}
+
 pre {
   overflow: auto;
   white-space: pre;
