@@ -10,6 +10,9 @@ author: 'Michael Lanyon'
 disqus_shortname: lanyonm
 google_analytics: UA-42209870-1
 
+gems:
+  - jekyll-sitemap
+
 sass:
     sass_dir: _sass
     style: :compressed
