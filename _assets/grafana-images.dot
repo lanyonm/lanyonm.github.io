@@ -1,0 +1,27 @@
+digraph grafana_images {
+  /*
+  Author: Michael Lanyon
+  Use the graphviz dot tool to generate a PDF/PNG:
+  dot grafana-images.dot -Tsvg -o ../images/grafana-images-diagram.svg
+  */
+  rankdir=TB;
+  graph [fontname="Helvetica", style=filled, splines=ortho];
+  node [fontname="Helvetica"];
+  edge [fontname="Helvetica"];
+
+
+  HipChat[shape="box", label="HipChat Client"];
+  Grafana[shape="box", label="Grafana API"];
+  GrafanaImages[shape="component", label="grafana-images", style=filled, fillcolor="lightskyblue"]
+  Hubot[shape="component", label="hubot-grafana"];
+
+
+  HipChat->Hubot [xlabel=1]
+  Hubot->Grafana [xlabel=2]
+  Grafana->Hubot [xlabel=3]
+  Hubot->GrafanaImages [xlabel=4]
+  GrafanaImages->Grafana [xlabel=5]
+  Grafana->GrafanaImages [xlabel=6]
+  GrafanaImages->Hubot [xlabel=7]
+  Hubot->HipChat [xlabel=8]
+}
