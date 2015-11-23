@@ -12,7 +12,7 @@ If you're creating a web application with Spring MVC you'll want to use a view-l
 ***Please note***: The examples for this post use Spring 4.0.6 and SiteMesh 2.4.2. A new major version of SiteMesh has been released but has not been tested with the suggestions in this post.
 
 ## Configuration
-If you've seen any of my other posts, you'll know that I like [Java]({% post_url 2014-04-21-spring-4-mybatis-java-config %}) [Config]({% post_url 2013-01-19-mybatis-spring-java-config-contribution %}) for Spring. The first place SiteMesh is added to Spring MVC in a Java Config project is in the dispatcher servlet filter chains, which takes us to the [`AppInitializer`](https://github.com/LanyonM/playground/blob/1e64796125afd93aa1f69f763c91c8dea7aaa935/src/main/java/org/lanyonm/playground/config/AppInitializer.java):
+If you've seen any of my other posts, you'll know that I like [Java]({% post_url 2014-04-21-spring-4-mybatis-java-config %}) [Config]({% post_url 2013-01-19-mybatis-spring-java-config-contribution %}) for Spring. The first place SiteMesh is added to Spring MVC in a Java Config project is in the dispatcher servlet filter chains, which takes us to the [`AppInitializer`](https://github.com/lanyonm/playground/blob/1e64796125afd93aa1f69f763c91c8dea7aaa935/src/main/java/org/lanyonm/playground/config/AppInitializer.java):
 
 {% highlight java %}
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -30,7 +30,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 I'm extending [AbstractAnnotationConfigDispatcherServletInitializer](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/support/AbstractAnnotationConfigDispatcherServletInitializer.html), which gives the ability to provide a list of list of `Filter`s via [`getServletFilters`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/support/AbstractDispatcherServletInitializer.html#getServletFilters--).  You can see that I chose to specify a charset filter in addition to the SiteMesh filter.
 
-The second piece of configuration is an xml file that tells SiteMesh where to look for templates and how they apply to view-layer files (like jsps).  Here's the [`decorators.xml`](https://github.com/LanyonM/playground/blob/1e64796125afd93aa1f69f763c91c8dea7aaa935/src/main/webapp/WEB-INF/decorators.xml):
+The second piece of configuration is an xml file that tells SiteMesh where to look for templates and how they apply to view-layer files (like jsps).  Here's the [`decorators.xml`](https://github.com/lanyonm/playground/blob/1e64796125afd93aa1f69f763c91c8dea7aaa935/src/main/webapp/WEB-INF/decorators.xml):
 
 {% highlight xml linenos %}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -44,7 +44,7 @@ The second piece of configuration is an xml file that tells SiteMesh where to lo
 </decorators>
 {% endhighlight %}
 
-The configuration on line 2 shows that all decorator files are in the `WEB-INF/decorators` folder.  Given that I have [overridden](https://github.com/LanyonM/playground/blob/1e64796125afd93aa1f69f763c91c8dea7aaa935/src/main/java/org/lanyonm/playground/config/ViewResolver.java) Spring's view resolver to look for view files in `WEB-INF/views`, this makes sense.  In lines 3-5 I ignore the `/users` uri pattern, and on lines 6-8 I setup a decorator.
+The configuration on line 2 shows that all decorator files are in the `WEB-INF/decorators` folder.  Given that I have [overridden](https://github.com/lanyonm/playground/blob/1e64796125afd93aa1f69f763c91c8dea7aaa935/src/main/java/org/lanyonm/playground/config/ViewResolver.java) Spring's view resolver to look for view files in `WEB-INF/views`, this makes sense.  In lines 3-5 I ignore the `/users` uri pattern, and on lines 6-8 I setup a decorator.
 
 ## Usage
 Going forward, I'll be using the term template and decorator interchangeably, and as you'll see below, the term template is quite applicable.  I'm using Bootstrap for the UI of the playground demo, so there's quite a bit of boilerplate code required on each page.  Using the default template I can ensure each page gets exactly the same header, navigation and footer.
