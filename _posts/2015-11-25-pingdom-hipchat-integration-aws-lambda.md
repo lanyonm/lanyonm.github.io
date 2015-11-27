@@ -210,4 +210,4 @@ If all goes well, you should be able to issue [curl command](#testing-with-curl)
 
 In Pingdom you'll need to go into Alerting > Alerting Endpoints and add a webhook contact method to an Alerting Endpoint used by an Alert Policy that is used by the check you'd like to see in HipChat. You likely already have an Alert Policy used for your check, so adding an additional endpoint for that policy should be straightforward.
 
-I hope this works for you, and please let me know if it doesn't!
+I hope this works for you, and please let me know if it doesn't! Big thanks to [@ripienaar](https://twitter.com/ripienaar) for his post on [translating webhooks](https://www.devco.net/archives/2015/08/13/translating-webhooks-with-aws-api-gateway-and-lambda.php) that got me thinking about this in the first place.
