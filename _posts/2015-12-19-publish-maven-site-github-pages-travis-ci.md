@@ -25,7 +25,9 @@ The site-maven-plugin configuration is exactly the same as [GitHub's example](ht
 
 To be able to run `mvn site` locally you'll need to run `export GITHUB_OAUTH_TOKEN="your-github-personal-access-token"` or add that line to your dotfiles. To create the token follow these [instructions](https://help.github.com/articles/creating-an-access-token-for-command-line-use/). The token I created has repo and user:email access.
 
-## Travis Encrypted Environment Variable
+## Travis-CI Configuration
+
+### Encrypted Environment Variable
 Getting your GitHub token into the Travis-CI environment var is [very well documented](https://docs.travis-ci.com/user/environment-variables/#Encrypted-Variables). Here's a handy copy/paste of the command you'll want to run to encrypt your environment variable:
 
 {% highlight bash %}
@@ -40,6 +42,9 @@ env:
     secure: bigEncryptedString/One
     secure: bigEncryptedString/Two
 {% endhighlight %}
+
+### Build Timeout
+Another thing to consider is that the site-maven-plugin can take quite a while to prepare and upload the site html to your gh-pages branch. By default this process does not generate log statements and Travis-CI may time-out. You can either [have Travis extend the timeout](https://docs.travis-ci.com/user/build-timeouts#Build-times-out-because-no-output-was-received) or enable debug logging for Maven: `mvn site -X`. I chose the second option because I didn't want some other issue to cause long build times. The [`.travis.yml`](https://github.com/lanyonm/playground/blob/85543d301e0955e3f6031053fe720888df58c53c/.travis.yml) has the full details.
 
 ## Summary
 You can see this working in my Spring [playground](https://github.com/lanyonm/playground) repository which publishes [here](http://blog.lanyonm.org/playground/). Please let me know if you find this helpful or have suggestions for improvements.
