@@ -12,7 +12,9 @@ og:
 comments: true
 ---
 
-***Update***: The version of Logstash used in the example is out of date, but the mechanics of grok parsing multiple timestamps from Tomcat logs is still applicable.  I'm working on an updated post to show other ways of getting logs from Spring hosted on Tomcat into Elasticsearch via Logstash.
+***Update***: The version of Logstash used in the example is out of date, but the mechanics of the multiline plugin and grok parsing for multiple timestamps from Tomcat logs is still applicable.  I have published a [new post]({% post_url 2015-12-29-log-aggregation-log4j-spring-logstash %}) about other methods for getting logs into the ELK stack.
+
+Additionally, the `multiline filter` used in these examples is not threadsafe. I have [an updated example]({% post_url 2015-12-29-log-aggregation-log4j-spring-logstash %}#raw-log4j-and-the-multiline-codec) using the multiline codec with the same parsers in the new post.
 
 <hr />
 
