@@ -16,7 +16,7 @@ With the Java Config enhancements in Spring 4, you no longer need xml to configu
   <img src="http://mybatis.github.io/images/mybatis-logo.png" alt="MyBatis" />
 </div>
 
-***Please note***: The examples shown here work with Spring 4.0.6 and _should_ work with newer versions of Spring 4. There are new Spring projects that require features in newer versions of Spring, so expect new posts with those examples and check the GitHub repo for updates to these examples.
+***Please note***: The examples shown here work with Spring 4.0.6 and 4.2.4. Check the master branch on GitHub for updates to the version of Spring compatible with these examples.
 
 # A Java Config Appetizer
 There is a lot of conflicting information out there for those searching for how to implement Spring's Java Config. Be sure to check the version of Spring used in the example because it may not match your target version. This example uses Spring Framework 4.0.6 and MyBatis 3.2.7. As not to get into the weeds of Java Config for a Spring MCV application, we'll cover just the pertinent parts to integrating MyBatis with Java Config.

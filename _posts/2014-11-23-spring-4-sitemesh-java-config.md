@@ -9,7 +9,7 @@ comments: true
 
 If you're creating a web application with Spring MVC you'll want to use a view-layer framework.  I've used Grails for several projects at work, and the decorator pattern applied to view-layer files has been a nice way to approach the view-layer architecture.  Grails uses [SiteMesh](http://wiki.sitemesh.org/wiki/display/sitemesh/Home) under the hood, so I wanted to understand how SiteMesh comes together with Spring.
 
-***Please note***: The examples for this post use Spring 4.0.6 and SiteMesh 2.4.2. A new major version of SiteMesh has been released but has not been tested with the suggestions in this post.
+***Please note***: The examples for this post use Spring 4.0.6 and SiteMesh 2.4.2 (and work with Spring 4.2.x). A new major version of SiteMesh has been released but has not been tested with the suggestions in this post.
 
 ## Configuration
 If you've seen any of my other posts, you'll know that I like [Java]({% post_url 2014-04-21-spring-4-mybatis-java-config %}) [Config]({% post_url 2013-01-19-mybatis-spring-java-config-contribution %}) for Spring. The first place SiteMesh is added to Spring MVC in a Java Config project is in the dispatcher servlet filter chains, which takes us to the [`AppInitializer`](https://github.com/lanyonm/playground/blob/1e64796125afd93aa1f69f763c91c8dea7aaa935/src/main/java/org/lanyonm/playground/config/AppInitializer.java):
