@@ -54,6 +54,16 @@ pre {
   height: 100%;
 }
 
+.anchorjs-link {
+  color: #313131;
+}
+.anchorjs-link:hover {
+  text-decoration: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+}
+
 /*****************************************************************************/
 /*
 /* sidebar
