@@ -136,7 +136,6 @@ TOMCAT_DATESTAMP 20%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:?%{MINUTE}(?::?%{SECO
 Using these two patterns, we are able to construct the multiline pattern to match both conversion patterns.  The `negate` and `previous` mean that each line will log-line rolls into the _previous_ lines _unless_ the pattern is matched.
 
 {% highlight ruby %}
-  ...
   if [type] == "tomcat" {
     multiline {
       patterns_dir => "/Users/lanyonm/logstash/patterns"
@@ -144,7 +143,7 @@ Using these two patterns, we are able to construct the multiline pattern to matc
       negate => true
       what => "previous"
     }
-    ...
+  }
 {% endhighlight %}
 
 The next thing to do is parse each event into its constituent parts.  In the Tomcat log example above, the timestamp is followed by a logging level, classname and log message.  Grok already provides some of of these patterns, so we just had to glue them together.  Again, because there are two different syntaxes for a log statement, we have two patterns:
@@ -157,7 +156,6 @@ TOMCATLOG %{TOMCAT_DATESTAMP:timestamp} \| %{LOGLEVEL:level} \| %{JAVACLASS:clas
 We see some of the filter nuance below.  These two patterns can be checked against an event by specifying the match with a hash of comma-separated keys and values.  The grok filter will attempt to match each pattern before failing to parse.  The filter's [match documentation](http://logstash.net/docs/1.3.2/filters/grok#match) isn't quite perfected on this point yet.  Have a look at the grok filter below:
 
 {% highlight ruby %}
-    ...
     if "_grokparsefailure" in [tags] {
       drop { }
     }
@@ -168,8 +166,6 @@ We see some of the filter nuance below.  These two patterns can be checked again
     date {
       match => [ "timestamp", "yyyy-MM-dd HH:mm:ss,SSS Z", "MMM dd, yyyy HH:mm:ss a" ]
     }
-  }
-}
 {% endhighlight %}
 
 Inevitably, there will be mess in your logs that doesn't conform to your grok parser.  You can choose to drop events that fail to parse by using the [`drop`](http://logstash.net/docs/1.3.2/filters/drop) filter inside a conditional as shown on the second line above.  Where do `[tags]` come from you might ask?  Tags can be applied to events at several points in the processing pipeline.  For example, when the multiline filter successfully parses an event, it tags the event with `"multiline"`.

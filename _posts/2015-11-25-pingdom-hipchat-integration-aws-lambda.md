@@ -173,7 +173,7 @@ The magic happens in the integration request configuration. Select "Lambda Funct
 
 Header parameters and query string parameters are both fetched via the `"$input.params('key')"` function. Due to the encoding of the Pingdom webhook, we need to `urlEncode` the message value to avoid a parse exception.
 
-{% highlight javascript %}
+{% highlight json %}
 {
   "requestId": "$input.params('X-Request-Id')",
   "message" : "$util.urlEncode($input.params('message'))"

@@ -37,6 +37,14 @@ pre {
   word-wrap: normal;
 }
 
+code table {
+  margin: -1rem;
+}
+
+td pre {
+  padding: 0rem;
+}
+
 .embed-container {
   height: 0;
   margin-bottom: 2rem;

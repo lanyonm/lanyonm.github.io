@@ -81,7 +81,7 @@ Now let's have a look at an example log entry and see what the Grok filter does 
 
 Notice how the `COMBINEDAPACHELOG` pattern matches with the syntax of the log entry.  If we uncomment the `stdout { codec => rubydebug }` output, we can see how the parsed log entry is turned into an event:
 
-{% highlight json %}{% raw %}
+{% highlight ruby %}{% raw %}
 {
         "message" => "10.0.0.1 - - [28/Nov/2013:11:01:31 -0600] \"GET / HTTP/1.1\" 200 303 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/30.0.1599.114 Chrome/30.0.1599.114 Safari/537.36\"",
      "@timestamp" => "2013-11-28T17:01:32.003Z",

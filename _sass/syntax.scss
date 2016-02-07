@@ -26,6 +26,7 @@
 .highlight .m { color: #f60 } /* Literal.Number */
 .highlight .s { color: #d44950 } /* Literal.String */
 .highlight .na { color: #4f9fcf } /* Name.Attribute */
+.highlight .py { color: #4f9fcf }
 .highlight .nb { color: #366 } /* Name.Builtin */
 .highlight .nc { color: #0a8; } /* Name.Class */
 .highlight .no { color: #360 } /* Name.Constant */
@@ -59,6 +60,7 @@
 .highlight .vg { color: #033 } /* Name.Variable.Global */
 .highlight .vi { color: #033 } /* Name.Variable.Instance */
 .highlight .il { color: #f60 } /* Literal.Number.Integer.Long */
+.highlight .err { color: inherit; background-color: transparent; }
 
 .css .o,
 .css .o + .nt,
