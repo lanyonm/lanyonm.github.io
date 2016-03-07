@@ -8,8 +8,8 @@ comments: false
 ---
 
 <figure>
-  <a href="http://farm4.staticflickr.com/3174/2930390616_d0809c503f_z_d.jpg"><img src="http://farm4.staticflickr.com/3174/2930390616_d0809c503f_z_d.jpg"></a>
-  <figcaption>Photo credit <a href="http://www.flickr.com/photos/splorp/2930390616/">Grant Hutchinson</a></figcaption>
+  <a href="https://farm4.staticflickr.com/3174/2930390616_d0809c503f_z_d.jpg"><img src="http://farm4.staticflickr.com/3174/2930390616_d0809c503f_z_d.jpg"></a>
+  <figcaption>Photo credit <a href="https://www.flickr.com/photos/splorp/2930390616/">Grant Hutchinson</a></figcaption>
 </figure>
 
 I've been a big fan of Spring since the summer of 2009, when a teammate began to introduce Spring MVC Java Config into an old code base we were working on.  It was the first time I'd used Spring in production, and it didn't take long for me to become quite fond Spring's modularity and overlook it's flaws.  Over the next few years that team converted the bulk of that website into a healthy Spring 3.0 MVC implementation.

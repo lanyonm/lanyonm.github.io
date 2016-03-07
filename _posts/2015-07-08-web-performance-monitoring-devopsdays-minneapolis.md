@@ -24,7 +24,7 @@ I concluded the talk with a sampling of the systems and templates we have in pla
 
 <https://youtu.be/ku3O4HnMXrM?t=395>
 
-<div class='embed-container'><iframe src='http://www.youtube.com/embed/ku3O4HnMXrM?t=400' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/ku3O4HnMXrM?t=400' frameborder='0' allowfullscreen></iframe></div>
 
 _All photo credits including those in the `og:metadata` go to [Bridget Kromhout](https://twitter.com/bridgetkromhout) or DevOpsDays Minneapolis 2015._
 

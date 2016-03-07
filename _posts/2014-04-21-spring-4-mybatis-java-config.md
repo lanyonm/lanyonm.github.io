@@ -13,7 +13,7 @@ With the Java Config enhancements in Spring 4, you no longer need xml to configu
 <div class="center spring-mybatis">
   <img src="https://spring.io/img/spring-by-pivotal.png" alt="Spring Framework" />
   <span>+</span>
-  <img src="http://mybatis.github.io/images/mybatis-logo.png" alt="MyBatis" />
+  <img src="https://mybatis.github.io/images/mybatis-logo.png" alt="MyBatis" />
 </div>
 
 ***Please note***: The examples shown here work with Spring 4.0.6 and 4.2.4. Check the master branch on GitHub for updates to the version of Spring compatible with these examples.

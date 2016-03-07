@@ -7,7 +7,7 @@ tags: [development, java, MyBatis, Spring, software]
 comments: true
 ---
 
-![MyBatis Spring](http://mybatis.github.io/images/mybatis-logo.png)
+![MyBatis Spring](https://mybatis.github.io/images/mybatis-logo.png)
 
 As you may have guessed from a [previous post]({% post_url 2013-01-06-spring-grabbag %}), I prefer Java Config.  At times in the past I've been forced to go with what's currently supported instead of spending the time necessary to add the feature I'd like to have.  With the Spring Grabbag project, I have that time.
 
