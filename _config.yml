@@ -1,5 +1,5 @@
 name: Michael Lanyon's Blog
-url: 'http://blog.lanyonm.org'
+url: 'https://blog.lanyonm.org'
 description: 'Notes and thoughts from LanyonM'
 
 exclude: [Gemfile, Gemfile.lock, README.md]
