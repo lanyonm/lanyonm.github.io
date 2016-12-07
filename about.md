@@ -11,7 +11,7 @@ The passion to continuously improve guides me in my role as VP of Engineering at
 
 I am active in the DevOps community and am one of the organizers of DevOpsDays Chicago. It has been an incredibly supportive and fulfilling experience to be part the movement as it's gained momentum and popularity. If you were wondering, I believe firmly that culture &gt; tools. Having said that, writing code is a guilty pleasure - specifically the types of things that would be most readily identified as DevOps tools. I have a particularly soft spot for monitoring and infrastructure automation.
 
-On my way to a career, I took an adventurous detour into bike racing. It was tons of fun and taught me a lot about what it feels like to pour all your energy into the pursuit of a goal. A few searches will turn up more than I'm willing to divulge here about my cycling days. I'm still up for a moderately long ride at a good clip, so...
+On my way to a career, I took an adventurous detour into ProAm bike racing. It was tons of fun and taught me a lot about what it feels like to pour all your energy into the pursuit of a goal. A few searches will turn up more than I'm willing to divulge here about my cycling days. I've caught the racing bug once again and have joined [Burnham Racing](http://burnhamracing.org/) for the 2017 season.
 
 The internet has accumulated plenty of my fingerprints, some of which you can find in these places:
 
