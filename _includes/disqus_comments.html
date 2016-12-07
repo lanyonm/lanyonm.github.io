@@ -2,7 +2,7 @@
     var disqus_config = function () {
         this.page.url = "{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}";
         this.page.identifier = "{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}";
-        this.page.title = "{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.name }}";
+        // this.page.title = "{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.name }}";
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -13,4 +13,4 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<script id="dsq-count-scr" src="//lanyonm.disqus.com/count.js" async></script>
+<script id="dsq-count-scr" src="//{{ site.disqus_shortname }}.disqus.com/count.js" async></script>
