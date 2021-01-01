@@ -20,13 +20,13 @@ The internet has accumulated plenty of my fingerprints, some of which you can fi
   <a href="https://github.com/lanyonm"><i class="fab fa-github fa-2x"></i></a>
   <a href="https://bitbucket.org/lanyonm"><i class="fab fa-bitbucket fa-2x"></i></a>
   <a href="https://www.linkedin.com/in/lanyonm"><i class="fab fa-linkedin-in fa-2x"></i></a>
-  <a href="http://stackoverflow.com/users/757893/lanyonm"><i class="fab fa-stack-overflow fa-2x"></i></a>
+  <a href="https://stackoverflow.com/users/757893/lanyonm"><i class="fab fa-stack-overflow fa-2x"></i></a>
   <!-- <a href="http://www.slideshare.net/MichaelLanyon"><i class="fa fa-slideshare fa-2x"></i></a> -->
   <a href="https://speakerdeck.com/lanyonm"><i class="fab fa-slideshare fa-2x"></i></a>
   <a href="https://medium.com/@lanyonm"><i class="fab fa-medium fa-2x"></i></a>
   <a href="https://www.flickr.com/photos/lanyonm"><i class="fab fa-flickr fa-2x"></i></a>
   <a href="https://instagram.com/lanyonm/"><i class="fab fa-instagram fa-2x"></i></a>
-  <a href="http://www.strava.com/athletes/lanyonm"><i class="fab fa-strava fa-2x"></i></a>
+  <a href="https://www.strava.com/athletes/lanyonm"><i class="fab fa-strava fa-2x"></i></a>
   <!-- <a href="https://www.youtube.com/user/lanyonm"><i class="fa fa-youtube fa-2x"></i></a> -->
 </p>
 

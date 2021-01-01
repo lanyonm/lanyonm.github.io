@@ -3,13 +3,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   {% if jekyll.environment != 'development' %}<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">{% endif %}
   <title>{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.name }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86">
 
   <meta name="author" content="{{ site.author }}">
   <link rel="author" href="https://plus.google.com/+MichaelLanyon" title="Michael Lanyon on Google+" />
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
   {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
-  <meta name="viewport" content="width=device-width">
   <link rel="canonical" href="{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}" />
   <link rel="shortcut icon" href="favicon.ico" />
 
