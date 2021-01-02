@@ -7,7 +7,7 @@ markdown: kramdown
 
 author: 'Michael Lanyon'
 disqus_shortname: lanyonm
-google_analytics: UA-42209870-1
+google_analytics: G-NN7JP65RMS
 
 gems:
   # https://help.github.com/articles/atom-rss-feeds-for-github-pages/
