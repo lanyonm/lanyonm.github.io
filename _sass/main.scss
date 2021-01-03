@@ -90,10 +90,6 @@ td pre {
     color: #eee;
   }
 
-  .page .social-icons a {
-    color: #aaa;
-  }
-
   code {
     color: #d44950;
     background-color: #222;
@@ -101,6 +97,10 @@ td pre {
 
   pre {
     background-color: #222;
+  }
+
+  .sidebar-toggle {
+    background-color: #eee;
   }
 }
 
@@ -169,6 +169,12 @@ ul.posts li span {
   padding: 10px;
 }
 
+@media (prefers-color-scheme: dark) {
+  .page .social-icons a {
+    color: #aaa;
+  }
+}
+
 /*****************************************************************************/
 /*
 /* Tags
@@ -215,6 +221,13 @@ ul.posts li span {
   font-size: 10px;
   font-size: 0.625rem;
 }
+
+@media (prefers-color-scheme: dark) {
+  .tag-box a {
+    background-color: #222;
+  }
+}
+
 
 /*****************************************************************************/
 /*
