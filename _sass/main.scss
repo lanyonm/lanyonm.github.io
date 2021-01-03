@@ -82,7 +82,7 @@ td pre {
     color: #eee;
   }
 
-  .post-title {
+  .page-title, .post-title {
     color: #eee;
   }
 
@@ -92,6 +92,15 @@ td pre {
 
   .page .social-icons a {
     color: #aaa;
+  }
+
+  code {
+    color: #d44950;
+    background-color: #222;
+  }
+
+  pre {
+    background-color: #222;
   }
 }
 
