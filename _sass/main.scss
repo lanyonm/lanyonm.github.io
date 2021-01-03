@@ -72,6 +72,17 @@ td pre {
   margin-left: -1.125em !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #ccc;
+    background-color: #000;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #ccc;
+  }
+}
+
 /*****************************************************************************/
 /*
 /* sidebar
