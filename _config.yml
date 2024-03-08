@@ -1,4 +1,4 @@
-name: Michael Lanyon's Blog
+title: Michael Lanyon's Blog
 url: 'https://blog.lanyonm.org'
 description: 'Notes and thoughts from LanyonM'
 
@@ -9,8 +9,8 @@ author: 'Michael Lanyon'
 disqus_shortname: lanyonm
 google_analytics: G-NN7JP65RMS
 
-gems:
-  # https://help.github.com/articles/atom-rss-feeds-for-github-pages/
+plugins:
+  # https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll
   - jekyll-gist
   - jekyll-sitemap
 
