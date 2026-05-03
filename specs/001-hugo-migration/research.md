@@ -2,6 +2,104 @@
 
 **Branch**: `001-hugo-migration` | **Date**: 2026-04-05
 
+## R0: Congo v2.13.0 Capability Audit Against Mockups
+
+**Purpose**: For every visual component in the mockups (`specs/001-hugo-migration/mockups/`), classify whether Congo supports it natively, partially, or not at all. This determines the implementation approach for each component.
+
+**Source**: Actual Congo v2.13.0 templates examined in Hugo module cache.
+
+### Tier 1: Congo Native — Config Only
+
+These components work out of the box with `hugo.toml` configuration. No template overrides, custom CSS, or JS needed.
+
+| Component | Config Key | Notes |
+|-----------|-----------|-------|
+| Hamburger menu with slide-out panel | `[params.header] layout = "hamburger"` | Checkbox-based toggle, full-screen overlay, fade transition. Congo's built-in `menu.js` handles close-on-click. |
+| Breadcrumbs on articles | `[params.article] showBreadcrumbs = true` | Recursive parent chain. Hides current page and home. |
+| Table of Contents sidebar | `[params.article] showTableOfContents = true` | `<details open>` with "Table of Contents" label. Sticky on desktop (`lg:sticky lg:top-10`). No active section tracking (see Tier 3). |
+| Author section on articles | `[params.article] showAuthor = true/false` | Shows avatar, name, bio, social links from `[params.author]`. |
+| Heading anchor links (hover-only) | `[params.article] showHeadingAnchors = true` | `#` symbol, `opacity-0 group-hover:opacity-100`. |
+| Prev/next article navigation | `[params.article] showPagination = true` | Arrows only (`←` / `→`), shows title + date. No text labels (see Tier 2). |
+| Dark mode toggle | `[params.footer] showAppearanceSwitcher = true` | Moon/sun icon toggle. Also available in header via menu `action: "appearance"`. |
+| Theme attribution | `[params.footer] showThemeAttribution = false` | "Powered by Hugo & Congo" — hide with `false`. |
+| Scroll-to-top button | `[params.footer] showScrollToTop = true/false` | Floating `↑` in bottom-right. |
+| RSS autodiscovery | `[outputs] home = ["HTML", "RSS"]` | Auto `<link rel="alternate">` tag. |
+| Schema.org JSON-LD | Built-in | Article, WebSite, BreadcrumbList schemas generated automatically. |
+| Skip-to-content link | Built-in | `-translate-y-8`, visible on `focus:translate-y-0`. |
+| Custom fonts | Create `layouts/_partials/extend-head.html` | Add `<link>` tags for Google Fonts. Congo calls this hook from `head.html`. |
+| Code syntax highlighting | `[markup.highlight] style = "monokai"` | Hugo's built-in Chroma highlighter. Set `noClasses = true` for inline dark styles. |
+| Speaking section listing | `content/speaking/_index.md` exists | Congo renders default section listing. Custom post-card styling applied via the same CSS as homepage post cards. Speaking mockup (`speaking.html`) defines the visual target. |
+
+### Tier 2: Congo Partial — Config + Minor Override
+
+These components are partially supported. They need a small template override or config workaround to match the mockups.
+
+| Component | What Congo Does | What's Missing | Override Approach |
+|-----------|----------------|---------------|-------------------|
+| Post list with descriptions | `[params.list] showSummary = true` shows summaries | Tags use `.LinkTitle` (title-cases values) | Override `_partials/article-meta.html` line 60: change `{{ .LinkTitle }}` to raw `.Params.tags` range |
+| ISO date format | `dateFormat = "2006-01-02"` in `[params]` | Default is `:date_long` (January 2, 2006) | Config change only |
+| Prev/next with text labels | Has arrows + title + date | No "PREVIOUS"/"NEXT" uppercase labels | Override `_partials/article-pagination.html` — add direction labels, remove dates |
+| Comments section label | Renders `<hr>` then comment partial | No "COMMENTS" heading | Override `layouts/articles/single.html` — wrap comment section with heading |
+| Social icons in hamburger menu | Menu items support `params.icon` | No dedicated social section; no RSS by default | Add menu items with icon params, or override header partial to add social links block |
+| Footer layout | Copyright left, appearance switcher right | No social icons row | Create `_partials/extend-footer.html` with social icons, or override `_partials/footer.html` |
+| Body background `#fafafa` | Default `bg-neutral` maps to scheme CSS | Congo's neutral-50 may differ from `#fafafa` | Add `body { background: #fafafa; }` in `assets/css/custom.css` |
+| Tag case preservation | `.LinkTitle` title-cases all tags | `devops` → `Devops` instead of preserving front matter case | Override `_partials/article-meta.html` to range over `.Params.tags` directly |
+| Profile header on about page | `profile` homepage layout has avatar, name, headline, social links | Only available as homepage layout, not standalone page layout | Create custom `layouts/_default/about.html` using Congo's profile partial as reference |
+| Social icon buttons (36px squares) | `author-links.html` renders inline icons with scale-on-hover | No rounded-square box styling | Custom CSS: 36px boxes with `border-radius: 8px`, neutral-100 bg, hover primary-100 |
+
+### Tier 3: Custom Implementation Required
+
+These components have no Congo equivalent. They require new templates, significant CSS, and/or custom JavaScript.
+
+| Component | Template | CSS | JS | Approach |
+|-----------|----------|-----|----|---------|
+| **Homepage hero** (85vh background image with gradient overlay, tagline, subtitle) | New `layouts/index.html` | Major: full-viewport positioning, gradient overlay, responsive height | Optional: scroll-fade opacity | Create custom homepage layout. Hero section with absolute-positioned bg image, gradient `::after` pseudo-element, content positioned at bottom. |
+| **Article hero** (50vh background image with title/meta/tags overlaid) | Override `layouts/articles/single.html` | Major: hero positioning, gradient, breadcrumb/title/meta overlay styling | Optional: scroll-fade | Conditional rendering: when `backgroundImage` front matter is set, render hero; otherwise standard layout. |
+| **Transparent nav over hero** | Override `layouts/_partials/header/hamburger.html` | Major: transparent bg, white text/icons, backdrop-filter transitions | Yes: scroll listener for class toggle | Add `.over-hero` class when hero present. CSS: transparent state (white text) and scrolled state (frosted glass). JS: detect scroll position, toggle classes. **Critical**: scope white text to nav bar only — do NOT apply to slide-out menu. |
+| **Nav scroll transition** (transparent → frosted glass at 40px) | Same header override as above | Included in transparent nav CSS | Included in transparent nav JS | `backdrop-filter: blur(12px) saturate(1.4)`, `background: rgba(250,250,250,0.88)`, `box-shadow: 0 1px 0 rgba(0,0,0,0.06)`. |
+| **Active page highlighting in menu** | Header partial override | Small: bold + primary-700 color for `.active` class | Optional (can use Hugo template logic) | In header partial, compare `.RelPermalink` to menu URLs using `hasPrefix`. Add `class="active"` to matching link. |
+| **ToC active section tracking** | None (Congo's ToC is static HTML) | Small: `.active` border-left + font-weight on current section `<li>` | Yes: scroll listener, `IntersectionObserver` or `offsetTop` comparison | JS watches scroll position, finds current heading, adds `.active` class to corresponding ToC `<li>`. Must handle nested items: highlight parent `<li>` on outermost `<ul>`. |
+| **Footer with social icons on same row** | Override `_partials/footer.html` | Small: flex row, justify-content space-between | None | Replace Congo's footer with custom: `<span class="footer-text">© YEAR Name</span>` left, `<ul class="footer-links">` with icon links right. Remove dark mode toggle and scroll-to-top from footer. |
+
+### Key Congo Template Files for Overrides
+
+When overriding, copy from the module cache at `~/Library/Caches/hugo_cache/modules/filecache/modules/pkg/mod/github.com/jpanther/congo/v2@v2.13.0/layouts/`:
+
+| Override | Source File | Key Lines |
+|----------|-----------|-----------|
+| Header | `_partials/header/hamburger.html` | Checkbox toggle `#menu-controller`, overlay div, menu panel |
+| Article single | `single.html` | Feature image (lines 24-34), taxonomies (via `article-meta.html`), pagination, comments |
+| Article meta/tags | `_partials/article-meta.html` | Line 60: `{{ .LinkTitle }}` — change to raw values |
+| Article pagination | `_partials/article-pagination.html` | Arrow-only nav, title + date display |
+| Footer | `_partials/footer.html` | Copyright, theme attribution, appearance switcher |
+| Homepage | `index.html` | Delegates to `_partials/home/page.html` or `profile.html` |
+| About/profile | `_partials/home/profile.html` | Avatar, name, headline, bio, social links |
+
+### Dark Mode Requirement
+
+Congo uses Tailwind's `dark:` prefix throughout. All custom CSS must include `.dark` variants for every hardcoded color. Specifically:
+
+- Body text: light `#3f3f46` → dark `#d4d4d8`
+- Headings: light `#18181b` → dark `#fafafa`
+- Links: light `#334155` → dark `#cbd5e1`
+- List items: light `#3f3f46` → dark `#d4d4d8`
+- Strong text: light `#27272a` → dark `#fafafa`
+- Slide-out menu: must ALWAYS use its own colors, never inherit `.over-hero` white
+
+### Congo's Override Mechanism
+
+Congo uses `_partials/` (underscore prefix) for its internal templates. To override, place the file at the same path in the project's `layouts/` directory. Hugo's lookup order checks the project first, then the theme module. For partials that Congo calls with underscore paths (e.g., `partial "header/hamburger.html"`), the override must also be at `layouts/_partials/header/hamburger.html`.
+
+---
+
+### Known Compatibility Issues
+
+| Issue | Versions | Workaround |
+|-------|----------|------------|
+| `warnings.html` uses deprecated `.Author` | Congo v2.13.0 + Hugo ≥0.159.2 | Create `layouts/_partials/functions/warnings.html` override removing `.Author` check |
+
+---
+
 ## R1: Congo Theme — Transparent Pinned Navigation (Blowfish-style)
 
 **Decision**: Override Congo's header partial with a custom version that adds transparent background, backdrop blur, and sticky positioning.

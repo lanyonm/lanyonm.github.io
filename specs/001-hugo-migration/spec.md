@@ -15,6 +15,35 @@
 - Q: Should Lighthouse ≥90 target apply to all four audit categories? → A: Yes, all four (Performance, Accessibility, Best Practices, SEO) must score ≥90.
 - Q: What SEO markup elements should be required? → A: Canonical URLs, OpenGraph meta tags, and schema.org structured data on every post.
 
+## Visual Design Reference *(mandatory)*
+
+The HTML mockups in `specs/001-hugo-migration/mockups/` are the acceptance criteria for all visual and interactive behavior. Every page the site produces must match its corresponding mockup for layout, typography, spacing, colors, and hover/active states.
+
+| Mockup | Covers | Acceptance Standard |
+|--------|--------|-------------------|
+| `homepage.html` | Homepage hero, post list cards, nav over hero, footer | Rendered homepage must match layout, card structure, typography, and interactions |
+| `article.html` | Article hero, prose styling, ToC, prev/next nav, comments, code blocks | Rendered article pages must match all element styling including hover states |
+| `about.html` | Profile header, prose styling, solid nav, social icon buttons | Rendered about page must match profile layout and styling |
+| `404.html` | Error state, broken link report CTA, homepage link | Rendered 404 page must match error message styling, button CTA, and layout |
+| `speaking.html` | Speaking section listing with post cards | Rendered speaking page must match post card structure from homepage mockup |
+
+**Validation rule**: After each implementation phase, the built page must be compared element-by-element against the corresponding mockup. Differences in font family, font size, color, spacing, hover behavior, or layout constitute a defect. This comparison is the *first* validation step, not an afterthought.
+
+**Dark mode**: The mockups represent light mode only. All custom CSS colors must include `.dark` variants. Dark mode text must maintain readable contrast against dark backgrounds (see design tokens in plan.md for the specific color mappings).
+
+**Scope**: The mockups define the visual target. Where a mockup element aligns with a Congo theme default, use Congo's native implementation. Where it differs, the mockup takes precedence and a custom override is required (see research.md R0 capability audit for the classification of each component).
+
+**About page content restructuring**: The existing `about.md` content MUST be reorganized under the mockup's section headings for scannability. The mapping is:
+- **Profile header** (rendered by layout): Name, role ("Engineering Leader • DevOps • Madison, WI"), bio summary, social icons
+- **About This Blog** (h2): Opening paragraph about passion for teams and systems, leadership philosophy
+- **Professional Background** (h2): DEPT role, DevOps community involvement, DevOpsDays co-organizer
+- **Beyond Work** (h2): Bike racing, 606 Racing — preserving the personal voice
+- **Get in Touch** (h2): Social links converted to a markdown list, closing note
+
+The personal content is preserved — only reorganized under headings that help readers scan.
+
+---
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - All Existing Content Renders Correctly (Priority: P1)
@@ -99,6 +128,10 @@ Readers enjoy an improved browsing experience with dark mode support, a table of
 3. **Given** a long post with multiple headings, **When** a reader views it, **Then** a table of contents is displayed that links to each section
 4. **Given** a reader looking for a topic, **When** they use the search feature, **Then** relevant posts are returned based on their query
 5. **Given** a reader on a mobile device, **When** they browse the site, **Then** the layout is responsive and readable
+6. **Given** a first-time visitor, **When** they land on the homepage, **Then** they can identify the blog's topic, the author's name, and scan recent post titles with descriptions and tags within 5 seconds of page load
+7. **Given** a reader who opens search and types a query, **When** results appear, **Then** matching posts are shown with titles and contextual snippets
+8. **Given** a reader who searches for a term with no matches, **When** the results area renders, **Then** a helpful "no results found" message is displayed
+9. **Given** a reader on a 320px mobile device viewing a long article, **When** they scroll, **Then** the table of contents is collapsed by default (expandable on tap), touch targets are at least 44px, and the hero image (if present) scales without cropping critical content
 
 ---
 
@@ -125,6 +158,7 @@ Readers can browse posts by tag and subscribe to the blog via RSS feed. The tag 
 - What happens when a gist embed fails to load (GitHub API unavailable)? The post should still render with the gist area showing graceful degradation.
 - What happens when a post has no tags? The post should render without a tag section rather than showing an empty tag list.
 - What happens when a reader disables JavaScript? Core content (text, images, code blocks) should still be readable. Interactive features (search, comments, gist embeds) may be unavailable.
+- What happens when an ad blocker blocks Disqus embed.js? The page renders normally with the comment area simply absent. No error message, broken layout, or empty placeholder should be visible.
 
 ## Requirements *(mandatory)*
 
@@ -139,6 +173,7 @@ Readers can browse posts by tag and subscribe to the blog via RSS feed. The tag 
 - **FR-007**: Site MUST preserve all 54 images (4.3 MB) with working references from posts
 - **FR-008**: Site MUST serve the custom domain blog.lanyonm.org over HTTPS
 - **FR-009**: Site MUST display existing Disqus comment threads in read-only mode (new comments disabled) on posts published before 2025 that have `comments: true`
+- **FR-009a**: Disqus read-only mode MUST display a visible "Read-only — new comments disabled" indicator so readers understand why the comment form is absent
 - **FR-010**: Site MUST display Giscus comments on posts published from 2025 onward that have `comments: true`
 - **FR-011**: Site MUST support automatic dark/light mode based on system preference, plus a manual toggle
 - **FR-012**: Site MUST generate a valid RSS feed at `/index.xml` (Hugo's default location)
@@ -149,17 +184,26 @@ Readers can browse posts by tag and subscribe to the blog via RSS feed. The tag 
 - **FR-016**: Site MUST display a custom 404 page for invalid URLs that includes a link to create a GitHub issue pre-filled with a broken link report title, body placeholder, and "bug" label, plus a link to the homepage
 - **FR-017**: Site MUST provide client-side search across all published posts
 - **FR-018**: Site MUST display a table of contents for posts with multiple headings
-- **FR-019**: Site MUST preserve existing front matter fields (title, description, tags, comments, og) in migrated posts
+- **FR-019**: Site MUST preserve the *semantic content* of existing front matter — title, description, tags, comments preference, and OpenGraph image/metadata. The `og:` block MAY be converted to Hugo's native `images:` array (and any sibling OpenGraph fields to their Hugo equivalents) so long as the rendered `<meta property="og:*">` output is equivalent or improved.
 - **FR-020**: Site MUST render About and Speaking pages at their expected paths
 - **FR-021**: Site MUST remove all Jekyll-specific files (layouts, includes, Sass, Gemfile, _config.yml) from the repository after migration
 - **FR-022**: Homepage MUST display a reverse-chronological listing of recent posts, matching the current site's homepage behavior
 - **FR-023**: Every post MUST include a canonical URL, OpenGraph meta tags (title, description, image, type), and schema.org structured data (Article type with author, date, description)
-- **FR-024**: Site MUST use a hamburger-style navigation with a slide-out menu panel containing nav links and social icons, replacing inline nav links
+- **FR-024**: Site MUST use a hamburger-style navigation with Congo's native full-screen overlay menu containing nav links and social icons (see mockups for exact layout)
 - **FR-025**: Site MUST support an optional per-page hero background image (via `backgroundImage` front matter field) that fades to invisible as the user scrolls down
 - **FR-026**: Site MUST support an optional portrait crop of the hero image (via `backgroundImagePortrait` front matter field) served on portrait viewports; when no portrait crop is provided, CSS object-position MUST reframe the landscape image
 - **FR-027**: Site MUST respect `prefers-reduced-motion` by disabling scroll-fade animation and displaying the hero image at a static opacity with full contrast overlay
 - **FR-028**: Navigation bar MUST be transparent with backdrop blur over hero backgrounds and transition to a solid frosted-glass background on scroll
-- **FR-029**: Site MUST convert all custom HTML content blocks (3 pull-quote divs, 2 side-by-side image divs, 3 SpeakerDeck script embeds) to Hugo-native equivalents (Markdown blockquotes and shortcodes)
+- **FR-029**: Site MUST convert all custom HTML content blocks to Hugo-native Markdown or shortcodes:
+  - 3 pull-quote `<div class="center quote">` blocks (2 posts) → Markdown blockquotes
+  - 2 side-by-side image `<div>` blocks (2 posts) → `sidebyside` shortcode
+  - 3 SpeakerDeck `<script>` embeds (3 speaking posts) → `speakerdeck` shortcode
+- **FR-029a**: Site MUST convert all 39 `<div class="center"><figure>` image blocks (14 posts) to Hugo's built-in `figure` shortcode, preserving captions and alt text. All 32 `{{ site.url }}/images/` Liquid references (9 posts) inside these blocks MUST be replaced with relative `/images/` paths.
+- **FR-029b**: Site MUST convert all 2 float-right `<div class="right"><figure>` blocks (1 post: `a-participants-conference-devopsdays-chicago.md`) to Hugo `figure` shortcode with `class="right"`, with corresponding `.right` figure CSS.
+- **FR-029c**: Site MUST convert the 1 YouTube iframe embed (in `web-performance-monitoring-devopsdays-minneapolis.md`) to Hugo's built-in `youtube` shortcode. If the start-time offset (`t=400`) cannot be expressed via the shortcode, fall back to responsive raw HTML.
+- **FR-030**: The speaking section listing page (`/speaking/`) MUST NOT display the "speaking" tag on post cards — it is redundant context on a page that exclusively lists speaking posts
+- **FR-031**: When client-side dependencies fail (gist API unreachable, JavaScript disabled, ad blocker active), the site MUST degrade gracefully — core content remains readable and no broken layout, error UI, or empty placeholder is visible.
+- **FR-032**: Posts without tags MUST render with no tag section rather than an empty tag list or stray separator characters.
 
 ### Key Entities
 
@@ -176,7 +220,7 @@ Readers can browse posts by tag and subscribe to the blog via RSS feed. The tag 
 - **SC-001**: 100% of the 32 published posts render without content loss or broken elements (images, code blocks, links, gists)
 - **SC-002**: 100% of old-format URLs redirect correctly to their new locations
 - **SC-003**: Site builds and deploys to the live domain within 5 minutes of a push to the main branch
-- **SC-004**: Site achieves a Lighthouse score of 90 or above in all four audit categories: Performance, Accessibility, Best Practices, and SEO
+- **SC-004**: Site achieves a Lighthouse score of 90 or above in all four audit categories (Performance, Accessibility, Best Practices, SEO) on **both** mobile and desktop runs, on each of the three representative pages (homepage, a code-heavy article, about page).
 - **SC-005**: RSS feed validates against RSS 2.0 specification and contains all published posts
 - **SC-006**: Zero Jekyll-specific syntax remains in any content file after migration
 - **SC-007**: Site loads and is fully readable in under 3 seconds on a standard broadband connection
