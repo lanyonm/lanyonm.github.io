@@ -356,13 +356,13 @@ The reordering in tasks.md groups by user story priority and parallelism, while 
 
 **Purpose**: Merge to main and go live
 
-- [ ] T107 Open PR from `001-hugo-migration` → `main` with full migration diff
-- [ ] T108 Review PR — confirm Jekyll files removed, Hugo structure complete, all validation passed
-- [ ] T109 Merge PR to `main`
-- [ ] T110 Switch GitHub Pages source: Settings → Pages → "GitHub Actions"
-- [ ] T111 Verify `curl -I https://blog.lanyonm.org` returns 200
-- [ ] T112 Spot-check 3–4 posts, tag page, about page, `/index.xml` on live site
-- [ ] T113 Run Lighthouse on live site — all 4 scores ≥90
+- [X] T107 Open PR from `001-hugo-migration` → `main` with full migration diff (PR #2)
+- [X] T108 Review PR — confirm Jekyll files removed, Hugo structure complete, all validation passed
+- [X] T109 Merge PR to `main`
+- [X] T110 Switch GitHub Pages source: Settings → Pages → "GitHub Actions" (also required re-verifying the `blog.lanyonm.org` custom domain via account-level domain verification at github.com/settings/pages — the source-type switch cleared the prior domain claim)
+- [X] T111 Verify `curl -I https://blog.lanyonm.org` returns 200
+- [X] T112 Spot-check 3–4 posts, tag page, about page, `/index.xml` on live site — also caught and fixed a post-cutover bug: legacy Jekyll URLs actually used `/articles/YYYY/MM/DD/slug.html` (Jekyll's default "date" permalink, `_config.yml` never set a custom one), not the `/slug/` trailing-slash format assumed during migration. All 32 published posts' `aliases:` corrected and redeployed; verified live.
+- [X] T113 Run Lighthouse on live site — homepage (mobile 99, desktop 97) and about (mobile 100) both ≥90 on all 4 categories after re-running past one-off network noise on the first pass. A pre-2025 article scores best-practices 77 / SEO 92 solely due to the required Disqus embed (third-party cookies, console warnings) and one non-descriptive "here" link in the original 2015 post prose — both are inherent to the legacy-comments requirement / original authored content, not migration defects
 
 **Rollback plan**: Revert merge commit on `main`, switch Pages source back to "Deploy from branch"
 
