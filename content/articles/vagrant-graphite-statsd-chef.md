@@ -5,7 +5,7 @@ date: 2013-09-15
 tags: [chef, graphite, statsd, vagrant]
 comments: true
 aliases:
-  - "/articles/2013/09/15/vagrant-graphite-statsd-chef/"
+  - "/articles/2013/09/15/vagrant-graphite-statsd-chef.html"
 ---
 
 ## Update

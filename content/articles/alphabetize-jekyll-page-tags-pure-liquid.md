@@ -5,7 +5,7 @@ date: 2013-11-21
 tags: [github, jekyll, liquid, ruby]
 comments: true
 aliases:
-  - "/articles/2013/11/21/alphabetize-jekyll-page-tags-pure-liquid/"
+  - "/articles/2013/11/21/alphabetize-jekyll-page-tags-pure-liquid.html"
 ---
 
 When you [host a Jekyll site on GitHub](https://help.github.com/articles/using-jekyll-with-pages), it renders the site in safe-mode.  This means you can't use any plugins enhance Jekyll's functionality and, more specifically, you can't write a [Liquid tag](https://github.com/Shopify/liquid/wiki/Liquid-for-Programmers#create-your-own-tags) that alphabetizes the site's tags.  Unordered tags make a Jekyll tag list look sloppy, so if you care about the details, you likely want your tag list to be alphabetized.

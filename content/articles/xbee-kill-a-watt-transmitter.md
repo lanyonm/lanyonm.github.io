@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/xbee-kill-a-watt-transmitter.jpg"
 aliases:
-  - "/articles/2013/10/06/xbee-kill-a-watt-transmitter/"
+  - "/articles/2013/10/06/xbee-kill-a-watt-transmitter.html"
 ---
 
 For a few months I have had the parts to build another transmitter for my [XBee / Kill-a-Watt power measuring system]({{< relref "xbee-kill-a-watt" >}}).  Since I've already chronicled the overall system but didn't have any photos of the process, this post will provide the pretty pictures I lacked before.

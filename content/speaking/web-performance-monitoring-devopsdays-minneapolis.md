@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/dod-msp-lanyonm-ignite.jpg"
 aliases:
-  - "/speaking/2015/07/08/web-performance-monitoring-devopsdays-minneapolis/"
+  - "/speaking/2015/07/08/web-performance-monitoring-devopsdays-minneapolis.html"
 ---
 
 I initially intended to speak about how we use configuration management to automate our real user measurement (RUM), but as I was putting together my talk I discovered that the real insight was how the same tools can be used to facilitate the front-end developer's relationship with prod.

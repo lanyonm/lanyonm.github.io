@@ -5,7 +5,7 @@ date: 2012-10-27
 tags: [java, nodejs, python, rabbitmq, software]
 comments: false
 aliases:
-  - "/articles/2012/10/27/amqp-demo/"
+  - "/articles/2012/10/27/amqp-demo.html"
 ---
 
 Last week I was catching up on some DevOpsCafe episodes and heard John mention a great presentation on AMPQ.  It reminded me of a session I'd attended at SpringOne a year earlier, but couldn't remember who had presented.  The session was about polyglot messaging with AMQP, and while I didn't fully appreciate it at SpringOne, the subject now perked my attention.  After some searching, I connected that dots that Rob Harrop, who John had mentioned, was also the presenter at SpringOne.  I watched the more recent presentation on [InfoQ](http://www.infoq.com/presentations/Multi-Platform-Messaging-with-RabbitMQ) and was inspired to send some messages of my own.

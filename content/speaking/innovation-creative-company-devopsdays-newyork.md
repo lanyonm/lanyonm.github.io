@@ -5,7 +5,7 @@ date: 2015-04-30
 tags: [creative, culture, devops, devopsdays, empathy, leadership]
 comments: true
 aliases:
-  - "/speaking/2015/04/30/innovation-creative-company-devopsdays-newyork/"
+  - "/speaking/2015/04/30/innovation-creative-company-devopsdays-newyork.html"
 ---
 
 I had the privilege of giving an Ignite at DevOpsDays New York 2015 this past week. The theme of the event was inclusivity, complexity, and empathy, which really made for a great event.

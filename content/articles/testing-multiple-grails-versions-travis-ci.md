@@ -7,7 +7,7 @@ comments: true
 images:
   - "http://about.travis-ci.org/images/travis-mascot-200px.png"
 aliases:
-  - "/articles/2013/10/21/testing-multiple-grails-versions-travis-ci/"
+  - "/articles/2013/10/21/testing-multiple-grails-versions-travis-ci.html"
 ---
 
 Maintaining plugins for quickly evolving frameworks can become burdensome if the testing tools don't help you ensure backward compatibility.  We have been slowly incorporating better testing into the [Grails Feature Toggle Plugin](https://github.com/LanyonM/grails-feature-toggle) and have been looking to test all minor versions of Grails 2.  If only there were a way for Travis-CI to test all those versions of Grails…

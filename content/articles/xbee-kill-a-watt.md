@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/xbee-kill-a-watt-completed-transmitter.jpg"
 aliases:
-  - "/articles/2013/06/02/xbee-kill-a-watt/"
+  - "/articles/2013/06/02/xbee-kill-a-watt.html"
 ---
 
 __Update:__ For the hardware-hacking enthusiasts, there's an more in-depth post about building a XBee Kill-a-Watt transmitter (with lots of pics): [XBee Kill-a-Watt Transmitter]({{< relref "xbee-kill-a-watt-transmitter" >}}).

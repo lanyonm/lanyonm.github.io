@@ -5,7 +5,7 @@ date: 2013-08-03
 tags: [CAMS, culture, devops, summer camp]
 comments: true
 aliases:
-  - "/articles/2013/08/03/cams-summer-camp/"
+  - "/articles/2013/08/03/cams-summer-camp.html"
 ---
 
 A few weeks ago I went to a Slate Gabfest recording in Chicago during which [John Dickerson](http://www.slate.com/authors.john_dickerson.html) discussed the longing for a summer camp-like experience for adults.  The panel felt that what made camp so special is that it is a truly immersive experience where activities push your boundaries, social interactions are constant, and experiences are formative.  Campers have independence from typical authority figures and are freed from normal constraints (for more about camp, [listen here](http://www.thisamericanlife.org/radio-archives/episode/109/notes-on-camp)).  The Gabfest panel posed the question of whether conferences are a summer camp-like experience for adults - the audience laughed.  I shook my head, feeling bad for most everyone in the audience, and as I sit here in one of my DevOpsDays tee-shirts, I'll explain why.
