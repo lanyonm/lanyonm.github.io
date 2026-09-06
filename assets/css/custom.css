@@ -1,0 +1,1203 @@
+/* =============================================================
+   LanyonM blog — Custom CSS (Congo theme override)
+   Design tokens sourced from specs/001-hugo-migration/plan.md.
+   Dark mode uses Congo's `.dark` class on <html> (set via JS).
+   ============================================================= */
+
+:root {
+  --brand-primary-50:  #f8fafc;
+  --brand-primary-100: #f1f5f9;
+  --brand-primary-200: #e2e8f0;
+  --brand-primary-300: #cbd5e1;
+  --brand-primary-400: #94a3b8;
+  --brand-primary-500: #64748b;
+  --brand-primary-600: #475569;
+  --brand-primary-700: #334155;
+  --brand-primary-800: #1e293b;
+  --brand-primary-900: #0f172a;
+
+  --brand-neutral-50:  #fafafa;
+  --brand-neutral-100: #f4f4f5;
+  --brand-neutral-200: #e4e4e7;
+  --brand-neutral-300: #d4d4d8;
+  --brand-neutral-400: #a1a1aa;
+  --brand-neutral-500: #71717a;
+  --brand-neutral-600: #52525b;
+  --brand-neutral-700: #3f3f46;
+  --brand-neutral-800: #27272a;
+  --brand-neutral-900: #18181b;
+
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --nav-height: 64px;
+}
+
+/* Reserve the scrollbar's gutter permanently so opening the hamburger
+   overlay (which hides the page scrollbar) doesn't shift all content by
+   the scrollbar's width. */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* ── Body / typography ── */
+body {
+  font-family: var(--font-body) !important;
+  background: var(--brand-neutral-50) !important;
+  color: var(--brand-neutral-700);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  /* Override Congo's max-w-7xl so layouts fill viewport widths we control. */
+  max-width: none !important;
+  padding: 0 !important;
+  display: block !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+html.dark body {
+  background: var(--brand-neutral-800) !important;
+  color: var(--brand-neutral-300);
+}
+
+h1, h2, h3, h4, h5, h6,
+.site-title, .post-title, .section-label,
+.article-hero-title, .article-hero-breadcrumb, .article-hero-date, .article-hero-reading,
+.toc-label, .menu-list a, .footer-text, .post-meta, .post-date, .post-reading-time,
+.profile-name, .profile-role, .comments-label,
+.article-nav-direction, .article-nav-title, .tag, .tag-light {
+  font-family: var(--font-display);
+}
+
+code, pre, pre code, .post-date, .article-hero-date, .article-nav-date {
+  font-family: var(--font-mono);
+}
+
+/* ── Skip-to-content (Congo's #the-top must not push body content) ── */
+#the-top {
+  overflow: hidden;
+  height: 0;
+}
+
+/* ── Focus ring (Constitution Principle II — WCAG MUST) ── */
+:focus-visible {
+  outline: 2px solid var(--brand-primary-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.dark :focus-visible {
+  outline-color: var(--brand-primary-400);
+}
+
+/* ── Site header / nav (transparent over hero, frosted on scroll) ── */
+/*
+ * The frosted background lives on ::before, not on the header itself.
+ * backdrop-filter (like filter/transform/perspective) makes an element a
+ * containing block for its position:fixed descendants — and #menu-wrapper
+ * (the hamburger overlay) is nested inside this header. Putting
+ * backdrop-filter directly on header.site-header would re-anchor the
+ * "fixed, full-viewport" overlay to the header's own (64px-tall) box
+ * instead of the viewport, collapsing the menu. The pseudo-element is not
+ * an ancestor of #menu-wrapper, so it can blur without that side effect.
+ */
+header.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+  transition: box-shadow 0.35s;
+}
+header.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Always-on backdrop blur: ensures contrast at any scroll position */
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  background: rgba(250, 250, 250, 0.88);
+  transition: background 0.35s;
+}
+.dark header.site-header::before {
+  background: rgba(24, 24, 27, 0.88);
+}
+
+/* Transparent over hero — only when explicit class set by JS */
+header.site-header.over-hero {
+  box-shadow: none;
+}
+header.site-header.over-hero::before {
+  background: transparent;
+}
+header.site-header.over-hero > nav,
+header.site-header.over-hero .site-title,
+header.site-header.over-hero .nav-icon {
+  color: rgba(255,255,255,0.95);
+}
+
+header.site-header.scrolled {
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+header.site-header.scrolled::before {
+  background: rgba(250, 250, 250, 0.92);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+.dark header.site-header.scrolled {
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+}
+.dark header.site-header.scrolled::before {
+  background: rgba(24, 24, 27, 0.92);
+}
+
+/* Push body content below fixed nav */
+body > .relative {
+  padding-top: var(--nav-height);
+}
+/* Pages with hero remove the padding so hero starts at top */
+body.has-hero > .relative {
+  padding-top: 0;
+}
+
+/* Default content padding for non-hero pages (article, list, taxonomy, etc.).
+   .has-hero pages handle their own layout. */
+body:not(.has-hero) main > * {
+  padding-left: clamp(1.5rem, 4vw, 2rem);
+  padding-right: clamp(1.5rem, 4vw, 2rem);
+}
+body:not(.has-hero) main > *:not(.article-hero):not(.hero) {
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2rem;
+}
+/* About page is narrower than article (per Design Tokens: 680px).
+   The about layout wraps in `<div class="about-page page-wrapper">` because
+   the outer `<main>` is provided by baseof.html (single skip-link target). */
+.about-page > .about-wrapper,
+.page-wrapper > .about-wrapper {
+  max-width: 680px !important;
+}
+body:not(.has-hero) main {
+  padding-bottom: 4rem;
+}
+
+/* Nav right button cluster */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.nav-right .nav-btn,
+.nav-right .hamburger-label,
+header .nav-btn,
+header .hamburger-label {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: var(--brand-neutral-700);
+}
+header .site-title {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+header.site-header.over-hero .nav-right .nav-btn,
+header.site-header.over-hero .nav-right .hamburger-label {
+  color: rgba(255, 255, 255, 0.95);
+}
+.dark .nav-right .nav-btn,
+.dark .nav-right .hamburger-label {
+  color: var(--brand-neutral-300);
+}
+.nav-right .nav-btn:hover,
+.nav-right .hamburger-label:hover {
+  background: var(--brand-neutral-100);
+}
+.dark .nav-right .nav-btn:hover,
+.dark .nav-right .hamburger-label:hover {
+  background: var(--brand-neutral-700);
+}
+header.site-header.over-hero .nav-right .nav-btn:hover,
+header.site-header.over-hero .nav-right .hamburger-label:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.nav-right svg.nav-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  stroke: currentColor;
+  fill: currentColor;
+}
+.nav-right svg[stroke="currentColor"] {
+  fill: none;
+}
+
+/* Appearance switcher: show only the icon for the mode a click will switch
+   TO, not the current mode (moon = "switch to dark", sun = "switch to
+   light"). Uses our own .dark class selector rather than Tailwind's
+   dark: variant utilities — those aren't generated for classes that only
+   appear in our overridden layouts, since Tailwind's content-scan doesn't
+   pick them up there. */
+#appearance-switcher .icon-sun { display: none; }
+.dark #appearance-switcher .icon-moon { display: none; }
+.dark #appearance-switcher .icon-sun { display: block; }
+
+/* Site title */
+.site-title, header a[class*="text-2xl"], .nav-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: var(--brand-neutral-900);
+  text-decoration: none;
+}
+.dark .site-title, .dark .nav-title {
+  color: var(--brand-neutral-50);
+}
+header.site-header.over-hero .site-title,
+header.site-header.over-hero .nav-title {
+  color: #fff;
+}
+
+/* ── Homepage hero ── */
+.hero {
+  position: relative;
+  height: 85vh;
+  min-height: 520px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  transition: opacity 0.1s linear;
+  will-change: opacity;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.4) 0%,
+    rgba(15, 23, 42, 0.5) 40%,
+    rgba(15, 23, 42, 0.65) 70%,
+    rgba(15, 23, 42, 0.85) 100%
+  );
+}
+.dark .hero-bg::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.3) 0%,
+    rgba(15, 23, 42, 0.4) 40%,
+    rgba(15, 23, 42, 0.6) 70%,
+    rgba(15, 23, 42, 0.75) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  max-width: 720px;
+}
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.65;
+  max-width: 540px;
+}
+
+/* ── Article hero (when backgroundImage set) ── */
+.article-hero {
+  position: relative;
+  height: 50vh;
+  min-height: 320px;
+  display: flex; align-items: flex-end; overflow: hidden;
+}
+.article-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.article-hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0.5) 50%, rgba(15,23,42,0.8) 100%);
+}
+.dark .article-hero-bg::after {
+  background: linear-gradient(to bottom, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.4) 50%, rgba(15,23,42,0.7) 100%);
+}
+.article-hero-content {
+  position: relative; z-index: 2;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  max-width: 780px;
+}
+.article-hero-breadcrumb {
+  font-family: var(--font-display); font-size: 0.78rem;
+  color: rgba(255,255,255,0.6); margin-bottom: 0.75rem;
+}
+.article-hero-breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+.article-hero-breadcrumb a:hover { color: #fff; }
+.article-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700; color: #fff; line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+.article-hero-meta {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+}
+.article-hero-date {
+  font-family: var(--font-mono); font-size: 0.8rem; color: rgba(255,255,255,0.7);
+}
+.article-hero-reading {
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 500;
+  color: rgba(255,255,255,0.55);
+}
+.article-hero-reading::before {
+  content: '\00b7'; margin-right: 0.75rem; color: rgba(255,255,255,0.3);
+}
+.article-hero-tags { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+.tag-light {
+  font-family: var(--font-display); font-size: 0.7rem; font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.12);
+  padding: 0.2rem 0.6rem; border-radius: 4px;
+  text-decoration: none; letter-spacing: 0.01em;
+  backdrop-filter: blur(4px);
+}
+.tag-light:hover { background: rgba(255,255,255,0.2); }
+
+/* Article content below a hero: the generic body:not(.has-hero) centering
+   rule above doesn't fire when a hero is present (homepage also sets
+   .has-hero, so this targets the article element specifically rather than
+   `main` generally — homepage's own .content-wrapper handles its own
+   padding). */
+body.has-hero main > article {
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem clamp(1.5rem, 4vw, 2rem) 4rem;
+}
+
+/* ── Main content wrapper ── */
+.content-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 2rem);
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-primary-500);
+  margin-bottom: 2rem;
+}
+.dark .section-label {
+  color: var(--brand-primary-400);
+}
+
+/* Section heading (e.g. on /speaking/ list page) */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--brand-neutral-900);
+  margin-bottom: 0.75rem;
+}
+.dark .section-heading { color: var(--brand-neutral-50); }
+.section-description {
+  font-family: var(--font-body);
+  color: var(--brand-neutral-600);
+  margin-bottom: 2rem;
+}
+.dark .section-description { color: var(--brand-neutral-400); }
+
+/* ── Post cards (homepage list) ── */
+.post-list { display: flex; flex-direction: column; gap: 0; }
+
+.post-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--brand-neutral-200);
+}
+.post-card:first-child { padding-top: 0; }
+.dark .post-card { border-bottom-color: var(--brand-neutral-500); }
+
+.post-meta {
+  display: flex; align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+.post-date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--brand-neutral-500);
+  letter-spacing: -0.01em;
+}
+.dark .post-date { color: var(--brand-neutral-400); }
+.post-reading-time {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  color: var(--brand-neutral-400);
+  font-weight: 500;
+}
+.dark .post-reading-time { color: var(--brand-neutral-500); }
+.post-reading-time::before {
+  content: '\00b7';
+  margin-right: 0.75rem;
+  color: var(--brand-neutral-300);
+}
+.dark .post-reading-time::before { color: var(--brand-neutral-500); }
+
+.post-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-neutral-900);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+}
+.dark .post-title { color: var(--brand-neutral-50); }
+.post-card:hover .post-title {
+  text-decoration: underline;
+  text-decoration-color: var(--brand-primary-500);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.post-description {
+  font-size: 0.95rem;
+  color: var(--brand-neutral-600);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dark .post-description { color: var(--brand-neutral-400); }
+
+.post-tags {
+  display: flex; gap: 0.5rem;
+  margin-top: 0.75rem; flex-wrap: wrap;
+}
+.tag,
+.article-meta a.tag {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--brand-primary-700);
+  background: var(--brand-primary-100);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+}
+.dark .tag,
+.dark .article-meta a.tag {
+  color: var(--brand-primary-300);
+  background: var(--brand-neutral-700);
+}
+
+/* ── Article prose styling ── */
+article.prose,
+.article .prose,
+main article {
+  font-family: var(--font-body);
+}
+article.prose h1,
+.article h1,
+main article h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--brand-neutral-900);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.2;
+}
+.dark article.prose h1,
+.dark .article h1,
+.dark main article h1 { color: var(--brand-neutral-50); }
+
+article.prose h2, main article h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--brand-neutral-900);
+  letter-spacing: -0.02em;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+}
+.dark article.prose h2, .dark main article h2 { color: var(--brand-neutral-50); }
+
+article.prose h3, main article h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--brand-neutral-800);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+}
+.dark article.prose h3, .dark main article h3 { color: var(--brand-neutral-200); }
+
+article.prose p, main article p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--brand-neutral-700);
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+.dark article.prose p, .dark main article p { color: var(--brand-neutral-300); }
+
+article.prose a, main article a {
+  color: var(--brand-primary-700);
+  text-decoration: underline;
+  text-decoration-color: var(--brand-primary-200);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+article.prose a:hover, main article a:hover {
+  text-decoration-color: var(--brand-primary-600);
+}
+.dark article.prose a, .dark main article a {
+  color: var(--brand-primary-300);
+  text-decoration-color: var(--brand-primary-400);
+}
+.dark article.prose a:hover, .dark main article a:hover {
+  text-decoration-color: var(--brand-primary-300);
+}
+
+article.prose ul, article.prose ol,
+main article ul, main article ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+article.prose li, main article li {
+  font-size: 1rem;
+  color: var(--brand-neutral-700);
+  line-height: 1.85;
+  margin-bottom: 0.35rem;
+}
+.dark article.prose li, .dark main article li { color: var(--brand-neutral-300); }
+article.prose li::marker, main article li::marker { color: var(--brand-primary-400); }
+
+article.prose strong, main article strong {
+  color: var(--brand-neutral-800);
+  font-weight: 600;
+}
+.dark article.prose strong, .dark main article strong { color: var(--brand-neutral-50); }
+
+/* Inline code */
+article.prose :not(pre) > code,
+main article :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--brand-neutral-100);
+  color: var(--brand-primary-800);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.dark article.prose :not(pre) > code,
+.dark main article :not(pre) > code {
+  background: var(--brand-neutral-700);
+  color: var(--brand-neutral-200);
+}
+
+/* Code blocks (Hugo highlight `monokai` already provides syntax colors).
+   Higher selector specificity ensures the dark monokai background is applied
+   over Congo's prose styling. */
+article.prose pre,
+main article pre,
+.prose pre,
+pre.chroma,
+div.highlight pre {
+  background: #272822 !important;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #f8f8f2;
+}
+article.prose pre code, main article pre code, .prose pre code, pre.chroma code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Heading anchor links — visually hidden until heading hover/focus.
+   Hidden from the accessibility tree by default to avoid the WCAG link-in-text-block
+   audit; shown on hover/focus for sighted keyboard users. */
+article.prose a[aria-label="Anchor"],
+main article a[aria-label="Anchor"],
+.prose a[aria-label="Anchor"] {
+  visibility: hidden;
+  color: var(--brand-primary-500);
+  text-decoration: underline !important;
+  text-decoration-color: var(--brand-primary-400) !important;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  margin-left: 0.4rem;
+  font-weight: 400;
+  transition: visibility 0s, color 0.2s;
+}
+article h2:hover a[aria-label="Anchor"],
+article h3:hover a[aria-label="Anchor"],
+article h4:hover a[aria-label="Anchor"],
+.prose h2:hover a[aria-label="Anchor"],
+.prose h3:hover a[aria-label="Anchor"] {
+  visibility: visible;
+}
+a[aria-label="Anchor"]:focus-visible {
+  visibility: visible;
+  outline: 2px solid var(--brand-primary-500);
+  outline-offset: 2px;
+}
+
+/* ── Float-right figure (T022c) ── */
+figure.right {
+  float: right;
+  max-width: 331px;
+  margin: 0 0 1rem 1.5rem;
+}
+
+/* ── Hamburger overlay menu ── */
+#menu-controller { display: none; }
+
+.hamburger-label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  padding: 6px;
+  transition: background 0.2s;
+}
+/* Hover styles for .hamburger-label come from the .nav-right .hamburger-label
+   rules above, since the hamburger is always rendered inside .nav-right. */
+
+#menu-wrapper {
+  visibility: hidden;
+  position: fixed; inset: 0; z-index: 90;
+  width: 100%; height: 100%; overflow: auto;
+  background: rgba(244, 244, 245, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.dark #menu-wrapper { background: rgba(24, 24, 27, 0.5); }
+#menu-controller:checked ~ #menu-wrapper {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex; flex-direction: column;
+  max-width: 1280px;
+  margin: 0 auto;
+  /* .menu-close is absolutely positioned (to line up with the hamburger)
+     and no longer reserves space in this flex flow, so the top padding
+     has to clear it explicitly instead of relying on flow. */
+  padding: calc(var(--nav-height) + 1rem) clamp(1.5rem, 4vw, 2rem) 1.5rem;
+  text-align: right;
+}
+.menu-list li { margin-bottom: 0.25rem; }
+.menu-list a {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-neutral-700);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.menu-list a:hover {
+  color: var(--brand-primary-600);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--brand-primary-500);
+}
+.menu-list a.active {
+  color: var(--brand-primary-700);
+}
+.dark .menu-list a { color: var(--brand-neutral-200); }
+.dark .menu-list a:hover {
+  color: var(--brand-primary-300);
+  text-decoration-color: var(--brand-primary-400);
+}
+.dark .menu-list a.active { color: var(--brand-primary-300); }
+
+/* Positioned to land exactly over the hamburger button (same clamp() as
+   header's own padding, same vertical centering within --nav-height) rather
+   than relying on it lining up by coincidence as the first .menu-list flex
+   item — .menu-list has its own max-width/padding, which only matches the
+   header's at certain viewport widths. */
+.menu-close {
+  position: absolute;
+  top: calc((var(--nav-height) - 44px) / 2);
+  right: clamp(1.5rem, 4vw, 3rem);
+  cursor: pointer;
+  color: var(--brand-neutral-600);
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+}
+.menu-close:hover { color: var(--brand-primary-600); }
+.dark .menu-close { color: var(--brand-neutral-300); }
+.menu-close svg { width: 24px; height: 24px; }
+
+.menu-social {
+  display: flex; gap: 1rem; margin-top: 1.5rem;
+  justify-content: flex-end;
+  max-width: 1280px;
+  margin-left: auto; margin-right: auto;
+  padding: 0 clamp(1.5rem, 4vw, 2rem);
+  list-style: none;
+}
+.menu-social a {
+  color: var(--brand-neutral-400);
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+.menu-social a:hover { color: var(--brand-primary-600); }
+.dark .menu-social a:hover { color: var(--brand-primary-400); }
+.menu-social svg { width: 20px; height: 20px; }
+
+/* ── Site footer (custom layout) ── */
+.site-footer {
+  border-top: 1px solid var(--brand-neutral-200);
+  padding: 2.5rem clamp(1.5rem, 4vw, 2rem);
+  margin-top: 3rem;
+}
+.dark .site-footer { border-top-color: var(--brand-neutral-500); }
+
+.site-footer .footer-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-footer .footer-text {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--brand-neutral-400);
+}
+.site-footer .footer-links {
+  display: flex; gap: 1.25rem;
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.site-footer .footer-links a {
+  color: var(--brand-neutral-400);
+  transition: color 0.2s;
+  display: inline-flex; align-items: center;
+}
+.site-footer .footer-links a:hover { color: var(--brand-primary-600); }
+.dark .site-footer .footer-links a:hover { color: var(--brand-primary-400); }
+.site-footer .footer-icon { width: 18px; height: 18px; }
+
+@media (max-width: 640px) {
+  .site-footer .footer-inner { flex-direction: column; gap: 1rem; }
+}
+
+/* ── About profile header ── */
+.profile-header {
+  display: flex; align-items: flex-start; gap: 2.5rem;
+  margin-bottom: 3rem; padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--brand-neutral-200);
+}
+.dark .profile-header { border-bottom-color: var(--brand-neutral-500); }
+.profile-avatar {
+  width: 140px; height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+.profile-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-info { flex: 1; }
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 700;
+  color: var(--brand-neutral-900);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+.dark .profile-name { color: var(--brand-neutral-50); }
+.profile-role {
+  font-family: var(--font-display);
+  font-size: 0.95rem; font-weight: 500;
+  color: var(--brand-primary-600);
+  margin-bottom: 1rem;
+}
+.dark .profile-role { color: var(--brand-primary-400); }
+.profile-bio {
+  font-size: 0.95rem;
+  color: var(--brand-neutral-600);
+  line-height: 1.7;
+}
+.dark .profile-bio { color: var(--brand-neutral-400); }
+.profile-social {
+  display: flex; gap: 0.75rem;
+  margin-top: 1.25rem;
+  list-style: none; padding: 0;
+}
+.profile-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--brand-neutral-100);
+  color: var(--brand-neutral-500);
+  transition: background 0.2s, color 0.2s;
+}
+.profile-social a:hover {
+  background: var(--brand-primary-100);
+  color: var(--brand-primary-700);
+}
+.dark .profile-social a {
+  background: var(--brand-neutral-700);
+  color: var(--brand-neutral-300);
+}
+.dark .profile-social a:hover {
+  background: var(--brand-primary-800);
+  color: var(--brand-primary-300);
+}
+
+@media (max-width: 640px) {
+  .profile-header { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
+  .profile-social { justify-content: center; }
+}
+
+/* ── Contact links (About page "Get in Touch" icon grid) ── */
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.contact-links a {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  background: var(--brand-neutral-100);
+  color: var(--brand-neutral-700);
+  text-decoration: none !important; /* wins over Tailwind Typography's dark:prose-invert link underline */
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+.contact-links svg {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  color: var(--brand-neutral-500);
+  transition: color 0.2s;
+}
+.contact-links a:hover {
+  background: var(--brand-primary-100);
+  color: var(--brand-primary-700);
+}
+.contact-links a:hover svg { color: var(--brand-primary-600); }
+.dark .contact-links a {
+  background: var(--brand-neutral-700);
+  color: var(--brand-neutral-200);
+}
+.dark .contact-links svg { color: var(--brand-neutral-400); }
+.dark .contact-links a:hover {
+  background: var(--brand-primary-800);
+  color: var(--brand-primary-300);
+}
+.dark .contact-links a:hover svg { color: var(--brand-primary-300); }
+
+.about-page {
+  padding-top: var(--nav-height);
+}
+.about-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 4rem clamp(1.5rem, 4vw, 2rem);
+}
+
+/* ── Article navigation (prev/next) ── */
+.article-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--brand-neutral-200);
+}
+.dark .article-nav { border-top-color: var(--brand-neutral-500); }
+.article-nav-link {
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.article-nav-link:hover { background: var(--brand-neutral-100); }
+.dark .article-nav-link:hover { background: var(--brand-neutral-700); }
+.article-nav-link.next { text-align: right; }
+.article-nav-direction {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand-neutral-400);
+  margin-bottom: 0.35rem;
+}
+.article-nav-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem; font-weight: 600;
+  color: var(--brand-primary-700);
+  line-height: 1.35;
+}
+.dark .article-nav-title { color: var(--brand-primary-300); }
+.article-nav-date {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--brand-neutral-400);
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .article-nav { grid-template-columns: 1fr; }
+  .article-nav-link.next { text-align: left; }
+}
+
+/* ── Comments wrapper ── */
+.comments-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--brand-neutral-200);
+}
+.dark .comments-section { border-top-color: var(--brand-neutral-500); }
+.comments-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-neutral-400);
+  margin-bottom: 1.5rem;
+}
+.disqus-readonly-notice {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  background: var(--brand-neutral-100);
+  color: var(--brand-neutral-500);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+.dark .disqus-readonly-notice {
+  background: var(--brand-neutral-700);
+  color: var(--brand-neutral-300);
+}
+
+/* ── Table of contents (flat scroll-spy rail, per mockup) ── */
+.toc-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+}
+.toc-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-neutral-400);
+  margin-bottom: 0.75rem;
+}
+.toc-list {
+  list-style: none;
+  border-left: 2px solid var(--brand-neutral-200);
+  padding-left: 0;
+  margin: 0;
+}
+.dark .toc-list { border-left-color: var(--brand-neutral-500); }
+.toc-list li { padding-left: 1rem; margin-bottom: 0.1rem; }
+.toc-list a {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--brand-neutral-400);
+  text-decoration: none;
+  display: block;
+  padding: 0.3rem 0;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+/* Reset Tailwind Typography's .prose a:hover "highlight block" treatment
+   (solid background-color + border-radius, meant for prose body links) —
+   the ToC rail sits inside .prose too and inherits it unintentionally. */
+.toc-list a:hover {
+  color: var(--brand-primary-700);
+  background-color: transparent;
+  border-radius: 0;
+}
+.dark .toc-list a:hover { color: var(--brand-primary-300); }
+.toc-list li.active {
+  border-left: 2px solid var(--brand-primary-500);
+  margin-left: -2px;
+}
+.toc-list li.active > a {
+  color: var(--brand-primary-700);
+  font-weight: 600;
+}
+.dark .toc-list li.active {
+  border-left-color: var(--brand-primary-300);
+}
+.dark .toc-list li.active > a {
+  color: var(--brand-primary-100);
+}
+.toc-list .toc-h3 { padding-left: 2rem; }
+
+/* Below Congo's lg: breakpoint (1024px) the ToC becomes a static block
+   above the article (order-first, set via Tailwind classes in single.html)
+   instead of a sticky rail. */
+@media (max-width: 1023.98px) {
+  .toc-sidebar {
+    position: static;
+    border: 1px solid var(--brand-neutral-200);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .dark .toc-sidebar { border-color: var(--brand-neutral-600); }
+  .toc-list { border-left: none; }
+  /* Top-level items no longer need padding to clear the (now removed) rail
+     border, but nested (h3+) items keep a smaller indent so the heading
+     hierarchy is still visible without the rail. */
+  .toc-list li { padding-left: 0; }
+  .toc-list .toc-h3 { padding-left: 1.25rem; }
+  .toc-list li.active { border-left: none; margin-left: 0; }
+}
+
+/* ── 404 page ── */
+.error-content {
+  text-align: center;
+  padding: 4rem 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.error-content h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand-neutral-900);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+.dark .error-content h1 { color: var(--brand-neutral-50); }
+.error-content p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--brand-neutral-600);
+  line-height: 1.8;
+  margin: 0 auto 2.5rem;
+  max-width: 480px;
+}
+.dark .error-content p { color: var(--brand-neutral-400); }
+.error-actions {
+  display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem; font-weight: 600;
+  background: var(--brand-primary-700);
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--brand-primary-800); }
+.dark .btn-primary { background: var(--brand-primary-600); }
+.dark .btn-primary:hover { background: var(--brand-primary-500); }
+
+.error-home-link {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--brand-primary-700);
+  text-decoration: underline;
+  text-decoration-color: var(--brand-primary-200);
+  text-underline-offset: 3px;
+}
+.error-home-link:hover { text-decoration-color: var(--brand-primary-600); }
+.dark .error-home-link { color: var(--brand-primary-300); text-decoration-color: var(--brand-primary-400); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg { transition: none !important; }
+  .hero-bg { opacity: 0.6 !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Mobile (320px) tweaks ── */
+@media (max-width: 640px) {
+  .hero { height: 70vh; min-height: 400px; }
+  .nav-btn, .hamburger-label { min-width: 44px; min-height: 44px; }
+}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to /index.xml</title>
+  <link rel="canonical" href="/index.xml">
+  <meta http-equiv="refresh" content="0; url=/index.xml">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <p>This URL has moved. <a href="/index.xml">Click here to go to the new RSS feed</a>.</p>
+</body>
+</html>

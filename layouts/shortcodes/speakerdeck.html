@@ -1,0 +1,8 @@
+{{- $id := .Get "id" -}}
+{{- $ratio := .Get "ratio" | default "1.77777777777778" -}}
+{{- if not $id -}}
+  {{- errorf "speakerdeck shortcode requires `id` param (call site %s)" .Position -}}
+{{- end -}}
+<div class="speakerdeck-embed my-6 flex justify-center">
+  <script async class="speakerdeck-embed" data-id="{{ $id }}" data-ratio="{{ $ratio }}" src="https://speakerdeck.com/assets/embed.js"></script>
+</div>

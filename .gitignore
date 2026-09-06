@@ -1,6 +1,14 @@
-.jekyll-metadata
-.sass-cache
-Gemfile.lock
-_site
+.DS_Store
 url_mapping.csv
 cmd.txt
+
+# Hugo
+public/
+.hugo_build.lock
+resources/_gen/
+
+# Claude Code (local session state, not project config)
+.claude/settings.local.json
+.claude/projects/
+.lighthouse-reports/
+.playwright-mcp/

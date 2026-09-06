@@ -1,0 +1,12 @@
+{{- /* Override of Congo's default toc.html. Congo renders a collapsible
+       <details>/<summary> widget around Hugo's raw, arbitrarily-nested
+       .TableOfContents markup. The mockup instead wants an always-visible
+       flat rail list ("On this page") with scroll-spy highlighting, so we
+       build our own list from .Fragments.Headings instead. */ -}}
+{{- $headings := .Fragments.Headings -}}
+{{- if $headings -}}
+  <div class="toc-label">On this page</div>
+  <ul class="toc-list">
+    {{- partial "toc-items.html" (dict "headings" $headings "depth" 0) -}}
+  </ul>
+{{- end -}}
