@@ -151,14 +151,14 @@ The reordering in tasks.md groups by user story priority and parallelism, while 
 
 - [X] T039 Create `layouts/partials/comments.html` with date-based routing: Disqus (read-only) for posts before `giscusCutoffDate`, Giscus for posts on/after cutoff, nothing if `comments` is false/unset. In `layouts/articles/single.html`, wrap the comments area with `<div class="comments-section"><div class="comments-label">Comments</div>...</div>` per HTML Class Contract. Include a visible "Read-only — new comments disabled" indicator in the Disqus section per FR-009a.
 - [X] T040 Configure Disqus read-only mode in the comments partial using `this.page.disableNewComments = true` in the Disqus embed config
-- [ ] T041 Set up Giscus: enable GitHub Discussions on `lanyonm/lanyonm.github.io`, create "Blog Comments" category (Announcements type), visit giscus.app to get repo ID and category ID
+- [X] T041 Set up Giscus: enable GitHub Discussions on `lanyonm/lanyonm.github.io`, create "Blog Comments" category (Announcements type), visit giscus.app to get repo ID and category ID
 - [X] T041a Verify Disqus shortname `lanyonm` is still active by loading the existing Disqus admin or fetching `https://lanyonm.disqus.com/embed.js` — confirm 200 response. (plan.md Phase 4 step 4)
-- [ ] T042 Update `hugo.toml` with Giscus `repoId` and `categoryId` values from giscus.app
+- [X] T042 Update `hugo.toml` with Giscus `repoId` and `categoryId` values from giscus.app
 
 ### Validation
 
 - [X] T043 Verify pre-2025 post with `comments: true` shows Disqus with existing comments but no comment form
-- [ ] T044 Verify post-2025 post with `comments: true` shows Giscus widget allowing new comments
+- [ ] T044 Verify post-2025 post with `comments: true` shows Giscus widget allowing new comments (blocked: no post-2025 content exists yet; template output smoke-tested with a throwaway draft and confirmed correct `data-repo-id`/`data-category-id` — full live verification requires the first real post-cutover article)
 - [X] T045 Verify post without `comments` shows no comment section
 - [X] T046 Verify both comment widgets load async/deferred (no render blocking)
 - [X] T046a Verify graceful degradation when Disqus is blocked by an ad blocker: page renders normally, no broken layout or empty placeholder visible

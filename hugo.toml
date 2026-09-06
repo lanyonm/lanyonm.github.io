@@ -120,9 +120,9 @@ buildFuture = false
 
   [params.giscus]
     repo = "lanyonm/lanyonm.github.io"
-    repoId = ""
+    repoId = "MDEwOlJlcG9zaXRvcnkxMTMwMjAzOA=="
     category = "Blog Comments"
-    categoryId = ""
+    categoryId = "DIC_kwDOAKx0ls4DFBOL"
     mapping = "pathname"
     strict = "0"
     reactionsEnabled = "1"
