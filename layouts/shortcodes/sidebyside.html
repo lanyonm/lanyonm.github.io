@@ -1,0 +1,15 @@
+{{- $separator := .Get "separator" -}}
+<div class="sidebyside not-prose flex flex-wrap items-center justify-center gap-4 my-6">
+  {{- $lines := split (trim .Inner "\n\r\t ") "\n" -}}
+  {{- $first := true -}}
+  {{- range $lines -}}
+    {{- $line := trim . " \t" -}}
+    {{- if $line -}}
+      {{- if and (not $first) $separator -}}
+        <span class="sidebyside-separator text-2xl text-neutral-500 dark:text-neutral-400">{{ $separator }}</span>
+      {{- end -}}
+      <span class="sidebyside-item">{{ $.Page.RenderString (dict "display" "inline") $line }}</span>
+      {{- $first = false -}}
+    {{- end -}}
+  {{- end -}}
+</div>

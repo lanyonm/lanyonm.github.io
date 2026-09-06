@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div class="about-page page-wrapper">
+  <div class="about-wrapper">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <img src="{{ "/images/michael-lanyon-profile.jpg" | relURL }}" alt="{{ .Site.Params.author.name | default "Michael Lanyon" }}" width="140" height="140" />
+      </div>
+      <div class="profile-info">
+        <h1 class="profile-name">{{ .Site.Params.author.name | default "Michael Lanyon" }}</h1>
+        {{ with .Params.profileRole }}
+          <div class="profile-role">{{ . }}</div>
+        {{ end }}
+        {{ with .Description }}
+          <p class="profile-bio">{{ . }}</p>
+        {{ end }}
+        <ul class="profile-social" aria-label="Social profiles">
+          {{ partial "social-icons.html" (dict "iconClass" "social-icon" "iconSize" "16" "rss" ("/index.xml" | relURL)) }}
+        </ul>
+      </div>
+    </div>
+    <article class="prose">
+      {{ .Content }}
+    </article>
+  </div>
+</div>
+{{ end }}

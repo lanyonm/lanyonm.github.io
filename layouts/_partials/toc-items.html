@@ -1,0 +1,21 @@
+{{- /* Recursive helper for toc.html. Hugo's .Fragments.Headings tree can
+       contain synthetic entries with an empty .ID/.Title representing an
+       implied-but-absent ancestor level (e.g. a post that starts at h3 with
+       no h2, or even h4 with no h2/h3) — these are unwrapped transparently
+       (recursed into without consuming a depth level) rather than rendered.
+       Tier is classified by depth among REAL headings only, not by the
+       heading's absolute .Level, so a page whose shallowest real heading is
+       h3 still gets a flush top tier — matching the mockup's two-tier
+       design regardless of where a given post's headings start. */ -}}
+{{- $headings := .headings -}}
+{{- $depth := .depth -}}
+{{- range $headings -}}
+  {{- if .ID -}}
+    <li{{ if gt $depth 0 }} class="toc-h3"{{ end }}><a href="#{{ .ID }}">{{ .Title | plainify }}</a></li>
+    {{- if .Headings -}}
+      {{- partial "toc-items.html" (dict "headings" .Headings "depth" (add $depth 1)) -}}
+    {{- end -}}
+  {{- else if .Headings -}}
+    {{- partial "toc-items.html" (dict "headings" .Headings "depth" $depth) -}}
+  {{- end -}}
+{{- end -}}

@@ -1,0 +1,13 @@
+<footer class="site-footer print:hidden">
+  <div class="footer-inner">
+    {{ if .Site.Params.footer.showCopyright | default true }}
+      <span class="footer-text">&copy; {{ now.Format "2006" }} {{ .Site.Params.author.name | default .Site.Title }}</span>
+    {{ end }}
+    <ul class="footer-links" aria-label="Social links">
+      {{ partial "social-icons.html" (dict "iconClass" "footer-icon" "rss" ("/index.xml" | relURL)) }}
+    </ul>
+  </div>
+</footer>
+
+{{/* Extend footer for custom JS */}}
+{{ if templates.Exists "_partials/extend-footer.html" }}{{ partial "extend-footer.html" . }}{{ end }}

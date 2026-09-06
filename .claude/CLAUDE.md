@@ -4,67 +4,103 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal technical blog (blog.lanyonm.org) built with Jekyll and hosted on GitHub Pages. Uses the Lanyon theme (built on Poole). Content covers DevOps, monitoring, infrastructure, and leadership.
+Personal technical blog (blog.lanyonm.org) built with **Hugo** + the **Congo theme v2** (slate color scheme). Hosted on GitHub Pages via GitHub Actions. Content covers DevOps, monitoring, infrastructure, and leadership.
 
 ## Build & Development Commands
 
 ```bash
-# Install dependencies
-bundle install
-
 # Local development server (with live reload)
-bundle exec jekyll serve
+hugo serve --port 1313 --baseURL http://localhost:1313/ --appendPort=false
 
-# Build site without serving
-bundle exec jekyll build
+# Build site
+hugo --gc --minify
 
-# Serve with drafts visible
-bundle exec jekyll serve --drafts
+# Serve with drafts
+hugo serve --buildDrafts
+
+# Update Congo theme to latest
+hugo mod get -u
 ```
 
-The site is deployed automatically by GitHub Pages on push to `master`.
+Deployed via `.github/workflows/deploy.yml` on push to `main` (uses `peaceiris/actions-hugo@v3`, `actions/deploy-pages@v4`, OIDC).
 
 ## Architecture
 
-### Layout Hierarchy
+### Content Structure
 
-`default.html` → `post.html` / `page.html`
+```
+content/
+├── articles/         # Blog posts (29 articles + 2 drafts)
+├── speaking/         # Conference talks (3 posts)
+├── about.md          # About page (uses layout: about)
+└── _index.md         # Homepage metadata
+```
 
-- **default.html**: Base layout — includes `head.html`, `sidebar.html`, wraps content, includes `scripts.html`
-- **post.html**: Blog articles — adds schema.org markup, tags, dates, optional Disqus comments
-- **page.html**: Static pages (About, Speaking, Tags)
+Permalinks use `:contentbasename` so URLs match the source filename slug:
+- Articles: `/articles/<slug>/`
+- Speaking: `/speaking/<slug>/`
+- 32 published posts have `aliases:` redirecting from old Jekyll `/articles/YYYY/MM/DD/slug/` URLs
 
-### Sass Structure
+### Layouts (Congo overrides)
 
-`css/main.min.scss` imports in order:
-1. `_sass/poole.scss` — Base Poole framework
-2. `_sass/syntax.scss` — Code syntax highlighting
-3. `_sass/lanyon.scss` — Lanyon theme (sidebar, masthead, layout)
-4. `_sass/main.scss` — Custom styles, dark mode (`prefers-color-scheme: dark`)
+- `layouts/baseof.html` — patched for Hugo 0.158+ deprecations (`.Language.Locale`, `.Language.Direction`)
+- `layouts/_partials/head.html` — patched for `site.Language.Direction`
+- `layouts/_partials/schema.html` — patched for `.Site.Language.Locale`
+- `layouts/_partials/sharing-links.html` — patched for `hugo.Data.sharing`
+- `layouts/_partials/functions/warnings.html` — strips `.Author` warning incompatible with current Hugo
+- `layouts/_partials/article-meta.html` — preserves original tag casing via `.Params.tags` (instead of `.LinkTitle`)
+- `layouts/_partials/article-pagination.html` — prev/next with direction labels + ISO dates
+- `layouts/_partials/header/hamburger.html` — fixed nav, ARIA, active page highlighting, social icons in overlay
+- `layouts/_partials/footer.html` — copyright + GitHub/LinkedIn/Strava/RSS row
+- `layouts/_partials/extend-head.html` — Google Fonts (Manrope, Literata, JetBrains Mono)
+- `layouts/_partials/extend-footer.html` — loads custom.js
+- `layouts/index.html` — homepage hero + recent post list
+- `layouts/_default/about.html` — profile header with avatar/name/role/bio + social
+- `layouts/404.html` — friendly 404 with GitHub issue reporting link
+- `layouts/partials/comments.html` — date-based dual routing (Disqus pre-2025-01-01, Giscus post-cutoff)
+- `layouts/shortcodes/sidebyside.html`, `speakerdeck.html` — custom shortcodes
+
+### Assets
+
+- `assets/css/custom.css` — design tokens (slate palette, Manrope/Literata/JetBrains Mono), nav transparency, hero gradient, post cards, profile header, ToC, dark mode (via `html.dark` class set by Congo's appearance.js)
+- `assets/js/custom.js` — scroll-fade hero opacity (rAF-throttled), nav state transitions, ToC active section tracker, `close_menu()` helper, Escape key close
+
+### Configuration
+
+`hugo.toml` highlights:
+- `theme` via Hugo modules (`github.com/jpanther/congo/v2`)
+- `params.colorScheme = "slate"`, `dateFormat = "2006-01-02"`
+- `params.header.layout = "hamburger"`
+- `params.giscusCutoffDate = "2025-01-01"` — posts before this date use Disqus read-only, on/after use Giscus
+- `services.googleAnalytics.id = "G-NN7JP65RMS"`
+- `services.disqus.shortname = "lanyonm"`
+- `[security].sources = ["https://speakerdeck.com"]` for SpeakerDeck embeds
+- `[markup.highlight] style = "monokai"`, `noClasses = true`
 
 ### Post Front Matter
 
 ```yaml
 ---
-layout: post
 title: "Post Title"
-description: "Description for meta tags and Open Graph"
-category: articles    # or "speaking"
+description: "Open Graph description"
+date: 2024-10-15
 tags: [tag1, tag2]
-comments: true        # enables Disqus
+comments: true                                # enables comments partial
+images:                                       # OG image (was Jekyll's `og.image`)
+  - "/images/foo.jpg"
+aliases:                                      # legacy Jekyll URL
+  - "/articles/2024/10/15/post-title/"
 ---
 ```
 
-Posts use standard Jekyll naming: `_posts/YYYY-MM-DD-slug-title.md`. Drafts go in `_drafts/`.
+Drafts add `draft: true`. Posts in `content/speaking/` get `/speaking/<slug>/` URL automatically.
 
 ### Key Integrations
 
-- **Disqus**: Comments enabled per-post via `comments: true` in front matter (shortname: `lanyonm`)
-- **Google Analytics**: GA4 (`G-NN7JP65RMS`) + legacy UA (`UA-42209870-1`)
-- **External JS**: Font Awesome 5, AnchorJS 2.0 (auto-links headings)
+- **Disqus** (read-only legacy): pre-2025 posts via `services.disqus.shortname = "lanyonm"`
+- **Giscus** (active comments): post-2025 posts; requires `params.giscus.repoId` and `categoryId` from giscus.app — currently empty (no post-cutoff content yet)
+- **Google Analytics**: GA4 `G-NN7JP65RMS` via `services.googleAnalytics.id`
 
-### Jekyll Plugins
+### Diagram Source Files
 
-Only two plugins (both supported by GitHub Pages):
-- `jekyll-gist` — Embed GitHub gists
-- `jekyll-sitemap` — Auto-generate sitemap.xml
+`_assets/` contains `.dot` source files for Graphviz diagrams. Hugo ignores underscore-prefixed directories so this content is not built/published. Keep as-is.

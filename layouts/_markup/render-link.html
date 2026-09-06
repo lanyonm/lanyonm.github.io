@@ -1,0 +1,23 @@
+{{- /* Override of Congo's default render-link.html. Congo resolves internal
+       {{< ref >}}/relative markdown links via .Permalink, which bakes in the
+       site's configured baseURL and ignores hugo serve's --baseURL override
+       — every internal content link then points at the production domain
+       instead of staying on the local dev server. RelPermalink resolves
+       correctly in both contexts. */ -}}
+{{- $link := .Destination -}}
+{{- $isRemote := strings.HasPrefix $link "http" -}}
+{{- if not $isRemote }}
+  {{- $url := urls.Parse .Destination -}}
+  {{- if $url.Path }}
+    {{- $fragment := "" }}
+    {{- with $url.Fragment }}{{ $fragment = printf "#%s" . }}{{ end -}}
+    {{- with .Page.GetPage $url.Path }}
+      {{ $link = printf "%s%s" .RelPermalink $fragment }}
+    {{ else }}
+      {{- if hasSuffix $url.Path ".md" }}
+        {{ warnf "[CONGO] Can't resolve: %s" .Destination }}
+      {{ end -}}
+    {{ end -}}
+  {{ end -}}
+{{ end -}}
+<!-- prettier-ignore --><a href="{{ $link | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isRemote }} target="_blank" rel="noreferrer"{{ end }}>{{- .Text | safeHTML -}}</a>
