@@ -8,8 +8,7 @@
   <div class="article-hero-bg" id="heroBg" style="background-image: url('{{ .Params.backgroundImage | relURL }}');" role="presentation" aria-hidden="true"></div>
   <div class="article-hero-content">
     <div class="article-hero-breadcrumb">
-      <a href="{{ "/" | relURL }}">Home</a>
-      {{ with .CurrentSection }} &rsaquo; <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+      {{ with .CurrentSection }}<a href="{{ .RelPermalink }}">&lsaquo; {{ .Title }}</a>{{ end }}
     </div>
     <h1 class="article-hero-title">{{ .Title | emojify }}</h1>
     <div class="article-hero-meta">
