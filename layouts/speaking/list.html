@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="content-wrapper">
+  <h1 class="section-heading">{{ .Title }}</h1>
+  {{ with .Description }}<p class="section-description">{{ . }}</p>{{ end }}
+  {{ .Content }}
+  <div class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "post-card.html" (dict "page" . "hideTag" "speaking") }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

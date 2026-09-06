@@ -1,0 +1,29 @@
+{{- /* Full-bleed hero banner for an article/speaking page, rendered when
+       .Params.backgroundImage is set. Mirrors the homepage hero's markup
+       (custom.js already treats `.article-hero`/`.article-hero-bg` as hero
+       selectors for the scroll-fade + transparent-nav behavior). */ -}}
+{{- $dateFormat := .Site.Params.dateFormat | default "2006-01-02" -}}
+{{- $showReadingTime := and (.Site.Params.article.showReadingTime | default true) (gt .ReadingTime 0) -}}
+<section class="article-hero" aria-label="Article hero">
+  <div class="article-hero-bg" id="heroBg" style="background-image: url('{{ .Params.backgroundImage | relURL }}');" role="presentation" aria-hidden="true"></div>
+  <div class="article-hero-content">
+    <div class="article-hero-breadcrumb">
+      <a href="{{ "/" | relURL }}">Home</a>
+      {{ with .CurrentSection }} &rsaquo; <a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+    </div>
+    <h1 class="article-hero-title">{{ .Title | emojify }}</h1>
+    <div class="article-hero-meta">
+      <span class="article-hero-date">{{ .Date.Format $dateFormat }}</span>
+      {{ if $showReadingTime }}
+        <span class="article-hero-reading">{{ .ReadingTime }} min read</span>
+      {{ end }}
+    </div>
+    {{ with .Params.tags }}
+      <div class="article-hero-tags" aria-label="Tags">
+        {{ range . }}
+          <a href="{{ "/tags/" | relURL }}{{ urlize . }}/" class="tag-light">{{ . }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</section>

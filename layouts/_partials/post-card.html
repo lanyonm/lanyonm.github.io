@@ -1,0 +1,29 @@
+{{- /*
+  Renders a single post card (date, reading time, title, description, tags).
+
+  Params (passed via dict):
+    page    : the .Page to render
+    hideTag : optional lowercase tag name to omit from the tag list (used by
+              /speaking/ to suppress the redundant "speaking" tag, per T026)
+*/ -}}
+{{- $page := .page -}}
+{{- $hideTag := lower (.hideTag | default "") -}}
+{{- $dateFormat := $page.Site.Params.dateFormat | default "2006-01-02" -}}
+{{- $showReadingTime := and ($page.Site.Params.article.showReadingTime | default true) (gt $page.ReadingTime 0) -}}
+<a href="{{ $page.RelPermalink }}" class="post-card">
+  <div class="post-meta">
+    <span class="post-date">{{ $page.Date.Format $dateFormat }}</span>
+    {{ if $showReadingTime }}
+      <span class="post-reading-time">{{ $page.ReadingTime }} min read</span>
+    {{ end }}
+  </div>
+  <h3 class="post-title">{{ $page.Title }}</h3>
+  {{ with $page.Description }}<p class="post-description">{{ . }}</p>{{ end }}
+  {{ with $page.Params.tags }}
+    <ul class="post-tags" aria-label="Tags">
+      {{ range . }}
+        {{ if or (not $hideTag) (ne (lower .) $hideTag) }}<li><span class="tag">{{ . }}</span></li>{{ end }}
+      {{ end }}
+    </ul>
+  {{ end }}
+</a>
