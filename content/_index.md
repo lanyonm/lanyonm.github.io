@@ -1,4 +1,4 @@
 ---
-title: "Notes & thoughts from LanyonM"
-description: "Notes and thoughts from LanyonM about DevOps, monitoring, infrastructure, and leadership."
+title: "Notes & thoughts from Mike Lanyon"
+description: "Notes and thoughts from Michael Lanyon about DevOps, monitoring, infrastructure, and leadership."
 ---

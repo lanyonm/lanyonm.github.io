@@ -62,7 +62,7 @@ buildFuture = false
     limit = 42
 
 [params]
-  description = "Notes and thoughts from LanyonM"
+  description = "Notes and thoughts from Mike Lanyon"
   mainSections = ["articles", "speaking"]
   dateFormat = "2006-01-02"
   colorScheme = "slate"
