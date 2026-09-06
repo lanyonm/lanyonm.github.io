@@ -1,0 +1,27 @@
+{{ if .Params.showPagination | default (.Site.Params.article.showPagination | default true) }}
+  {{ $next := .NextInSection }}
+  {{ $prev := .PrevInSection }}
+  {{ if or $next $prev }}
+    {{ $dateFormat := .Site.Params.dateFormat | default "2006-01-02" }}
+    <nav class="article-nav" aria-label="Article navigation">
+      <div>
+        {{ if $prev }}
+          <a class="article-nav-link" href="{{ $prev.RelPermalink }}" rel="prev">
+            <div class="article-nav-direction">&larr; Previous</div>
+            <div class="article-nav-title">{{ $prev.Title | emojify }}</div>
+            <div class="article-nav-date">{{ $prev.Date.Format $dateFormat }}</div>
+          </a>
+        {{ end }}
+      </div>
+      <div>
+        {{ if $next }}
+          <a class="article-nav-link next" href="{{ $next.RelPermalink }}" rel="next">
+            <div class="article-nav-direction">Next &rarr;</div>
+            <div class="article-nav-title">{{ $next.Title | emojify }}</div>
+            <div class="article-nav-date">{{ $next.Date.Format $dateFormat }}</div>
+          </a>
+        {{ end }}
+      </div>
+    </nav>
+  {{ end }}
+{{ end }}

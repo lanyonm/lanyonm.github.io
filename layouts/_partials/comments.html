@@ -1,0 +1,60 @@
+{{- /* Dual comment system: Disqus (read-only) for pre-cutoff posts, Giscus for post-cutoff posts.
+       Honors per-post `comments:` front matter (Jekyll-style): if explicitly false, render nothing. */ -}}
+{{- $commentsEnabled := .Params.comments -}}
+{{- if ne $commentsEnabled false -}}
+  {{- $cutoff := time.AsTime (.Site.Params.giscusCutoffDate | default "2025-01-01") -}}
+  {{- $postDate := time.AsTime .Date -}}
+  {{- $useGiscus := $postDate.After $cutoff -}}
+  <div class="comments-section">
+    <div class="comments-label">Comments</div>
+    {{- if $useGiscus -}}
+      {{- $g := .Site.Params.giscus -}}
+      {{- if and $g $g.repoId $g.categoryId -}}
+        <script
+          src="https://giscus.app/client.js"
+          data-repo="{{ $g.repo }}"
+          data-repo-id="{{ $g.repoId }}"
+          data-category="{{ $g.category | default "Blog Comments" }}"
+          data-category-id="{{ $g.categoryId }}"
+          data-mapping="{{ $g.mapping | default "pathname" }}"
+          data-strict="{{ $g.strict | default "0" }}"
+          data-reactions-enabled="{{ $g.reactionsEnabled | default "1" }}"
+          data-emit-metadata="{{ $g.emitMetadata | default "0" }}"
+          data-input-position="{{ $g.inputPosition | default "bottom" }}"
+          data-theme="{{ $g.lightTheme | default "light" }}"
+          data-lang="{{ $g.lang | default "en" }}"
+          data-loading="{{ $g.loading | default "lazy" }}"
+          crossorigin="anonymous"
+          async
+        ></script>
+        <noscript>Comments require JavaScript.</noscript>
+      {{- else -}}
+        <p class="comments-disabled-notice text-sm text-neutral-500 dark:text-neutral-400">Comments are temporarily unavailable.</p>
+        {{- warnf "[COMMENTS] Giscus repoId/categoryId not configured for post %s" .RelPermalink -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $shortname := .Site.Config.Services.Disqus.Shortname -}}
+      {{- if $shortname -}}
+        <p class="disqus-readonly-notice text-sm text-neutral-500 dark:text-neutral-400" role="status">
+          Read-only &mdash; new comments disabled. The thread below preserves the original conversation.
+        </p>
+        <div id="disqus_thread"></div>
+        <script>
+          (function () {
+            var d = document, s = d.createElement('script');
+            window.disqus_config = function () {
+              this.page.url = "{{ .Permalink }}";
+              this.page.identifier = "{{ .File.UniqueID }}";
+              this.page.disableNewComments = true;
+            };
+            s.src = "https://{{ $shortname }}.disqus.com/embed.js";
+            s.setAttribute('data-timestamp', +new Date());
+            s.async = true;
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      {{- end -}}
+    {{- end -}}
+  </div>
+{{- end -}}

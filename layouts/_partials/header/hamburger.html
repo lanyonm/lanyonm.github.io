@@ -1,0 +1,63 @@
+{{- $currentPath := .RelPermalink -}}
+<header id="site-header" class="site-header print:hidden">
+  <a href="{{ "/" | relURL }}" class="site-title nav-title">{{ .Site.Title }}</a>
+  <div class="nav-right" role="navigation" aria-label="Site">
+    {{ if .Site.Params.enableSearch | default false }}
+      <button class="nav-btn" id="search-button" type="button" aria-label="{{ i18n "search.open_button_title" }}" title="{{ i18n "search.open_button_title" }}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
+    {{ end }}
+    {{ if .Site.Params.autoSwitchAppearance | default true }}
+      <button class="nav-btn" id="appearance-switcher" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="nav-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="nav-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    {{ end }}
+    <label class="nav-btn hamburger-label" for="menu-controller" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="menu-wrapper" title="Menu">
+      <input type="checkbox" id="menu-controller" />
+      <svg class="nav-icon" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true">
+        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+      </svg>
+      <div id="menu-wrapper" role="dialog" aria-label="Site menu" aria-modal="true">
+        <ul class="menu-list">
+          <li>
+            <label class="menu-close" for="menu-controller" aria-label="Close menu" tabindex="0">
+              <svg viewBox="0 0 320 512" fill="currentColor" aria-hidden="true">
+                <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+              </svg>
+            </label>
+          </li>
+          {{ range .Site.Menus.main }}
+            {{- $url := .URL | relURL -}}
+            {{- $isActive := or (eq $url $currentPath) (and (ne $url "/") (hasPrefix $currentPath $url)) -}}
+            <li>
+              <a href="{{ .URL }}" onclick="close_menu()"
+                 {{ if $isActive }}class="active" aria-current="page"{{ end }}
+                 {{ with .Params.target }}target="{{ . }}"{{ end }}
+                 {{ with .Params.rel }}rel="{{ . }}"{{ end }}
+                >{{ .Name | markdownify | emojify }}</a>
+            </li>
+          {{ end }}
+        </ul>
+        <ul class="menu-social" aria-label="Social links">
+          {{ partial "social-icons.html" (dict "iconSize" "20" "rss" ("/index.xml" | relURL)) }}
+        </ul>
+      </div>
+    </label>
+  </div>
+</header>

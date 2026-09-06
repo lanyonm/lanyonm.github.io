@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="page-wrapper">
+  <div class="error-content">
+    <h1>Page Not Found</h1>
+    <p>Sorry, the page you're looking for doesn't exist or may have been moved.</p>
+    <div class="error-actions">
+      <a id="error-report-link"
+         href="https://github.com/lanyonm/lanyonm.github.io/issues/new?title=LanyonM%20Blog%20Broken%20Link&labels=bug"
+         class="btn-primary">Report Broken Link</a>
+      <a href="{{ "/" | relURL }}" class="error-home-link">Go to the homepage</a>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var link = document.getElementById('error-report-link');
+    if (!link) return;
+    var url = window.location.href;
+    var title = encodeURIComponent('LanyonM Blog Broken Link');
+    var body = encodeURIComponent('Broken URL: ' + url + '\n\nReferrer: ' + (document.referrer || 'direct'));
+    link.href = 'https://github.com/lanyonm/lanyonm.github.io/issues/new?title=' + title + '&labels=bug&body=' + body;
+  })();
+</script>
+{{ end }}

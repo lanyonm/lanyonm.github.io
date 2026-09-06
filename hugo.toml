@@ -1,0 +1,154 @@
+baseURL = "https://blog.lanyonm.org/"
+title = "Michael Lanyon"
+locale = "en-us"
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+enableEmoji = true
+enableGitInfo = false
+summaryLength = 0
+buildDrafts = false
+buildFuture = false
+
+[module]
+  [[module.imports]]
+    path = "github.com/jpanther/congo/v2"
+
+[permalinks]
+  articles = "/articles/:contentbasename/"
+  speaking = "/speaking/:contentbasename/"
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+    noClasses = true
+    lineNos = false
+    codeFences = true
+    guessSyntax = false
+    tabWidth = 4
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
+
+[security]
+  [security.exec]
+    allow = ["^(dart-)?sass(-embedded)?$", "^go$", "^npx$", "^postcss$", "^tailwindcss$"]
+  [security.funcs]
+    getenv = ["^HUGO_", "^CI$"]
+  [security.http]
+    methods = ["(?i)GET|POST"]
+    urls = [".*"]
+  [security.integrity]
+    hashes = []
+    sources = ["https://speakerdeck.com"]
+
+[services]
+  [services.googleAnalytics]
+    id = "G-NN7JP65RMS"
+  [services.disqus]
+    shortname = "lanyonm"
+  [services.rss]
+    limit = 42
+
+[params]
+  description = "Notes and thoughts from Mike Lanyon"
+  mainSections = ["articles", "speaking"]
+  dateFormat = "2006-01-02"
+  colorScheme = "slate"
+  defaultAppearance = "light"
+  autoSwitchAppearance = true
+  enableSearch = true
+  enableCodeCopy = true
+  enableImageLazyLoading = true
+  enableImageWebp = true
+  giscusCutoffDate = "2025-01-01"
+
+  [params.author]
+    name = "Michael Lanyon"
+
+  [params.header]
+    layout = "hamburger"
+    showTitle = true
+
+  [params.footer]
+    showCopyright = true
+    showThemeAttribution = false
+    showAppearanceSwitcher = false
+    showScrollToTop = false
+
+  [params.homepage]
+    layout = "page"
+    showRecent = true
+    recentLimit = 10
+
+  [params.article]
+    showDate = true
+    showAuthor = false
+    showBreadcrumbs = true
+    showReadingTime = true
+    showTableOfContents = true
+    showHeadingAnchors = true
+    showPagination = true
+    showTaxonomies = true
+    showShare = true
+    showComments = true
+    showCodeCopy = true
+    sharingLinks = ["x-twitter", "linkedin", "email"]
+
+  [params.list]
+    showHero = false
+    showBreadcrumbs = false
+    showSummary = true
+    showCards = false
+    groupByYear = false
+    showTableOfContents = false
+    showTaxonomies = true
+
+  [params.taxonomy]
+    showTermCount = true
+
+  [params.giscus]
+    repo = "lanyonm/lanyonm.github.io"
+    repoId = "MDEwOlJlcG9zaXRvcnkxMTMwMjAzOA=="
+    category = "Blog Comments"
+    categoryId = "DIC_kwDOAKx0ls4DFBOL"
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+    lightTheme = "light"
+    darkTheme = "dark"
+    lang = "en"
+    loading = "lazy"
+
+[[menus.main]]
+  name = "Articles"
+  pageRef = "articles"
+  weight = 10
+
+[[menus.main]]
+  name = "Speaking"
+  pageRef = "speaking"
+  weight = 20
+
+[[menus.main]]
+  name = "About"
+  pageRef = "about"
+  weight = 30
+
+[[menus.main]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 40

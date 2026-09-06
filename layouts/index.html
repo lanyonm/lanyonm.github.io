@@ -1,0 +1,24 @@
+{{ define "main" }}
+{{- $heroImage := .Params.backgroundImage | default "/images/dod-msn-lanyonm-talk.jpg" -}}
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" id="heroBg" style="background-image: url('{{ $heroImage | relURL }}');" role="presentation" aria-hidden="true"></div>
+  <div class="hero-content">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description | default .Site.Params.description }}
+      <p>{{ . }}</p>
+    {{ end }}
+  </div>
+</section>
+
+<div class="content-wrapper">
+  <h2 class="section-label">Recent Articles</h2>
+  <div class="post-list">
+    {{- $sections := slice "articles" "speaking" -}}
+    {{- $posts := (where .Site.RegularPages "Section" "in" $sections).ByDate.Reverse -}}
+    {{- $limit := .Site.Params.homepage.recentLimit | default 10 -}}
+    {{- range first $limit $posts }}
+      {{ partial "post-card.html" (dict "page" .) }}
+    {{- end }}
+  </div>
+</div>
+{{ end }}

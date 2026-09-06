@@ -1,0 +1,12 @@
+{{- /* Override of Congo's default breadcrumbs.html. Simplified to a discreet
+       "back to parent section" link (e.g. "‹ Articles") rather than a full
+       Home > Section > Page trail — this partial only renders on article/
+       speaking single pages (list.showBreadcrumbs is false), where a full
+       trail is unnecessary and read as oversized next to the title. */ -}}
+{{- with .CurrentSection }}
+  {{- if ne . $ }}
+    <div class="mb-2 text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+      <a class="decoration-neutral-300 hover:underline dark:decoration-neutral-600" href="{{ .RelPermalink }}">&lsaquo; {{ .Title }}</a>
+    </div>
+  {{- end }}
+{{- end }}

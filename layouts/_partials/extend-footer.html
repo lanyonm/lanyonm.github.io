@@ -1,0 +1,5 @@
+{{- $jsCustom := resources.Get "js/custom.js" -}}
+{{- if $jsCustom -}}
+  {{- $jsCustom = $jsCustom | resources.Minify | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha256") -}}
+  <script src="{{ $jsCustom.RelPermalink }}" integrity="{{ $jsCustom.Data.Integrity }}" defer></script>
+{{- end -}}
