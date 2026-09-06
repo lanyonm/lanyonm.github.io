@@ -5,7 +5,7 @@ date: 2014-11-23
 tags: [development, java, SiteMesh, software, Spring]
 comments: true
 aliases:
-  - "/articles/2014/11/23/spring-4-sitemesh-java-config/"
+  - "/articles/2014/11/23/spring-4-sitemesh-java-config.html"
 ---
 
 If you're creating a web application with Spring MVC you'll want to use a view-layer framework.  I've used Grails for several projects at work, and the decorator pattern applied to view-layer files has been a nice way to approach the view-layer architecture.  Grails uses [SiteMesh](http://wiki.sitemesh.org/wiki/display/sitemesh/Home) under the hood, so I wanted to understand how SiteMesh comes together with Spring.

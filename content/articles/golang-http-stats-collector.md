@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/http-stats-collector-diagram.png"
 aliases:
-  - "/articles/2015/03/29/golang-http-stats-collector/"
+  - "/articles/2015/03/29/golang-http-stats-collector.html"
 ---
 
 I tried Golang a couple years ago but didn't see an immediate use for it my work. Fast-forward to February 2015 and add an inspiring [blog post](https://gdstechnology.blog.gov.uk/2015/02/12/experimenting-with-content-security-policy-on-gov-uk/) by the UK GDS, and I was ready to give Golang another go. The GDSTeam's [event-store](https://github.com/alphagov/event-store/) project was a perfectly sized stepping stone for getting back into Golang. I'm passionate about WebPerf and therefore the idea of writing a Go program to collect [Navigation Timing API](http://www.html5rocks.com/en/tutorials/webperformance/basics/) data was a natural choice.

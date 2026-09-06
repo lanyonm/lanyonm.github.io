@@ -5,7 +5,7 @@ date: 2015-09-30
 tags: [chatops, chef, data visualization, devops, golang, grafana, monitoring, nginx, operations, ruby, sensu, software]
 comments: true
 aliases:
-  - "/articles/2015/09/30/chatops-hubot-grafana-images-hipchat/"
+  - "/articles/2015/09/30/chatops-hubot-grafana-images-hipchat.html"
 ---
 
 As we continue toward ChatOps and making our work visible at work, the next phase of maturing our monitoring systems is to create a query-able interface to our visualization system (Grafana) from HipChat. Grafana is a system I've become quite fond of and helped author the Chef cookbook for. The HTTP API for Grafana has matured, and the time seemed right to create this integration.

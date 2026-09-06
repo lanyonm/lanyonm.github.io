@@ -5,7 +5,7 @@ date: 2015-01-11
 tags: [GPIO, operations, python, raspberry pi, raspbian, software]
 comments: true
 aliases:
-  - "/articles/2015/01/11/raspberry-pi-init-script-python/"
+  - "/articles/2015/01/11/raspberry-pi-init-script-python.html"
 ---
 
 ## Raspberry Pi Init Script

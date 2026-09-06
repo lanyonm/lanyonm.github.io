@@ -8,7 +8,7 @@ images:
   - "/images/dod-msn-lanyonm-talk.jpg"
 backgroundImage: "/images/dod-msn-lanyonm-talk.jpg"
 aliases:
-  - "/speaking/2016/11/02/creative-and-technology-a-partnership-devopsdays-msn/"
+  - "/speaking/2016/11/02/creative-and-technology-a-partnership-devopsdays-msn.html"
 ---
 
 > "The premise that dev and ops are at odds is a fallacy."

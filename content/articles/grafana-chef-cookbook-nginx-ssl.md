@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/grafana-2.png"
 aliases:
-  - "/articles/2015/06/28/grafana-chef-cookbook-nginx-ssl/"
+  - "/articles/2015/06/28/grafana-chef-cookbook-nginx-ssl.html"
 ---
 
 I recently contributed to the overhaul and 2.0 release of the [Grafana Chef cookbook](https://supermarket.chef.io/cookbooks/grafana). It was a nearly complete rewrite of the 1.x version, and many decisions were made along the way about what should (and should not) be included in the effort. The cookbook is designed to be as flexible as possible via attributes and to provide the user with a functional setup using the defaults. The previous version used Nginx as a web server, and it made sense to proxy the new Grafana with Nginx in the default setup.

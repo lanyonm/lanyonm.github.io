@@ -5,7 +5,7 @@ date: 2013-01-19
 tags: [development, java, MyBatis, Spring, software]
 comments: true
 aliases:
-  - "/articles/2013/01/19/mybatis-spring-java-config-contribution/"
+  - "/articles/2013/01/19/mybatis-spring-java-config-contribution.html"
 ---
 
 ![MyBatis Spring](https://mybatis.github.io/images/mybatis-logo.png)

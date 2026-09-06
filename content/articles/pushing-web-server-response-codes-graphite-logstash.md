@@ -7,7 +7,7 @@ comments: true
 images:
   - "http://logstash.net/images/logstash.png"
 aliases:
-  - "/articles/2013/11/27/pushing-web-server-response-codes-graphite-logstash/"
+  - "/articles/2013/11/27/pushing-web-server-response-codes-graphite-logstash.html"
 ---
 
 As web app developers, our first experiences pulling data from web server logs is often with piped unix commands - but there's a better way!  I leveled up to log data aggregation with [Logster](https://github.com/etsy/logster), but ultimately moved on to [Logstash](http://logstash.net/).  Logstash provides a clean and easy to understand DSL for shipping, parsing and stashing logs.  What attracted me to Logstash was it's ease of integration into Elasticsearch and the resulting capability to query logs without predefining the queries.

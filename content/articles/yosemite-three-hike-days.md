@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/yosemite-valley-from-north-dome.jpg"
 aliases:
-  - "/articles/2013/11/10/yosemite-three-hike-days/"
+  - "/articles/2013/11/10/yosemite-three-hike-days.html"
 ---
 
 I've always loved the outdoors.  My parents took me to a handful of the [National Parks](http://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States), but with 59 parks in total we couldn't see everything.  [Yosemite](http://en.wikipedia.org/wiki/Yosemite_National_Park), only a few hours from San Francisco, is easily accessible by car and ripe for a long weekend getaway.  Erin and I visited Oct, 23 - 27 for 3 full days of wilderness fun.

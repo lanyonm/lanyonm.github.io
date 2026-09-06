@@ -5,7 +5,7 @@ date: 2013-05-31
 tags: [data visualization, kiosk, raspberry pi, raspbian, software]
 comments: true
 aliases:
-  - "/articles/2013/05/31/pi-dashboard-kiosk/"
+  - "/articles/2013/05/31/pi-dashboard-kiosk.html"
 ---
 
 <style type="text/css">h2 { margin: 1em 0; }</style>

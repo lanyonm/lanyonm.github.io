@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/pingdom-hipchat-api-gateway-method.png"
 aliases:
-  - "/articles/2015/11/25/pingdom-hipchat-integration-aws-lambda/"
+  - "/articles/2015/11/25/pingdom-hipchat-integration-aws-lambda.html"
 ---
 
 You probably searched "pingdom alerts in hipchat" or "pingdom hipchat integration" and were unhappy to find that there's no direct method to integrate the two services. I was too - but it gave me the chance to use the AWS API Gateway and AWS Lambda to connect the two services. I assume you're relatively familiar with the functionality that API Gateway and Lambda provide as well as getting-started experience with Node.js.

@@ -5,7 +5,7 @@ date: 2013-07-28
 tags: [apache, chef, mysql, operations, ruby, software, vagrant, wordpress]
 comments: true
 aliases:
-  - "/articles/2013/07/28/wp-shell-cookbook/"
+  - "/articles/2013/07/28/wp-shell-cookbook.html"
 ---
 
 <div class="center">

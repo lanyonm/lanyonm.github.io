@@ -5,7 +5,7 @@ date: 2014-11-26
 tags: [jekyll, liquid]
 comments: false
 aliases:
-  - "/articles/2014/11/26/adopting-the-lanyon-theme/"
+  - "/articles/2014/11/26/adopting-the-lanyon-theme.html"
 ---
 
 When I created this blog a couple years ago I only very slightly modified the default Jekyll theme to provide a couple mobile optimizations, but it was always a distant intention to make the site a bit easier on the eyes.  Within the Jekyll framework, my desire has always been to:

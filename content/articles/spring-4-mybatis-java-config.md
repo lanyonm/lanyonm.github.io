@@ -5,7 +5,7 @@ date: 2014-04-21
 tags: [development, H2, java, MyBatis, software, Spring]
 comments: true
 aliases:
-  - "/articles/2014/04/21/spring-4-mybatis-java-config/"
+  - "/articles/2014/04/21/spring-4-mybatis-java-config.html"
 ---
 
 ## TL;DR

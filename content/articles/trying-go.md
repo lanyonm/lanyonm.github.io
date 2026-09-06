@@ -5,7 +5,7 @@ date: 2013-05-30
 tags: [golang, software]
 comments: true
 aliases:
-  - "/articles/2013/05/30/trying-go/"
+  - "/articles/2013/05/30/trying-go.html"
 ---
 
 Go has been a popular language for a while and the chatter has gotten to the point where I needed to give it a spin to see what all the fuss is about.  The night before a flight to SFO, I installed the Go distro and found the [wiki tutorial](http://golang.org/doc/articles/wiki/).  I also made sure to get the Go package installed for Sublime so I wasn't stuck in black and white.

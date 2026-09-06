@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/devopsdays-chicago-2015.png"
 aliases:
-  - "/articles/2015/09/01/a-participants-conference-devopsdays-chicago/"
+  - "/articles/2015/09/01/a-participants-conference-devopsdays-chicago.html"
 ---
 
 <div class="right" style="max-width:331px;">

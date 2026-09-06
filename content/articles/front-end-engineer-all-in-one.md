@@ -5,7 +5,7 @@ date: 2013-07-01
 tags: [development, front-end, monitoring, operations, software]
 comments: true
 aliases:
-  - "/articles/2013/07/01/front-end-engineer-all-in-one/"
+  - "/articles/2013/07/01/front-end-engineer-all-in-one.html"
 ---
 
 ## TL;DR

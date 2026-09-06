@@ -5,7 +5,7 @@ date: 2015-12-29
 tags: [devops, elasticsearch, java, kibana, log4j, logstash, maven, monitoring, operations, software, Spring]
 comments: true
 aliases:
-  - "/articles/2015/12/29/log-aggregation-log4j-spring-logstash/"
+  - "/articles/2015/12/29/log-aggregation-log4j-spring-logstash.html"
 ---
 
 While parsing raw log files is a fine way for Logstash to ingest data, there are several other methods to ship the same information to Logstash. These methods each have trade-offs that may make them more or less suitable for your particular situation. I have posted about [multiline tomcat log parsing]({{< relref "logstash-multiline-tomcat-log-parsing" >}}) before, and this post is an attempt to compare that and other methods I've explored: log4j as JSON, log4j over TCP, and raw log4j with the multiline codec.

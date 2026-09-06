@@ -7,7 +7,7 @@ comments: true
 images:
   - "/images/kibana-tomcat-apache-table.png"
 aliases:
-  - "/articles/2014/01/12/logstash-multiline-tomcat-log-parsing/"
+  - "/articles/2014/01/12/logstash-multiline-tomcat-log-parsing.html"
 ---
 
 ***Update***: The version of Logstash used in the example is out of date, but the mechanics of the multiline plugin and grok parsing for multiple timestamps from Tomcat logs is still applicable.  I have published a [new post]({{< relref "log-aggregation-log4j-spring-logstash" >}}) about other methods for getting logs into the ELK stack.

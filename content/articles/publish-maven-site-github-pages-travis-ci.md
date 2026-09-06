@@ -5,7 +5,7 @@ date: 2015-12-19
 tags: [devops, documentation, github, java, maven, software, travis-ci]
 comments: true
 aliases:
-  - "/articles/2015/12/19/publish-maven-site-github-pages-travis-ci/"
+  - "/articles/2015/12/19/publish-maven-site-github-pages-travis-ci.html"
 ---
 
 Part of continuous delivery is continuously delivering documentation along with the software. I'd go so far as to argue that it's _part of_ the software. In the past I've had to remember to run `mvn site` periodically to ensure that the latest [javadoc](http://blog.lanyonm.org/playground/apidocs/index.html) and [dependency updates report](http://blog.lanyonm.org/playground/dependency-updates-report.html) get created, but _there's gotta be a better way!_

@@ -5,7 +5,7 @@ date: 2014-08-16
 tags: [Confluence, documentation, markdown, ruby, software]
 comments: true
 aliases:
-  - "/articles/2014/08/16/markdown-to-confluence-uploader/"
+  - "/articles/2014/08/16/markdown-to-confluence-uploader.html"
 ---
 
 ## TL;DR

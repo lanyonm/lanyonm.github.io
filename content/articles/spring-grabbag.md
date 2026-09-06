@@ -5,7 +5,7 @@ date: 2013-01-06
 tags: [development, java, Spring, software, MyBatis]
 comments: false
 aliases:
-  - "/articles/2013/01/06/spring-grabbag/"
+  - "/articles/2013/01/06/spring-grabbag.html"
 ---
 
 <figure>
