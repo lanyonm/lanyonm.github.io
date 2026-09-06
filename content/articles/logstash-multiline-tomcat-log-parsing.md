@@ -27,10 +27,10 @@ Once you've gotten a taste for the power of shipping logs with Logstash and anal
 
 <br />
 
-### Log Format
+## Log Format
 Parsing your particular log's format is going to be the crux of the challenge, but hopefully I'll cover the thought process in enough detail that parsing your logs will be easy.
 
-#### Apache Logs
+### Apache Logs
 The Apache log format is the default Apache combined pattern (`"%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""`):
 
 ```text
@@ -43,7 +43,7 @@ The Apache log format is the default Apache combined pattern (`"%h %l %u %t \"%r
 
 <br/>
 
-#### Tomcat Logs
+### Tomcat Logs
 The Tomcat log format in this example is a bit more mixed, with a combination of Tomcat's `SimpleFormatter` and a customized Log4j conversion pattern (`"%d{yyyy-MM-dd HH:mm:ss,SSS ZZZ} | %p | %c - %m%n"`).  Here's an example of the combined log:
 
 ```text
@@ -70,7 +70,7 @@ Caused by: java.net.SocketException: Connection reset
 
 This is a somewhat arbitrary non-default conversion pattern, but I'll go into greater detail below on the parsing details as well as providing some handy resources on building pattern matchers.
 
-### The Logstash Config
+## The Logstash Config
 To understand the `filter` section, we must first have a look at the `input`.  I defined four tcp inputs because I piped logs from four different servers into Logstash and wanted to be able to label them as such.  As you can see below, each input adds a `"server"` field that identifies which server the log came from (given other circumstances, this may not be necessary):
 
 ```ruby
@@ -100,7 +100,7 @@ input {
 
 Use the following [Netcat](http://netcat.sourceforge.net/) command with TCP inputs and local log files: `nc localhost 3333 < prod1/access.log`.  I realize that the [`pipe`](http://logstash.net/docs/1.3.2/inputs/pipe) input would have worked as well, and if we were running this on a production system the configuration would be different, but I'll address that later.
 
-#### Filter Config
+### Filter Config
 There's quite a bit of nuance in the filter config that was not immediately apparent to me.  First off, in the most recent versions of Logstash, the `if/elseif/else` logic is preferred to the `grep` filter.  There are a lot of great examples on the web that haven't been updated to use the new convention.
 
 The Apache processing is something I've detailed in a [previous post]({{< relref "pushing-web-server-response-codes-graphite-logstash" >}}), but it is important to note the added [`date`](http://logstash.net/docs/1.3.2/filters/date) filter.  This filter helps Logstash understand the exact time the event occurred.  You'll notice that the time format matches the timestamp in the Apache logs.
@@ -170,11 +170,11 @@ Inevitably, there will be mess in your logs that doesn't conform to your grok pa
 
 You can also see that the date filter can accept a comma separated list of timestamp patterns to match.  This allows either the `CATALINA_DATESTAMP` pattern or the `TOMCAT_DATESTAMP` pattern to match the date filter and be ingested by Logstash correctly.
 
-#### Output
+### Output
 
 The output is simply an embedded Elasticsearch config as well as debugging to stdout.  If you'd like to see the full config, have a look at [the gist](https://gist.github.com/LanyonM/8390458#file-logstash-java-conf).
 
-#### Grok Patterns
+### Grok Patterns
 There's no magic to grok patterns (unless the built-ins work for you).  There are however a couple resources that can make your parsing go faster.  First is the [Grok Debugger](http://grokdebug.herokuapp.com/).  You can paste messages into the Discover tab and the Debugger will find the best matches against the built in patterns.  Another regex assistant I use is [RegExr](http://gskinner.com/RegExr/).  I have the native app, but the web page is nice too.
 
 The full list of patterns shipped with Logstash can be found [on GitHub](https://github.com/logstash/logstash/tree/master/patterns), and the ones I used can be found in [this Gist](https://gist.github.com/LanyonM/8390458#file-grok-patterns-L93).  If you're not into clicking links, here are the important ones:
@@ -193,7 +193,7 @@ TOMCATLOG %{TOMCAT_DATESTAMP:timestamp} \| %{LOGLEVEL:level} \| %{JAVACLASS:clas
 
 <br />
 
-### The Kibana Dashboard
+## The Kibana Dashboard
 As I mentioned at the top, the goal of this endeavor was to be able to correlate Apache and Tomcat logs.  We often find ourselves asking what a user had been doing on the website when he or she encountered a server error.  Elasticsearch and Kibana can put all logs on the same timeline.  The production system whose logs I used for experimentation has a pair of servers, each hosting a Tomcat instance and an Apache instance whose logs are divided between static (CDN cached) and non-static requests.  I configured a Kibana dashboard so it would display the static and non-static web requests separately as well as separate the application logs per server.
 
 <div class="center">
@@ -207,12 +207,12 @@ You can see the obvious red and orange areas where a deploy rolled through the s
 
 If you're new to Kibana and you'd like to use this dashboard, you can download the json and from the Kibana UI and load the dashboard from disk using the json.
 
-### Try It Yourself
+## Try It Yourself
 I wrote a handy script that can be used in conjunction with other files in [the gist](https://gist.github.com/LanyonM/8390458):
 
 {{< gist lanyonm 8390458 logstash.sh >}}
 
 It should be as easy as `./logstash.sh`.  If you're testing out new patterns for your particular log format I would suggest commenting out the embedded Elasticsearch output and the `-- web` (which runs Kibana) from the shell script.
 
-### In Production
+## In Production
 One caveat I'd like to make is that the configurations I've presented here would not be suitable in production.  For example, you would want to use a standalone Elasticsearch instance.  The config would also be simpler because each log shipper would be on its respective server and the input would likely be a [`file`](http://logstash.net/docs/1.3.2/inputs/file).  You could easily make an argument for a Logstash process per server that information if being collected from as well.

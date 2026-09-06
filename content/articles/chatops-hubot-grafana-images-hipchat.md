@@ -10,7 +10,7 @@ aliases:
 
 As we continue toward ChatOps and making our work visible at work, the next phase of maturing our monitoring systems is to create a query-able interface to our visualization system (Grafana) from HipChat. Grafana is a system I've become quite fond of and helped author the Chef cookbook for. The HTTP API for Grafana has matured, and the time seemed right to create this integration.
 
-### High-level Design
+## High-level Design
 Having read about [Librato's ChatOps](http://blog.librato.com/posts/confessions-of-a-chatbot) and seen [Etsy's nagios-herald](https://github.com/etsy/nagios-herald), I had a rough idea of the user experience I wanted. With a head full of hindsight bias, here are some of the requirements:
 
 * A user-friendly query interface in chat (no magic numbers, server-specific names, etc.)
@@ -21,7 +21,7 @@ I was delighted to find that Stephen Yeargin had already written [hubot-grafana]
 
 The default configuration provided by the [chef-grafana](https://github.com/JonathanTron/chef-grafana) cookbook includes Nginx as a proxy for grafana-server. For work we wrap the community cookbook to configure TLS, LDAP, and Grafana's datasources. It seemed like a natural extension of visualization's responsibility to have a small app on the Grafana node that can fetch/save rendered panel images and then use Nginx to serve those images. I called that small application [grafana-images](https://github.com/lanyonm/grafana-images). More on that below as well.
 
-### Modifications to hubot-grafana
+## Modifications to hubot-grafana
 As mentioned above, I had to modify the [hubot-grafana](https://github.com/criticalmass/hubot-grafana) script to provide an alternate image persistence method (alternative to S3). The coffeescript additions are relatively straightforward:
 
 ```coffeescript
@@ -59,7 +59,7 @@ As you can see, the `/grafana-images` uri is hard-coded. That's because the rout
 
 Another addition to note is the help text I added to the hubot script. You can ask the bot "`graf help`" and it'll respond with increasingly complex query samples. Yay for user friendliness!
 
-### grafana-images
+## grafana-images
 Following my experience with [http-stats-collector]({{< relref "golang-http-stats-collector" >}}), Golang seemed like a good choice for the small application. It acts as a proxy and therefore expects only two things: a valid API token and json payload containing the full Grafana panel render url. To give more context to what's happening, here's an http call diagram:
 
 <div class="center">
@@ -114,10 +114,10 @@ There are several variables assumed to be set:
 
 If everything is configured correctly, the Grafana dashboard panel will be saved to disk and the json sent back to `hubot-grafana`. Further detail can be found [on GitHub](https://github.com/lanyonm/grafana-images). I tired to make all the error messages helpful and actionable, but if you find an error condition that isn't well explained, please open a GitHub issue.
 
-#### Security
+### Security
 You may have noticed that the app very simply downloads whatever is specified at `imageUrl` and saves it as a png. This can be dangerous given that nothing checks to ensure that the contents are in-fact an image and not an exploit. _Take care_ to only allow specific traffic to make requests of `grafana-images`. I may add a check via Golang's png package to ensure proper encoding, but it may be quite some time before that happens (pull requests welcome).
 
-### Nginx Config
+## Nginx Config
 As mentioned above, I used Nginx to proxy grafana-server. I also use it to proxy `grafana-images` and serve the saved panel images. Here's a sample conf that should would for this purpose:
 
 ```nginx
@@ -141,7 +141,7 @@ server {
 
 Note that the `imageHost` passed to `grafana-images` is the FQDN _plus_ the location of the saved images. The value used will be dependent on the web server hosting the saved images.
 
-### Other Uses
+## Other Uses
 Because `grafana-images` exposes its functionality over a simple HTTP API, expanding its purpose should be straightforward. The app expects an `"Authorization: Bearer grafana-token-goes-here"` header and a json payload:
 
 ```json
@@ -150,7 +150,7 @@ Because `grafana-images` exposes its functionality over a simple HTTP API, expan
 }
 ```
 
-#### Sensu Notifications
+### Sensu Notifications
 At work we have incorporated Grafana panel image embedding functionality into our Sensu HipChat handler. We started with the [Sensu community HipChat handler](https://raw.githubusercontent.com/sensu/sensu-community-plugins/e2286b69eda081b4c59226667245e95f4c3a45e1/handlers/notification/hipchat.rb) and modified the message body heavily for our purposes.
 
 The code to add Grafana panel images to Sensu HipChat notifications is roughly:
@@ -180,5 +180,5 @@ The `@event['check']['graph_image']` value is assumed to be a valid dashboard pa
 
 We manage our infrastructure with Chef and it creates all the Sensu checks, thus allowing us to programmatically build the checks. We add a `graph_image` attribute to the check that contains a panel render url associated with the metric(s) that can help provide context to the Sensu notification. Chef can give the FQDN of the Grafana node as well as the values for template attributes, so it all comes together quite cleanly.
 
-### Other Considerations
+## Other Considerations
 One thing not handled by `grafana-images` is saved image retention. You'll need to create a purge policy that works for you. Once I've figured out how we're going to handle that, I'll add it here. :)
