@@ -69,7 +69,7 @@ $ sudo chmod 755 /etc/init.d/x11vnc
 $ sudo update-rc.d x11vnc defaults
 ```
 
-### Chromium
+## Chromium
 If you prefer to use Chrome as the kiosk's browser, you can do this:
 ```bash
 $ sudo apt-get install chromium
@@ -82,7 +82,7 @@ $ sudo vi /etc/xdg/lxsession/LXDE-pi/autostart
 @chromium --kiosk --disable-session-crashed-bubble --disable-restore-background-contents --disable-new-tab-first-run --disable-restore-session-state http://example.com
 ```
 
-### Refreshes
+## Refreshes
 The Graphite dashboard pictured at the top of this article seemed to have a memory leak because both Midori and Chrome would crash after running the dashboard for about 20 hours.  Instead of trying to fix Graphite I treated the symptoms. [Xdotool](http://www.semicomplete.com/projects/xdotool/) is one of the handy utilities written by the awesome [Jordan Sissel](https://twitter.com/jordansissel) and allows you to simulate keyboard and mouse input.
 ```bash
 sudo apt-get install xdotool

@@ -35,7 +35,7 @@ end
 ```
 
 
-### Overriding The Nginx Conf Template
+## Overriding The Nginx Conf Template
 When defining an Nginx template with SSL enabled, it's helpful to have additional variables passed to the template so info like cert locations can be more flexibly defined. Using `cookbook` and `source` attributes provided by the recipe would allow for the wrapper cookbook to define a new template, but _not_ allow for additional variables to be passed to the template. By taking advantage of Chef's [compile phase](https://docs.chef.io/chef_client.html#the-chef-client-title-run), we can alter the `template['/etc/nginx/sites-available/grafana']` resource to not only use the template of our choosing, but also pass additional attributes to the resource.
 
 The resource definition below is from a Grafana cookbook wrapper recipe:
@@ -66,7 +66,7 @@ end
 
 The recipe is `grafana` and the containing cookbook is `wrapper-cookbook`. When compared to the template within the Grafana cookbook's [`_nginx.rb`](https://github.com/JonathanTron/chef-grafana/blob/v2.0.0/recipes/_nginx.rb#L22-L36), you can see that five additional SSL-related attributes are passed to the template (lines 12-16).
 
-### A Sample Nginx SSL Template
+## A Sample Nginx SSL Template
 The `nginx.conf.erb` will be dependent on your SSL requirements, but here's an example:
 
 ```erb
@@ -110,7 +110,7 @@ server {
 
 Your mileage will most certainly vary. If you're looking for suggestions on what SSL configs to use Mozilla has put together a great TLS configuration generator: <https://mozilla.github.io/server-side-tls/ssl-config-generator/>.
 
-### Conclusion
+## Conclusion
 You could argue that this is unnecessary for the Grafana cookbook's `_nginx.rb` given that the recipe is so simple, but it illustrates the power of Chef's compile phase to override the defaults of the cookbooks used.
 
 In addition to a default Nginx setup, the cookbook provides LWRPs for creating datasources, dashboards, organizations, and users. It'll be exciting to see how people use and extend it.
