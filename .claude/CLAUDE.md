@@ -97,7 +97,7 @@ Drafts add `draft: true`. Posts in `content/speaking/` get `/speaking/<slug>/` U
 
 ### Key Integrations
 
-- **Disqus archive** (static): pre-2025 comments were exported once from Disqus and converted (by a one-off script, not kept) to sanitized `data/disqus/<slug>.json`. Disqus itself is no longer loaded. To honor a removal request, delete that comment object (and adjust `count`) in the post's JSON.
+- **Disqus archive** (static): pre-2025 comments were exported once from Disqus and converted (by a one-off script, not kept) to sanitized `data/disqus/<slug>.json`. Disqus itself is no longer loaded. To honor a removal request, edit the post's JSON: deleting a comment object also deletes its `replies`, so either decrement `count` by the whole subtree or keep the replies by moving them up into the parent list (or replace the message with `<p>[removed]</p>`). Messages are rendered with `safeHTML` and the sanitizer is not kept, so any hand-edited `message` must stay within the allowlist: tags `p br a b strong i em code pre blockquote ul ol li`, no other attributes, links `http(s)` only with `rel="nofollow ugc noopener"`.
 - **Giscus** (active comments): post-2025 posts; requires `params.giscus.repoId` and `categoryId` from giscus.app — currently empty (no post-cutoff content yet)
 - **Google Analytics**: GA4 `G-NN7JP65RMS` via `services.googleAnalytics.id`
 

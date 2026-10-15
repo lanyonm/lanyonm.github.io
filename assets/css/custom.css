@@ -1110,15 +1110,17 @@ figure.right {
   font-size: 0.75rem; font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--brand-neutral-400);
-  margin-bottom: 1.5rem;
+  color: var(--brand-neutral-500);
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
 }
+.dark .comments-label { color: var(--brand-neutral-400); }
 .disqus-archive-notice {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: 99px;
   background: var(--brand-neutral-100);
-  color: var(--brand-neutral-500);
+  color: var(--brand-neutral-600);
   font-size: 0.8rem;
   margin-bottom: 1.5rem;
 }
@@ -1143,7 +1145,8 @@ figure.right {
   margin-bottom: 0.35rem;
 }
 .archived-comment-author { font-weight: 600; }
-.archived-comment-date { color: var(--brand-neutral-400); margin-left: 0.5rem; text-decoration: none; }
+.archived-comment-date { color: var(--brand-neutral-500); margin-left: 0.5rem; text-decoration: none; }
+.dark .archived-comment-date { color: var(--brand-neutral-400); }
 .archived-comment-body { font-size: 0.95rem; overflow-wrap: anywhere; }
 .archived-comment-body p { margin: 0 0 0.5rem; }
 .archived-comment-body pre { overflow-x: auto; }
