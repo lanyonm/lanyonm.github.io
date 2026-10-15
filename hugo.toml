@@ -56,8 +56,6 @@ buildFuture = false
 [services]
   [services.googleAnalytics]
     id = "G-NN7JP65RMS"
-  [services.disqus]
-    shortname = "lanyonm"
   [services.rss]
     limit = 42
 

@@ -1,0 +1,20 @@
+{
+  "count": 2,
+  "comments": [
+    {
+      "id": "3252144672",
+      "author": "Alex Harvey",
+      "date": "2017-04-12T06:02:43Z",
+      "message": "<p>Thank you so much for this blog post and the Ruby tool. I got it working in less than 20 minutes. Awesome!</p>",
+      "replies": [
+        {
+          "id": "3276450683",
+          "author": "LanyonM",
+          "date": "2017-04-27T03:29:17Z",
+          "message": "<p>And thanks to your contribution it'll be even quicker for the next person. Thanks for your contribution!</p>",
+          "replies": []
+        }
+      ]
+    }
+  ]
+}

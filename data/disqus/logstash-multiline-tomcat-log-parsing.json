@@ -1,0 +1,85 @@
+{
+  "count": 11,
+  "comments": [
+    {
+      "id": "1323280023",
+      "author": "Kuznetsova Victoria",
+      "date": "2014-04-08T01:48:46Z",
+      "message": "<p>Awesome post, Michael, thanks! I like the idea of having different types of logs to be sent on different port numbers. :-) Should work perfectly well with one monitoring server (with logstash) and a cluster of monitored VMs (with some app to send logs via tcp) as well.</p>",
+      "replies": []
+    },
+    {
+      "id": "1536007347",
+      "author": "Tony BenBrahim",
+      "date": "2014-08-10T12:43:13Z",
+      "message": "<p>Thanks for the post. Found a JULI Formatter that outputs JSON (was about to write one if it did not exist), would save a lot of work: <a href=\"https://github.com/SYNAXON/logstash-util-formatter\" rel=\"nofollow ugc noopener\">https://github.com/SYNAXON/...</a></p>",
+      "replies": [
+        {
+          "id": "1724523833",
+          "author": "Crow",
+          "date": "2014-12-03T22:27:20Z",
+          "message": "<p>This might be pretty useful to me. Do you know how much this sped up pushing data into Elasticsearch? Any performance information is appreciated.</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "1593593950",
+      "author": "Eric Speake",
+      "date": "2014-09-17T20:09:43Z",
+      "message": "<p>Using the grok-patterns file from the gist I get the following error on all of my logstash servers:</p><p>Received an event that has a different character encoding than you configured. {:text=&gt;\"\\\\u0000/\\\\u00005\\\\xC0\\\\u0011\\\\xC0\\\\u0012\\\\xC0\\\\u0013\\\\xC0\\\\u0014\\\\u0001\\\\u0000\\\\u0000\\\\e\\\\u0000\\\\u0005\\\\u0000\\\\u0005\\\\u0001\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\", :expected_charset=&gt;\"UTF-8\", :level=&gt;:warn}</p><p>I have looked to be sure it wasn't an issue with the ssl certificate.  But when I changed the grok-patterns file on a server that had been working I received the same error.  I am still looking further at the SSL as a possible gotcha.</p>",
+      "replies": [
+        {
+          "id": "1603613306",
+          "author": "Eric Speake",
+          "date": "2014-09-24T14:46:59Z",
+          "message": "<p>This did turn out to be a certificate issue and has been resolved.</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "1698458258",
+      "author": "Harinath Vicky",
+      "date": "2014-11-18T02:11:42Z",
+      "message": "<p>Another way to parse and report off these (CLF, and ELF) logs is with this IRI tool:<br><a href=\"http://www.iri.com/blog/data-transformation2/clf-elf-web-log-data-processing/\" rel=\"nofollow ugc noopener\">http://www.iri.com/blog/dat...</a></p>",
+      "replies": []
+    },
+    {
+      "id": "1983074856",
+      "author": "Poluvex Tripplex",
+      "date": "2015-04-23T12:51:07Z",
+      "message": "<p>Would it not be a bit easier to simply use logstash-forwarder (lumberjack) to ship your logs to logstash instead? It does allow for adding fields and taging at source, adds encryption and would only require one input stream.</p>",
+      "replies": [
+        {
+          "id": "1983382274",
+          "author": "LanyonM",
+          "date": "2015-04-23T16:00:23Z",
+          "message": "<p>Hi Poluvex,<br>Logstash-forwarder is a great option as well. It's how we ship logs in our monitoring pipeline at work, so I can attest to its suitability. Given this post's age, I hope it serves more as an explanation of the connection between log4j conversion patterns and grok parser patterns.</p><p>It's also on my list to experiment with circumventing the on-disk logs entirely via socket appenders.</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "2071370091",
+      "author": "Smile Miles",
+      "date": "2015-06-10T06:42:36Z",
+      "message": "<p>hi, i am using lumberjack to ship the logs to my logstash instance. However its sending some old logs even when i use dead time? (apache logs).. any idea whats wrong?</p>",
+      "replies": []
+    },
+    {
+      "id": "2173592215",
+      "author": "Johnny Henriksen",
+      "date": "2015-08-04T13:13:10Z",
+      "message": "<p>This is just awesome. Thank you for this config ;) worked like a charm (I added some tweaks for exceptions)</p>",
+      "replies": []
+    },
+    {
+      "id": "2340570526",
+      "author": "Roger Welin",
+      "date": "2015-11-03T14:12:29Z",
+      "message": "<p>This is way too much work and ugly log parsing that burns CPU. A much better alternative would be to set up the tomcat container to log json from the beginning, with for example logstash-logback encoder, and just send the logs using logbacks TCP or UDP appender. No ugly parsing, logshipping etc.</p>",
+      "replies": []
+    }
+  ]
+}

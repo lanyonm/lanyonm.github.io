@@ -57,7 +57,7 @@ Permalinks use `:contentbasename` so URLs match the source filename slug:
 - `layouts/index.html` — homepage hero + recent post list
 - `layouts/_default/about.html` — profile header with avatar/name/role/bio + social
 - `layouts/404.html` — friendly 404 with GitHub issue reporting link
-- `layouts/partials/comments.html` — date-based dual routing (Disqus pre-2025-01-01, Giscus post-cutoff)
+- `layouts/_partials/comments.html` — Giscus post-cutoff; pre-cutoff posts render the static Disqus archive from `data/disqus/<slug>.json` via `disqus-archive.html` / `disqus-comment.html`
 - `layouts/shortcodes/sidebyside.html`, `speakerdeck.html` — custom shortcodes
 
 ### Assets
@@ -72,9 +72,8 @@ Permalinks use `:contentbasename` so URLs match the source filename slug:
 - `theme` via Hugo modules (`github.com/jpanther/congo/v2`)
 - `params.colorScheme = "slate"`, `dateFormat = "2006-01-02"`
 - `params.header.layout = "hamburger"`
-- `params.giscusCutoffDate = "2025-01-01"` — posts before this date use Disqus read-only, on/after use Giscus
+- `params.giscusCutoffDate = "2025-01-01"` — posts before this date show the static Disqus archive, on/after use Giscus
 - `services.googleAnalytics.id = "G-NN7JP65RMS"`
-- `services.disqus.shortname = "lanyonm"`
 - `[security].sources = ["https://speakerdeck.com"]` for SpeakerDeck embeds
 - `[markup.highlight] style = "monokai"`, `noClasses = true`
 
@@ -98,7 +97,7 @@ Drafts add `draft: true`. Posts in `content/speaking/` get `/speaking/<slug>/` U
 
 ### Key Integrations
 
-- **Disqus** (read-only legacy): pre-2025 posts via `services.disqus.shortname = "lanyonm"`
+- **Disqus archive** (static): pre-2025 comments were exported once from Disqus and converted (by a one-off script, not kept) to sanitized `data/disqus/<slug>.json`. Disqus itself is no longer loaded. To honor a removal request, delete that comment object (and adjust `count`) in the post's JSON.
 - **Giscus** (active comments): post-2025 posts; requires `params.giscus.repoId` and `categoryId` from giscus.app — currently empty (no post-cutoff content yet)
 - **Google Analytics**: GA4 `G-NN7JP65RMS` via `services.googleAnalytics.id`
 

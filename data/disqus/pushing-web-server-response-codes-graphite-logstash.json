@@ -1,0 +1,12 @@
+{
+  "count": 1,
+  "comments": [
+    {
+      "id": "1436782863",
+      "author": "juliusdev",
+      "date": "2014-06-15T19:23:14Z",
+      "message": "<p>Great article, very useful ! I also index my access logs in es with logstath but i have an issue with the default mapping template: \"bytes\" and response time are stored as \"string\". Do you known how to index that fields as bytes and long ?</p>",
+      "replies": []
+    }
+  ]
+}

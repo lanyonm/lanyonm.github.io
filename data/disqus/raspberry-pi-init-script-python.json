@@ -1,0 +1,33 @@
+{
+  "count": 4,
+  "comments": [
+    {
+      "id": "2101483960",
+      "author": "Pat O'Brien",
+      "date": "2015-06-26T15:05:18Z",
+      "message": "<p>Very helpful and well detailed. Thank you!</p>",
+      "replies": []
+    },
+    {
+      "id": "2386880569",
+      "author": "raphaelsoul",
+      "date": "2015-12-01T11:46:43Z",
+      "message": "<p>thank you! it is well detailed! I've search for this for long time!</p>",
+      "replies": []
+    },
+    {
+      "id": "2903481116",
+      "author": "Carlos Millán Soler",
+      "date": "2016-09-18T18:07:31Z",
+      "message": "<p>I have do exactly the same but I can only see the messages when I call to the script as \"sudo /etc/init.d/&lt;name&gt; start\" instead of \"sudo service &lt;name&gt; start\"</p>",
+      "replies": []
+    },
+    {
+      "id": "3429122174",
+      "author": "Kevin Pidliskey",
+      "date": "2017-07-21T21:41:19Z",
+      "message": "<p>Thanks! Extremely detailed and worked better then any other script I could find!</p>",
+      "replies": []
+    }
+  ]
+}

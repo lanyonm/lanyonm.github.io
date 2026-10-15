@@ -1,0 +1,63 @@
+{
+  "count": 8,
+  "comments": [
+    {
+      "id": "1561132416",
+      "author": "Thomas Rogan",
+      "date": "2014-08-27T03:51:52Z",
+      "message": "<p>This was so damn helpful.  Thanks very much for posting, Michael.</p>",
+      "replies": []
+    },
+    {
+      "id": "1947222517",
+      "author": "Arvind",
+      "date": "2015-04-05T11:54:37Z",
+      "message": "<p>Really Nice article. We can also use annotated mapper class without using XML with the help of @Insert, @Delete etc Find the link.</p><p><a href=\"http://www.concretepage.com/spring-4/spring-4-mybatis-3-example-with-mapperscan-and-sqlsessionfactorybean\" rel=\"nofollow ugc noopener\">http://www.concretepage.com...</a></p>",
+      "replies": []
+    },
+    {
+      "id": "2252516484",
+      "author": "Lucky",
+      "date": "2015-09-14T09:41:48Z",
+      "message": "<p>Very nicely explained article. Thanks very much Michael Lanyon.</p>",
+      "replies": []
+    },
+    {
+      "id": "2521160378",
+      "author": "Mercy",
+      "date": "2016-02-18T13:15:33Z",
+      "message": "<p>Hey Michael, nice blog. Just have a few doubts. I downloaded the project from github, imported it in eclipse, downloaded all the relevant jars; But I am not able to get this running. What urls to call? Can you please spend your 5mins to help me on this.</p>",
+      "replies": [
+        {
+          "id": "2521699666",
+          "author": "LanyonM",
+          "date": "2016-02-18T18:23:43Z",
+          "message": "<p>It should be logged to console during startup, but the HomeController index route should be at http://localhost:8080/playground. Are you importing the project into Eclipse as a maven project?</p>",
+          "replies": [
+            {
+              "id": "2526098777",
+              "author": "Mercy",
+              "date": "2016-02-21T05:25:44Z",
+              "message": "<p>No, I have not imported the project as Maven; I have added all the dependencies manually. Thanks for giving the URL, actually I was missing some of the dependencies but after adding all those; got the application working. I still haven't figured out how sitemesh and decorators work. How defaul/index/users.jsp are getting called. will debug/research on that. <br>Thanks for the help and keep posting such awesome blogs :)</p>",
+              "replies": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2949784834",
+      "author": "Tiru",
+      "date": "2016-10-14T06:50:42Z",
+      "message": "<p>Hi</p><p>I have included the mybatis 3.4.1 jar to my project in build path and deployment assembly. But when i try to import org.myabtis package inside my java class i am getting error. Kindly advice me what should i have to do?</p>",
+      "replies": []
+    },
+    {
+      "id": "4171316145",
+      "author": "rajesh mandalapu",
+      "date": "2018-10-31T07:02:22Z",
+      "message": "<p>Great Blog.<br>But How to return a SqlSession of autocommit false to the mapper interface methods.</p>",
+      "replies": []
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "count": 1,
+  "comments": [
+    {
+      "id": "3372836841",
+      "author": "Anshul Singhal",
+      "date": "2017-06-20T13:39:46Z",
+      "message": "<p>\"As you can see, the assign webhook is a GET request with the message payload as an URI encoded json string. It would be nice if this was a POST, but ¯\\_(ツ)_/\"</p><p>Not more valid. Pingdom upgraded their webhook systems. <br>Documentation - <a href=\"https://help.pingdom.com/hc/en-us/articles/207081599\" rel=\"nofollow ugc noopener\">https://help.pingdom.com/hc...</a></p>",
+      "replies": []
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "count": 20,
+  "comments": [
+    {
+      "id": "1176130181",
+      "author": "David Hutchison",
+      "date": "2013-12-24T22:39:00Z",
+      "message": "<p>Thanks for this work, doing anything involving sorting in Liquid is so much more painful than it should be!</p><p>I'm running a slightly modified version of this that makes the sorting of tags case insensitive. It is not very efficient but I don't think it can be improved on with the current filters available. Source is at <a href=\"https://github.com/dhutchison/dhutchison.github.io/blob/master/tags/index.html\" rel=\"nofollow ugc noopener\">https://github.com/dhutchis...</a> .</p>",
+      "replies": [
+        {
+          "id": "1252580335",
+          "author": "Rugal Bernstein",
+          "date": "2014-02-20T05:04:21Z",
+          "message": "<p>very nice!! thanks for you improvement!</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "1261941219",
+      "author": "Aurelio Jargas",
+      "date": "2014-02-26T21:00:30Z",
+      "message": "<p>Thanks for the excellent post. I really enjoyed your all-in-one tag page.</p><p>Testing it locally I've noticed that the \"num_words\" variable is not necessary, one can use directly the \"site.tags.size\" property. Or maybe I'm missing something?</p><p><code>{% for item in (0..site.tags.size) %}</code></p>",
+      "replies": [
+        {
+          "id": "1262115727",
+          "author": "LanyonM",
+          "date": "2014-02-26T22:54:18Z",
+          "message": "<p>I've tested locally as well and you are correct - the num_words variable is not needed.  Thanks for the improvement!  I'll update the post in the coming days.</p>",
+          "replies": [
+            {
+              "id": "1290852733",
+              "author": "LanyonM",
+              "date": "2014-03-19T03:41:33Z",
+              "message": "<p>It took me longer to get to it than intended, but the post (and site) has been updated.  Thanks again for the suggestion!</p>",
+              "replies": []
+            }
+          ]
+        },
+        {
+          "id": "2077035350",
+          "author": "Róbert Papp",
+          "date": "2015-06-13T11:17:47Z",
+          "message": "<p>Improving on this, how about {% for tag in tag_words %}? Then tag=tag name, and site.tags[tag]=posts; it looks cleaner.</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "1326942740",
+      "author": "Clint",
+      "date": "2014-04-09T18:44:33Z",
+      "message": "<p>Awesome tip, I have been looking for this for a while.</p>",
+      "replies": []
+    },
+    {
+      "id": "1369452322",
+      "author": "acdcjunior",
+      "date": "2014-05-04T19:38:37Z",
+      "message": "<p>Great tip, thanks for sharing!</p>",
+      "replies": []
+    },
+    {
+      "id": "1527830066",
+      "author": "Bruno Pinheiro",
+      "date": "2014-08-05T02:34:32Z",
+      "message": "<p>This is working for me:</p><p>{% assign sorted_tags = (site.tags | sort:0) %}<br>{% for tags in sorted_tags %}</p>",
+      "replies": [
+        {
+          "id": "2315843135",
+          "author": "Michael Ransley",
+          "date": "2015-10-19T22:43:06Z",
+          "message": "<p>This did the business for me, thank you for the post and your comment.</p>",
+          "replies": []
+        },
+        {
+          "id": "2523856170",
+          "author": "Chuck Grimmett",
+          "date": "2016-02-19T20:15:33Z",
+          "message": "<p>You rock, Bruno.</p>",
+          "replies": []
+        },
+        {
+          "id": "3948829741",
+          "author": "Chetabahana",
+          "date": "2018-06-17T23:33:54Z",
+          "message": "<p>It works. Thanks a lot. :)</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "1922294565",
+      "author": "mDfRg",
+      "date": "2015-03-22T21:05:52Z",
+      "message": "<p>I can confirm that the syntax:<br>{% assign sorted_tags = (site.tags | sort:0) %}<br>{% for tag in sorted_tags %}<br>&lt;li&gt;{{ tag | first }}&lt;/li&gt;<br>{% endfor %}<br>works perfect.</p><p>Thank you very much Michael!</p>",
+      "replies": []
+    },
+    {
+      "id": "2077033364",
+      "author": "Róbert Papp",
+      "date": "2015-06-13T11:15:06Z",
+      "message": "<p>That capture with | strip_newlines looks paranoid, there's no new line in the creation of tag_words, why do you need to trim it? Even if you do {% assign this_word = tag_words[item] | strip_newlines %} may be simpler.</p>",
+      "replies": []
+    },
+    {
+      "id": "2316470611",
+      "author": "Oskar Klintrot",
+      "date": "2015-10-20T09:48:55Z",
+      "message": "<p>Great solution, works like a charm!</p>",
+      "replies": []
+    },
+    {
+      "id": "2877252064",
+      "author": "Business Science",
+      "date": "2016-09-05T13:59:28Z",
+      "message": "<p>Worked perfectly! Thanks for this. :)</p>",
+      "replies": []
+    },
+    {
+      "id": "3067192825",
+      "author": "Jingying Zhou",
+      "date": "2016-12-24T05:05:31Z",
+      "message": "<p>thank you! but I ran into a problem that, when I have different collections (say, _posts and _poetry) only tags under _posts were counted</p>",
+      "replies": [
+        {
+          "id": "3067385514",
+          "author": "Róbert Papp",
+          "date": "2016-12-24T11:12:47Z",
+          "message": "<p>See <a href=\"https://jekyllrb.com/docs/variables/:\" rel=\"nofollow ugc noopener\">https://jekyllrb.com/docs/v...</a> \"site.tags.XXX=The list of all Posts with tag XXX.\". Notice it says \"Posts\" not \"every document\". site.tags is a map from tags to a list of posts.</p><p>Check out <a href=\"http://stackoverflow.com/q/36958975/253468\" rel=\"nofollow ugc noopener\">http://stackoverflow.com/q/...</a> and <a href=\"https://talk.jekyllrb.com/t/get-all-tags-uniques-in-multiple-collection-pages-without-a-plugin/1221\" rel=\"nofollow ugc noopener\">https://talk.jekyllrb.com/t...</a> for more info on collection tags (a feature not directly supported by Jekyll)</p>",
+          "replies": [
+            {
+              "id": "3068269300",
+              "author": "Jingying Zhou",
+              "date": "2016-12-25T04:09:50Z",
+              "message": "<p>Thanks Róbert for the links and explanations. It seems that only posts would be counted from site.tags and collection tags should be treated in a different manner.</p>",
+              "replies": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4830717901",
+      "author": "Tomek Bielaszewski",
+      "date": "2020-03-12T21:26:23Z",
+      "message": "<p>Thanks, that's what I was looking for</p>",
+      "replies": []
+    }
+  ]
+}

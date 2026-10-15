@@ -1,0 +1,20 @@
+{
+  "count": 2,
+  "comments": [
+    {
+      "id": "979693460",
+      "author": "ksenkowski",
+      "date": "2013-07-29T04:16:44Z",
+      "message": "<p>Thoughts about adding phpmyadmin to this since that is one of the key reasons for using MAMP/LAMP/WAMP?</p>",
+      "replies": [
+        {
+          "id": "982194474",
+          "author": "LanyonM",
+          "date": "2013-07-31T03:05:51Z",
+          "message": "<p>That's a good suggestion - but it seems the answer isn't as quick as adding a couple Chef community cookbooks.  It looks like the community phpmyadmin cookbook relies on a fork of the php cookbook, and I don't want to go there.</p><p>Generally speaking it's good to know the software before you automate it, so I'll have to read up on how phpmyadmin gets installed, so I can keep the wp-shell based solely on community cookbooks.</p>",
+          "replies": []
+        }
+      ]
+    }
+  ]
+}

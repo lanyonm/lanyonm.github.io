@@ -1,0 +1,27 @@
+{
+  "count": 3,
+  "comments": [
+    {
+      "id": "2144852717",
+      "author": "Cidy Long",
+      "date": "2015-07-19T09:21:16Z",
+      "message": "<p>Do you have a working version in full code. I am struggling to find a way to implement my project in Spring Frameworks 4.1.2 and SiteMesh 3.0.1. I can't got if works. Basically, I need enable a main page main.jsp with two JSPs included as: header.jsp and footer.jsp</p>",
+      "replies": [
+        {
+          "id": "2148090415",
+          "author": "LanyonM",
+          "date": "2015-07-21T04:29:49Z",
+          "message": "<p>Hi Cidy,<br>The full example - <a href=\"https://github.com/lanyonm/playground\" rel=\"nofollow ugc noopener\">https://github.com/lanyonm/...</a> - uses Spring 4.0.6 and SiteMesh 2.4.2. I can't say for sure whether the combination of versions you have will work, but the major version bump would insinuate breaking changes.</p><p>I'll update this article to call out that the 3.x version of SiteMesh has been released.</p>",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": "2775502827",
+      "author": "Nawaraj Subedi",
+      "date": "2016-07-10T15:30:04Z",
+      "message": "<p>How to include the above layout page in for eg. login.jsp???</p>",
+      "replies": []
+    }
+  ]
+}
