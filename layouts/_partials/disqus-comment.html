@@ -1,0 +1,14 @@
+{{- /* One archived Disqus comment and its replies. Context: a Comment dict from data/disqus/<slug>.json.
+       .message was sanitized to a small allowlist when exported (see specs/002), so safeHTML is intentional. */ -}}
+<li class="archived-comment" id="comment-{{ .id }}">
+  <div class="archived-comment-meta">
+    <span class="archived-comment-author">{{ .author }}</span>
+    <a class="archived-comment-date" href="#comment-{{ .id }}"><time datetime="{{ .date }}">{{ (time.AsTime .date).Format (site.Params.dateFormat | default "2006-01-02") }}</time></a>
+  </div>
+  <div class="archived-comment-body">{{ .message | safeHTML }}</div>
+  {{- with .replies }}
+  <ol class="archived-comments archived-replies">
+    {{- range . }}{{ partial "disqus-comment.html" . }}{{ end }}
+  </ol>
+  {{- end }}
+</li>

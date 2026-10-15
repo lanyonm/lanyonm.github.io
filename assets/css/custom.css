@@ -1113,19 +1113,40 @@ figure.right {
   color: var(--brand-neutral-400);
   margin-bottom: 1.5rem;
 }
-.disqus-readonly-notice {
+.disqus-archive-notice {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: 99px;
   background: var(--brand-neutral-100);
   color: var(--brand-neutral-500);
   font-size: 0.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
-.dark .disqus-readonly-notice {
+.dark .disqus-archive-notice {
   background: var(--brand-neutral-700);
   color: var(--brand-neutral-300);
 }
+.disqus-archive-notice a { text-decoration: underline; }
+
+.archived-comments { list-style: none; margin: 0; padding: 0; }
+.archived-comment { margin: 0 0 1.5rem; }
+.archived-replies {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--brand-neutral-200);
+}
+.dark .archived-replies { border-left-color: var(--brand-neutral-600); }
+.archived-replies .archived-replies .archived-replies .archived-replies { padding-left: 0; border-left: 0; }
+.archived-comment-meta {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+.archived-comment-author { font-weight: 600; }
+.archived-comment-date { color: var(--brand-neutral-400); margin-left: 0.5rem; text-decoration: none; }
+.archived-comment-body { font-size: 0.95rem; overflow-wrap: anywhere; }
+.archived-comment-body p { margin: 0 0 0.5rem; }
+.archived-comment-body pre { overflow-x: auto; }
 
 /* ── Table of contents (flat scroll-spy rail, per mockup) ── */
 .toc-sidebar {
