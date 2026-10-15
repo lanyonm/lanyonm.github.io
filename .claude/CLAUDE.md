@@ -52,7 +52,7 @@ Permalinks use `:contentbasename` so URLs match the source filename slug:
 - `layouts/_partials/article-pagination.html` — prev/next with direction labels + ISO dates
 - `layouts/_partials/header/hamburger.html` — fixed nav, ARIA, active page highlighting, social icons in overlay
 - `layouts/_partials/footer.html` — copyright + GitHub/LinkedIn/Strava/RSS row
-- `layouts/_partials/extend-head.html` — Google Fonts (Manrope, Literata, JetBrains Mono)
+- `layouts/_partials/extend-head.html` — homepage hero image preload
 - `layouts/_partials/extend-footer.html` — loads custom.js
 - `layouts/index.html` — homepage hero + recent post list
 - `layouts/_default/about.html` — profile header with avatar/name/role/bio + social
@@ -62,6 +62,7 @@ Permalinks use `:contentbasename` so URLs match the source filename slug:
 
 ### Assets
 
+- `static/fonts/` — self-hosted woff2 (Manrope, Literata, JetBrains Mono; latin + latin-ext), declared via `@font-face` in custom.css
 - `assets/css/custom.css` — design tokens (slate palette, Manrope/Literata/JetBrains Mono), nav transparency, hero gradient, post cards, profile header, ToC, dark mode (via `html.dark` class set by Congo's appearance.js)
 - `assets/js/custom.js` — scroll-fade hero opacity (rAF-throttled), nav state transitions, ToC active section tracker, `close_menu()` helper, Escape key close
 
